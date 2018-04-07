@@ -22,8 +22,8 @@
 // gulp-imagemin      //图片压缩
 // gulp-size          //统计文件大小
 // npm install --save-dev
-// npm install gulp-concat gulp-htmlmin gulp-sass gulp-minify-css gulp-obfuscate gulp-uglify gulp-html-beautify gulp-rev gulp-notify gulp-webserver gulp-size gulp-rev-collector gulp-plumber gulp-sourcemaps gulp-autoprefixer gulp-file-include gulp-babel babel-preset-es2015 gulp-order gulp-cache gulp-imagemin --save-dev 
-//  
+// npm install gulp browser-sync gulp-concat gulp-htmlmin gulp-sass gulp-minify-css gulp-obfuscate gulp-uglify gulp-html-beautify gulp-rev gulp-notify gulp-webserver gulp-size gulp-rev-collector gulp-plumber gulp-sourcemaps gulp-autoprefixer gulp-file-include gulp-babel babel-preset-es2015 gulp-order gulp-load-plugins gulp-cache gulp-imagemin --save-dev 
+// npm install gulp gulp-load-plugins del wiredep run-sequence
 /*
 *
 *
