@@ -1,0 +1,86 @@
+body{
+    background: #0f3769;
+}
+.mui-bar-nav.mui-bar{background: transparent;
+    .bleft{font-size: 16px;color: #fff;padding: 13px 0;padding-left: 10px;}
+    .ifx{font-size: 14px;color: #cccccc;
+        margin-top: 14px;
+    }
+    .icon-sjdw{
+        background: url('/Images/daik/sjdw.png') no-repeat 50%;position: relative;top:4px;margin-left: -6px;
+    }
+}
+
+.mui-content{
+    background: transparent;
+    h1{font-size: 25px;color: #fff;text-align: center;margin-top: 12px;}
+    .infor{background: #fff;margin: 10px;border-radius: 15px;margin-top: 20px;padding-bottom: 80px;margin-bottom: 0;
+    border-bottom: 1px solid #c9d9e6;
+        .apg{padding-left: 20px;
+            h3{color: #999999;font-size: 15px;padding-top: 26px;padding-bottom: 12px;}
+            p{font-size: 15px;color: #333333;}
+            .mui-btn{
+                width: 156px;height: 40px;display: block;margin-top: 10px;
+                &.on{background: #0075e5;color: #fff;}
+                
+            }
+            
+        }
+        .page2{
+            h3{font-size: 18px;color: #0075e5;}
+            p.dmx{
+                font-size: 14px;color: #999999;margin-top: 20px;
+            }
+        }
+        
+        .put{margin-top: 16px;position: relative;
+                input{border-color:#2d8dea ;height: 44px;line-height: 44px;padding-left: 30px;font-size: 14px;}
+                i{position: absolute;width: 15px;height: 21px;background: url('/Images/daik/inputmoney0.png') no-repeat 50%;
+                    background-size: contain;left: 10px;top:11px;
+                }
+            }
+        .ynbt{text-align: center;padding-top: 25px;.mui-btn{
+                width: 154px;height: 38px;margin-top: 5px;
+                 &.on{background: #0075e5;color: #fff;}
+            }
+        }
+        
+        .page3,.page4,.page5{
+            padding-top: 38px;margin:0 20px;
+            h3{font-size: 15px;color: #333;padding: 12px 0;}
+            p{line-height: 21px;}
+        }
+        
+        .page3{
+            .title{font-size: 14px;color: #0075e5;}
+            
+        }
+        
+        .page4{
+            .ynbt{padding-top: 5px;}
+        }
+        
+        .page5{
+            .title{color: #0075e5;}
+            .gput{
+                position: relative;
+                input{
+                    border-color: #77b5f1;
+                    height: 43px;font-size: 14px;
+                }
+                .xzm{
+                    position: absolute;width: 87px;height: 33px;font-size: 14px;color: #fff;right: 5px;top: 5px;background: #0075e5;
+                    text-align: center;line-height: 33px;
+                }
+            }
+            p{margin: 5px 0;}
+        }
+        
+    }
+    .pace{background: #fff;margin: 10px;border-radius: 15px;margin-top: 0;padding-bottom: 40px;text-align: center;
+        .mui-btn{
+                width: 145px;height: 44px;margin-top: 10px;
+                &.on{background: #0075e5;color: #fff;}
+            }
+    }
+}

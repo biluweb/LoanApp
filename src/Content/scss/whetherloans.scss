@@ -1,0 +1,71 @@
+body{
+    background: #0f3566;
+    
+}
+
+.mui-bar.mui-bar-nav{
+    background-color:transparent ;
+    .bleft{
+        font-size: 16px;padding: 2px 10px;color: #fff;
+    }
+}
+
+.mui-content{
+    background: transparent;
+    h1{font-size: 25px;color: #fff;text-align: center;margin-top: 12px;}
+    .infor{background: #fff;margin: 10px;border-radius: 15px;margin-top: 20px;padding-bottom: 80px;margin-bottom: 0;
+        border-bottom: 1px solid #c9d9e6;
+        .pageyes,.pageno{
+            margin: 0 20px;
+        }
+        .apg{padding-top: 58px;
+        h3,p{text-align: center;}
+            h3{color: #bf371f;font-size: 16px;padding-top: 26px;padding-bottom: 12px;}
+            
+            .put{text-align: center;padding-top: 38px;}
+            .mui-btn{
+                width: 145px;height: 40px;margin-top: 10px;
+                &.on{background: #0075e5;color: #fff;}
+            }
+            >img{display: block;width: 57px;height: 57px;margin: 19px auto;margin-top: 0;}
+            h4{font-size: 15px;color: #333333;padding-top: 34px;line-height: 20px;}
+        }
+        .pageno{
+            p{font-size: 14px;color: #999999;line-height: 16px;padding-bottom: 28px;
+                border-bottom: 1px solid #f4f4f4;
+            }
+        }
+        .pageyes{
+            .title{color: #0075e5;padding-bottom: 52px;border-bottom: 1px solid #f6f6f6;padding-top: 17px;}
+            
+            .calres{
+                .mui-media-object{width: 83px;max-width: 83px;height: 83px;line-height: 83px;}
+                .mui-media-body{line-height: 21px;
+                    h3,p{text-align: left;}
+                    h3{padding: 0;line-height: 22px;font-size: 16px;color: #0075e5;}
+                    p{font-size: 14px;color: #333333;
+                        >span{color: #f39700;}
+                    }
+                    button{width: 147px;height: 35px;}
+                }
+                .mui-table-view-cell.mui-media{
+                    a{padding-top: 40px;}
+                }
+                .mui-table-view:after{
+                    background: transparent;
+                }
+            }
+            .apg{
+                img{margin-bottom: 0;}
+                
+            }
+        }
+    }
+    
+    .pace{background: #fff;margin: 10px;border-radius: 15px;margin-top: 0;padding-bottom: 80px;text-align: center;
+        
+    }
+}
+@media (max-width: 320px){
+    .mui-content .infor .pageyes .calres .mui-media-body button{width: auto;}
+}

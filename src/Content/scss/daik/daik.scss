@@ -1,0 +1,103 @@
+.mui-bar-nav.mui-bar{
+
+    .bleft{
+    font-size: 16px;
+        color: #6e6e6e;
+        
+        img{width: 13px;position: relative;bottom:1px;}
+         padding:12px;
+    }
+    
+   .mui-icon-arrowdown{padding: 0;position: relative;top:1px}
+}
+
+.mui-bar .mui-title{color: #333333;font-size: 19px;}
+
+.mui-bar .ifx{
+    font-size: 16px;color: #6e6e6e;padding: 16px 0;
+}
+
+.zxtite{
+    color: #999999;background: #fff;padding: 10px;
+    img{width: 76px;margin-top: 5px;}
+    i{position: relative;top:-3px}
+    span{font-size: 15px;position: relative;bottom: 2px;}
+}
+.itable-view{
+    margin-top: 2px;background: #fff;overflow: hidden;padding: 10px 0;
+    li{float: left;text-align: center;}
+    li:first-child{border-right: 1px solid #f4f4f4;}
+    .mui-media-body{font-size: 14px;color: #333;margin-top: 8px;}
+    a{display: block;}
+    .icon-wydk{background: url('/Images/daik/itabicon1.png') no-repeat 50%;background-size: contain;width: 50px;height: 49px;}
+    .icon-cxfj{background: url('/Images/daik/itabicon2.png') no-repeat 50%;background-size: contain;width: 49px;height: 49px;}
+}
+
+.dknewst{
+    padding-top: 10px;font-size: 15px;color: #999999;
+    .mui-row{background: #fff;line-height: 38px;}
+    h2{padding-left: 10px;margin-top: 10px;}
+    >div{padding-right: 10px;
+        i{position: relative;top:2px}
+        span{display: block;}
+    }
+}
+
+
+
+.tblist{
+    .mui-table-view .mui-media-object{
+        width: 51px;
+        max-width: 51px;
+        height: 51px;
+        line-height: 51px;
+    }
+ 
+    .mui-table-view-cell:after{
+        right: 15px;
+    }
+    
+    .mui-media-body{
+        font-size: 16px;
+        color: #333333;
+        line-height: 25px;
+        >span{
+            border: 1px solid #0075e5;border-radius: 5px;color: #0075e5;font-size: 13px;padding: 0 5px;
+        }
+        .mui-ellipsis span{color:#0075e5 ;}
+        
+    }
+    
+    
+    
+}
+
+.mui-bar{
+    
+    .icon-home{
+        width: 26px;height: 22px;
+        background: url('/Images/daik/dkiconhom.png') no-repeat 50%;background-size: contain;
+    }
+    
+    .icon-infor{
+        width: 24px;height: 21px;
+        background: url('/Images/daik/dkiconxx.png') no-repeat 50%;background-size: contain;
+    }
+    
+    .icon-gpw{
+        width: 28px;height: 21px;
+        background: url('/Images/daik/dkicongpw.png') no-repeat 50%;background-size: contain;
+    }
+    
+     .icon-myd{
+         width: 21px;height: 20px;
+          background: url('/Images/daik/dkiconmyd.png') no-repeat 50%;background-size: contain;
+     }
+    
+    .mui-tab-item.mui-active{
+        .icon-home{background-image:url('/Images/daik/dkiconhomon.png');}
+        .icon-infor{background-image:url('/Images/daik/dkiconxxon.png');}
+         .icon-gpw{background-image: url('/Images/daik/dkicongpwon.png');}
+         .icon-myd{background-image: url('/Images/daik/dkiconmydon.png');}
+    }
+}
