@@ -1,13 +1,14 @@
 body{
     background: #0f3769;
 }
-.mui-bar-nav.mui-bar{background: transparent;
+.mui-bar-nav.mui-bar{background: #0f3769;
     .bleft{font-size: 16px;color: #fff;padding: 13px 0;padding-left: 10px;}
     .ifx{font-size: 14px;color: #cccccc;
         margin-top: 14px;
     }
     .icon-sjdw{
-        background: url('/Images/daik/sjdw.png') no-repeat 50%;position: relative;top:4px;margin-left: -6px;
+        position: relative;top:2px;margin-left: -6px;width: 12px;height: 16px;margin: 0;padding: 0;
+        background: url('/Images/daik/iconspring.png') no-repeat -62px -2px;
     }
 }
 
@@ -22,7 +23,6 @@ body{
             .mui-btn{
                 width: 156px;height: 40px;display: block;margin-top: 10px;
                 &.on{background: #0075e5;color: #fff;}
-                
             }
             
         }
@@ -35,8 +35,8 @@ body{
         
         .put{margin-top: 16px;position: relative;
                 input{border-color:#2d8dea ;height: 44px;line-height: 44px;padding-left: 30px;font-size: 14px;}
-                i{position: absolute;width: 15px;height: 21px;background: url('/Images/daik/inputmoney0.png') no-repeat 50%;
-                    background-size: contain;left: 10px;top:11px;
+                i{position: absolute;width: 15px;height: 21px;background: url('/Images/daik/iconspring.png') no-repeat -62px -54px;
+                   left: 10px;top:11px;
                 }
             }
         .ynbt{text-align: center;padding-top: 25px;.mui-btn{

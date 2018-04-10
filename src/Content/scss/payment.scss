@@ -1,0 +1,27 @@
+body{background: #f5f5f5;}
+.mui-content{
+    .title{padding: 10px 15px;background: #7ab5ed;color: #fefeff;line-height: 20px;font-size: 14px;}
+    .fee{text-align: center;background: #fff;padding-bottom: 35px;
+        h2{font-size: 38px;color: #0075e5;padding-top: 48px;padding-bottom: 14px;}
+        .pt{font-size: 15px;color: #0075e5;padding-bottom: 26px;}
+        .pf{font-size: 12px;color: #999999;}
+    }
+    .paytype{
+        >p{padding: 24px 15px 15px;}
+        .wx{background: url('/Images/daik/iconspring.png') no-repeat -2px -94px;}
+        .zfb{background: url('/Images/daik/iconspring.png') no-repeat -38px -94px;}
+        .wx,.zfb{display: inline-block;width: 34px;height: 33px;margin-right: 14px;float: left;}
+        .mui-zft-right{
+           line-height: 33px;
+            p{ font-size: 14px;color: #333;}
+        }
+         
+    }
+    .qrzf{display: block;height: 46px;line-height:30px;margin: 114px 20px 50px;font-size: 17px;}
+}
+.mui-table-view-cell:after{
+    left: 0px;
+}
+.mui-table-view:before,.mui-table-view:after{
+    background: transparent;
+}

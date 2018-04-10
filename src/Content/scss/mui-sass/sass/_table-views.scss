@@ -59,6 +59,30 @@
         content: '\e472';
     }
 }
+
+//new++
+.#{$namespace}table-view-radio .#{$namespace}table-view-cell{
+    .#{$namespace}zft-right:after{
+        right:9px;
+        content: '';
+        color:$primary-color;
+        font-size: 17px;
+        font-weight: 600;
+    }
+    &.#{$namespace}selected .#{$namespace}zft-right:after{
+        content: '';
+        position: absolute;
+        float: right;
+        right:9px;
+        top:19px;
+        background: url('/Images/daik/jgxj_true.png') no-repeat 50%;
+        background-size:cover ;
+        width: 17px;
+        height: 17px;
+    }
+}
+
+
 //.#{$namespace}table-view-slider .#{$namespace}table-view-cell{
 //  padding:11px 0;
 //  > a:not(.#{$namespace}btn) {

@@ -6,4 +6,11 @@
 		   swipe: false, //默认为true
 		 }
 	});//mui初始化
+	
+	mui.ready(function(){
+		 //解决a标签不跳转问题
+        mui('body').on('tap', 'a', function() {
+            document.location.href = this.href;
+        });
+	})
 </script>
