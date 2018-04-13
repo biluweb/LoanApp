@@ -1,0 +1,56 @@
+// reset 
+@import "reset.scss";
+
+// base 
+@import "base.scss";
+
+body{
+    background: #f5f5f5;
+}
+
+.mui-bar-nav ~ .mui-content{
+    padding-top: 0;
+}
+
+.mui-bar-nav{background: transparent;border-bottom-color: #3b94e9;
+    .mui-title,.mui-icon{color: #fff;}
+}
+
+.mui-content{
+    .ghd{padding-top: 48px;background: #0075e5;color: #fff;padding-bottom: 33px;
+        .title,.tbd{margin:0 20px;}
+        p{color: #fff;line-height: 24px;}
+        .title{padding: 16px 0 5px;overflow: hidden;
+            h2,span{float: left;}
+            h2{font-size: 19px;}
+            span{font-size: 14px;margin-left: 10px;}
+        }
+        .tbd{
+            .mui-pull-left{
+                p{font-size: 15px;}
+            }
+            .mui-pull-right{
+                h3{
+                    font-size: 17px;color: #fff45c;
+                    span{font-size: 27px;}
+                }
+                >p{font-size: 14px;}
+            }
+        }
+    }
+    .gbd{
+        .tip{text-align: center;padding: 15px 0;
+            a{font-size: 13px;color: #333333;}
+            i{width: 13px;height: 15px;top:3px;}
+        }
+        .msg{margin: 0 15px;font-size: 13px;color: #999999;}
+        .sqdk{font-size: 16px;padding: 0;height: 34px;line-height: 34px;width: 50%;margin: 25px auto;background: transparent;}
+    }
+    
+}
+
+
+//icon
+.icon-jlb{
+    background-position: -57px -77px;
+}

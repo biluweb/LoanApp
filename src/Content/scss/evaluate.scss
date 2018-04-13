@@ -1,0 +1,44 @@
+// reset 
+@import "reset.scss";
+
+// base 
+@import "base.scss";
+
+
+body{background: #f5f5f5;}
+
+.mui-content{
+    input{width: auto;margin: 0;padding: 0;border: 0;font-size: 14px;height: 48px;line-height: 48px;background: transparent;}
+}
+
+
+//.warpser{position: fixed;top:48px;left: 0;right: 0;height: 82px;background: #f5f5f5;z-index: 100;}
+
+.searhbox{padding: 21px 15px;
+    .tinput{position: relative;
+        input{
+            padding: 0;height: 40px;line-height:40px;border-radius: 5px;padding-left: 32px;padding-right: 25px ;font-size: 14px;color: #333;
+            background: #fff;width: 100%;
+        }
+        
+//      i{position: absolute;width: 15px;height: 15px;background: url('/Images/daik/iconspring.png') no-repeat -62px -2px;}
+        
+        i.befor{
+            background-position:-62px -20px;left: 10px;top:11px;width: 15px;height: 15px;position: absolute;
+        }
+//      i.after{
+//          background-position-y:-37px;right: 10px;top:12px;
+//      }
+       
+    }
+    .btnsearh{height: 40px;line-height:40px;font-size: 15px;color: #333333;text-align: center;}
+}
+
+
+// fyxxlist 房源信息列表
+@import "daik/fyxxlist.scss";
+
+
+.qrgj{
+    height: 45px;text-align: center;font-size: 17px;color: #fff;line-height: 17px;margin: 35px auto;width: 92%;
+}

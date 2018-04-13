@@ -1,0 +1,12 @@
+// reset 
+@import "reset.scss";
+
+// base 
+@import "base.scss";
+
+body{
+    background: #f5f5f5;padding-bottom: 33px;
+}
+
+// 委托列表样式 
+@import "daik/loadlist.scss";

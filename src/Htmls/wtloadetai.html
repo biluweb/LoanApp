@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>委托按揭详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="/Content/css/wtloadetai.css"/>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+	      <a class="mui-icon bleft" href="javascript:;">
+	      	<i class="mui-icon mui-icon-arrowleft"></i>返回
+	      </a>
+	      <h1 class="mui-title">委托按揭详情</h1>
+	    </header>
+	    <div class="mui-content">
+	    	
+	        <div class="infor infortran">
+	        	<h2>按揭办理信息</h2>
+	        	<ul class="mui-row">
+	        		<li><span>按揭办理公司：</span></li>
+	        		<li><span>重庆汇集源科技有有限公司</span><span class="qy">诚信企业</span></li>
+	        		<li class="mui-pull-left mui-col-sm-5 mui-col-xs-12"><span>客服经理：</span>王经理</li>
+	        		<li class="mui-pull-right mui-col-sm-7 mui-col-xs-12"><span>联系电话：</span>18223856200</li>
+					<li>当前正在准备：按揭面签流程中... ...</li>
+					<li><button class="mui-btn mui-btn-blue lcwh">催他一下</button></li>
+	        	</ul>
+	        </div>
+	        
+	        <div class="box mui-hidden">
+	        	<!--加载列表-->
+				@@include('module/wtloalist.html')
+	        </div>
+	        
+	        <div class="oclist iconspr"></div>
+	    </div>
+	    
+	    
+	    
+	    <!--加载mui+vue js-->
+		@@include('module/linkjs.html')
+		
+		<script src="/Scripts/base/PackagingFunction.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.ready(function(){
+				mui(".mui-content").on('tap','.oclist',function(){
+					var bx=document.querySelector('.box');
+					toggleClass(bx,'mui-hidden');
+					toggleClass(this,'top');
+				})
+			})
+		</script>
+	</body>
+</html>

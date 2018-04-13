@@ -5,8 +5,6 @@
 		<title>银行预审结果</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
-		<link rel="stylesheet" href="/Content/css/reset.css" />
-		<link rel="stylesheet" type="text/css" href="/Content/css/base.css"/>
 		<link rel="stylesheet" type="text/css" href="/Content/css/examineres.css"/>
 	</head>
 	<body>
@@ -19,7 +17,7 @@
 	    </header>
 	    
 	    <div class="mui-content">
-	        <div class="examin-yes mui-content-padded mui-hidden">
+	        <div class="examin-yes mui-content-padded ">
 		 		<div class="hd">
 		 			<img src="/Images/daik/yesloanst.png"/>
 	    			<h3 class="title">恭喜您，您申请的按揭贷款银行预审通过</h3>
@@ -32,19 +30,22 @@
 	    				<li><span>预审时间：</span>2018年3月26日 12:44:25</li>
 	    				<li class="mui-pull-left mui-col-sm-6 mui-col-xs-12"><span>客户经理：</span>方少</li>
 	    				<li class="mui-pull-left mui-col-sm-6 mui-col-xs-12"><span>电话联系：</span>1235555455</li>
-	    				<li><span>预审结果：</span><span class="exares">通过</span></li>
+	    				<li>
+	    					<span>预审结果：</span><span class="exares">通过</span>
+	    					<ul class="tlst">
+			    				<li>可贷额度：￥50万</li>
+			    				<li>贷款期限：30年</li>
+			    				<li>基准利率：4.9% <span class="fq">360期</span></li>
+			    				<li>月       供：4000元/月</li>
+			    				<li><button class="mui-btn mui-btn-blue qrh">确认达成合作</button></li>
+			    			</ul>
+	    				</li>
 	    			</ul>
-	    			<ul class="tlst">
-	    				<li>可贷额度：￥50万</li>
-	    				<li>贷款期限：30年</li>
-	    				<li>基准利率：4.9% <span class="fq">360期</span></li>
-	    				<li>月       供：4000元/月</li>
-	    			</ul>
-	    			<button class="mui-btn mui-btn-blue qrh">确认达成合作</button>
+	    			
 	    		</div>
 		    </div>
 		    
-		    <div class="examin-no mui-content-padded">
+		    <div class="examin-no mui-content-padded mui-hidden">
     			<div class="hd">
 		 			<img src="/Images/daik/notloanst.png"/>
 	    			<h3 class="title">很遗憾！您目前不能办理按揭贷款</h3>

@@ -124,17 +124,20 @@ InputFocus.prototype.hover=function(dom){
 //Tabs切换
 function LogregTab(dom){
 	this.box=doc.querySelector(dom);
-	this.tabli=this.box.querySelectorAll('.tab li');
-	this.tabinfor=this.box.querySelectorAll('.infor>div');
+	this.tabli=this.box.querySelectorAll('.tab .td');
+	this.tabinfor=this.box.querySelectorAll('.infor>.tb');
 }
 LogregTab.prototype.init=function(callback){
 	var This=this;
 	for(var i=0;i<this.tabli.length;i++){
 		this.tabli[i].index=i;
 		this.tabli[i].addEventListener('tap',function(){
-			for(var i=0;i<This.tabli.length;i++){This.tabli[i].className='';This.tabinfor[i].className='';}
-			this.className='on';
-			This.tabinfor[this.index].className='active';
+			for(var i=0;i<This.tabli.length;i++){
+				removeClass(This.tabli[i],'on');
+				removeClass(This.tabinfor[i],'active');
+			}
+			addClass(this,'on')
+			addClass(This.tabinfor[this.index],'active')
 		})
 	}
 	if(typeof callback == "function") callback();

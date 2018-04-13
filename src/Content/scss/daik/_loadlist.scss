@@ -1,0 +1,35 @@
+.mui-content{
+    .infor{margin: 0px 15px;
+        h2{padding-top: 20px;padding-bottom: 10px;font-size: 18px;color: #333333;}
+        >ul{color: #333333;font-size: 15px;overflow: hidden;
+            padding: 22px 15px;background: #ffffff;
+            >li{line-height: 28px;
+                .lcwh{padding: 0;font-size: 16px;height: 34px;width: 75%;display: block;margin: 10px auto;margin-top: 15px;}
+                >span{color: #999999;
+                    &.qy{color: #0075e5;}
+                }
+                .txda{color: #333;display: block;text-align: center;}
+                &.liblock{width: 100%;}
+                ul>li{margin-left: 80px;
+                }
+                .qrh{margin-top: 17px;
+                    &.ach{
+                     background: #999999;border: none;
+                    }
+                }
+            }
+        }
+    }
+    .fq{font-size: 13px;color: #999999;border: 1px solid #999999;padding: 0 5px;border-radius: 10px;}
+    .inforperty{
+        ul>li{
+                float: left;width: 49.9%;
+            }
+        
+    }
+    
+    .oclist{width: 42px;height: 28px;background-position-y: -200px;display: block;margin: 20px auto;
+        &.top{background-position-x: -47px;}
+    }
+    
+}

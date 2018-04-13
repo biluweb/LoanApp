@@ -1,3 +1,7 @@
+// reset 
+@import "reset.scss";
+
+
 body{background: #123d71;}
 
 .mui-bar-nav{height: 76px;background: #123d71;
@@ -11,9 +15,9 @@ body{background: #123d71;}
         i.befor{
             background-position-y:-20px;left: 10px;top:11px;
         }
-        i.after{
-            background-position-y:-37px;right: 10px;top:12px;
-        }
+//      i.after{
+//          background-position-y:-37px;right: 10px;top:12px;
+//      }
        
     }
     .btnsearh{margin-top: 28px;height: 40px;line-height:40px;font-size: 15px;color: #fff;text-align: center;}
@@ -23,66 +27,9 @@ body{background: #123d71;}
     padding-top: 94px;background: transparent;
 }
 
-.infor{
-    background: #fff;
-    border-radius: 5px;
-    margin: 0 10px;
-    border-bottom: 1px solid #c9d9e6;
-    padding: 32px 12px;
-}
+
 .mui-content{
     input{width: auto;margin: 0;padding: 0;border: 0;font-size: 14px;height: 48px;line-height: 48px;background: transparent;}
-}
-
-.mui-table-view{
-    &:before,&:after{
-        background: transparent;
-    }
-    .mui-table-view-cell{
-        padding: 0px;line-height: 48px;
-        &:after{left: 0px;background: #f3f3f3;}
-      >div{overflow: hidden;
-            font-size: 14px;color: #333333; margin: 0;padding: 0;
-            &.stxt,&.mui-navigate-right{padding-right: 20px;}
-        }
-        .stxt{position: relative;
-            .pull-right{position: absolute;right:3px;top:-2px;}
-        }
-        .lstleft{
-            padding-left: 8px;width: 80px;position: rrelative;
-        }
-         .lstright{float: right;}
-         .putright{float: right;width: 42%;
-            
-         }
-         .lstright,.putright{text-align: right;}
-        
-        &.must{
-            .lstleft:before{content: '*';position: absolute;top:2px;left: 0px;color: #ff0000;}
-        }
-        .lstcenter{width: 20%;margin-left: 10px;
-            input{width: 58px;text-align: right;}
-        }
-        .col3{
-            .lstright{width: 35%;
-                input{width: 58px;}
-            }
-            //.lstcenter,.lstleft{float: left;}
-        }
-        .swhbtn{border: 1px solid #0075e5;overflow: hidden;border-radius: 3px;margin-top: 6px;
-            span{font-size: 15px;padding: 0 30px;color: #0075e5;height: 35px;line-height: 35px;
-                float: left;
-                &.on{
-                    background: #0075e5;color: #fff;
-                }
-            }
-        }
-    }
-    .opt{position: relative;top:7px;
-        p{line-height: 30px;font-size: 13px;color: #999999;}
-    }
-    
-    
 }
 
 .pace{background: #fff;margin: 10px;border-radius: 5px;margin-top: 0;padding-bottom: 40px;text-align: center;
@@ -92,12 +39,7 @@ body{background: #123d71;}
         }
 }
 
-.mui-navigate-right:after, .mui-push-right:after{
-    right: 5px;
-}
+// fyxxlist 房源信息列表
+@import "daik/fyxxlist.scss";
 
-@media(max-width:320px){
-    .mui-table-view .mui-table-view-cell .col3 .lstright{width: 100%;}
-    
-}
 

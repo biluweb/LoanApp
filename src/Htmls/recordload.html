@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的项目按揭记录</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="/Content/css/recordload.css"/>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+	      <a class="mui-icon bleft" href="javascript:;">
+	      	<i class="mui-icon mui-icon-arrowleft"></i>返回
+	      </a>
+	      	
+	  		<div class="obtn xycenter">
+	  			<ul class="tab">
+	  				<li class="on td">按揭中</li><li class="td">已放款</li>
+	  			</ul>
+	  		</div>
+	    </header>
+	    
+	    
+	    <div class="mui-content">
+	    	<div class="infor">
+	    		<ul class="wul tb active">
+			    	<li>
+			    		<ul>
+			    			<li>加州花园A2栋12-10+王二娃</li>
+			    			<li>建筑面积：125㎡</li>
+			    			<li>贷款银行：厦门银行</li>
+			    			<li>可贷额度：50万</li>
+			    			<li>按揭公司：重庆汇集源科技有限公司</li>
+			    			<li>委托按揭时间：2018年3月24日</li>
+			    		</ul>
+			    		<button class="status">
+			    			收集资料中
+			    		</button>
+			    	</li>
+			    	<li>
+			    		<ul>
+			    			<li>加州花园A2栋12-10+王二娃</li>
+			    			<li>建筑面积：125㎡</li>
+			    			<li>贷款银行：厦门银行</li>
+			    			<li>可贷额度：50万</li>
+			    			<li>按揭公司：重庆汇集源科技有限公司</li>
+			    			<li>委托按揭时间：2018年3月24日</li>
+			    		</ul>
+			    		<button class="status">
+			    			预约面签中
+			    		</button>
+			    	</li>
+			    </ul>
+			    <ul class="wul tb">
+			    	<li>
+			    		<ul>
+			    			<li>加州花园A2栋12-10+王二娃</li>
+			    			<li>建筑面积：125㎡</li>
+			    			<li>贷款银行：厦门银行</li>
+			    			<li>可贷额度：<b>50万</b></li>
+			    			<li>按揭公司：重庆汇集源科技有限公司</li>
+			    			<li>委托按揭时间：2018年3月24日</li>
+			    		</ul>
+			    		<button class="status">
+			    			确认放款到账
+			    		</button>
+			    	</li>
+			    	<li>
+			    		<ul>
+			    			<li>加州花园A2栋12-10+王二娃</li>
+			    			<li>建筑面积：125㎡</li>
+			    			<li>贷款银行：厦门银行</li>
+			    			<li>可贷额度：<b>50万</b></li>
+			    			<li>按揭公司：重庆汇集源科技有限公司</li>
+			    			<li>委托按揭时间：2018年3月24日</li>
+			    		</ul>
+			    		<button class="status">
+			    			已完成按揭
+			    		</button>
+			    	</li>
+			    </ul>
+	    	</div>
+	         
+	    </div>
+	   
+	    <!--加载mui+vue js-->
+		@@include('module/linkjs.html')
+		
+	   <script src="/Scripts/base/PackagingFunction.js" ></script>
+	   <script type="text/javascript">
+	   		mui.ready(function(){
+//	   			tab切换
+	   			var tbl=new LogregTab('body');
+	   			tbl.init();
+	   			
+	   		})
+	   </script>
+	</body>
+</html>

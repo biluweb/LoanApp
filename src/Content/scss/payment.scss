@@ -1,3 +1,9 @@
+// reset 
+@import "reset.scss";
+
+// base 
+@import "base.scss";
+
 body{background: #f5f5f5;}
 .mui-content{
     .title{padding: 10px 15px;background: #7ab5ed;color: #fefeff;line-height: 20px;font-size: 14px;}

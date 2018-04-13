@@ -187,6 +187,12 @@ gulp.task('images', () => {
     .pipe($.cache($.imagemin()))
     .pipe(gulp.dest('dist/Images'));
 });
+//图片处理2
+gulp.task('images2', () => {
+  return gulp.src('src/Resourceup/**/*')
+    .pipe($.cache($.imagemin()))
+    .pipe(gulp.dest('dist/Resourceup'));
+});
 
 //删除文件夹
 gulp.task('clean', del.bind(null, ['dist']));
@@ -195,7 +201,7 @@ gulp.task('clean', del.bind(null, ['dist']));
 // http://localhost:9001/
 // 浏览器实时刷新
 gulp.task('server', () => {
-  runSequence(['clean'], ['muisass','Contcopy','muijs','scripts','scriptcopy','fileinclude','images','fonts'], () => {
+  runSequence(['clean'], ['muisass','Contcopy','muijs','scripts','scriptcopy','fileinclude','images','images2','fonts'], () => {
     browserSync.init({
       notify: false,
       port: 9001,
@@ -204,7 +210,8 @@ gulp.task('server', () => {
         routes: {       //路由配置
           '/Content': 'Content',
           '/Images':'Images',
-          '/Scripts':'Scripts'
+          '/Scripts':'Scripts',
+          '/Resourceup':'Resourceup'
         }
       }
     });
@@ -221,6 +228,7 @@ gulp.task('server', () => {
     gulp.watch('src/Content/scss/**/*.scss', ['muisass']);
     gulp.watch('src/Scripts/**/*.js', ['scripts']);
     gulp.watch('src/Images/**/*', ['images']);
+    gulp.watch('src/Resourceup/**/*', ['images2']);
     // gulp.watch('bower.json', ['wiredep', 'fonts']);
   });
 });
@@ -293,7 +301,7 @@ gulp.task('watchjumpPage',()=>{
 // })
 
 //任务集合
-gulp.task('build', ['muisass','Contcopy','muijs','scripts','scriptcopy','images','fonts','fileinclude','server'], () => {
+gulp.task('build', ['muisass','Contcopy','muijs','scripts','scriptcopy','images','images2','fonts','fileinclude','server'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 

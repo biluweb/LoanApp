@@ -1,0 +1,80 @@
+// reset 
+@import "reset.scss";
+
+// base 
+@import "base.scss";
+
+
+body{background: #f5f5f5;}
+.mui-bar-nav{
+    .obtn{overflow: hidden;text-align: center;border: 1px solid #2287e8;border-radius: 3px;width:200px;
+        li{float: left;line-height: 33px;width:33%;font-size: 15px;color: #0075e5;background: #fff;
+            &.on{background: #0075e5;color: #fff;}
+        }
+        .tab{width: 102%;}
+    }
+}
+
+@media (max-width:320px){
+    .mui-bar-nav .obtn{width: 160px;
+    }
+}
+
+
+.mui-content{background: #fff;
+    .wul{margin: 0px 15px;font-size: 14px;color: #999999;line-height: 26px;
+        >li{border-bottom: 1px solid #f4f4f4;padding: 20px 0 25px;position: relative;}
+        .oul>li:first-child{font-size: 16px;color: #333333;}
+        b{font-weight: normal;color: #333;}
+    }
+    
+    .status{position: absolute;width: 81px;height: 34px;color: #0075e5;right: 0px;top:37px;text-align: center;line-height: 34px;border: 1px solid #0075e5;
+        border-radius: 5px;
+        i{font-size: 17px;}
+    }
+    .yet{
+        .status{color: #fff;border: 0;background: #0075e5;
+            &.down ~.yetres{display: none;}
+        }
+        .yetres{
+            background: #ebebeb;padding: 18px 15px;
+        }
+    }
+    .infor{
+        .tb{display: none;
+            &.active{display: block;}
+        }
+    }
+}
+
+
+.yetres{
+    padding: 18px;background: #fff;border-radius: 5px;
+    ul{font-size: 15px;}
+    ul li{line-height: 29px;}
+    .td{color: #333;
+        span{color: #999999;
+            &.exares{
+                padding: 0 10px;border-radius: 3px;
+                    position: relative;top: 2px;
+            }
+        }
+    }
+    .td span{
+            &.exares{color: #1580e7;background: #d0e5ff;}
+        }
+        .tlst{
+            li{line-height: 25px;}
+            color: #0075e5;width: 212px;margin: 10px auto;margin-top: 0;
+            .fq{font-size: 13px;color: #333333;border: 1px solid #333333;padding: 0 5px;border-radius: 10px;}
+        }
+        .mui-btn{
+            width: 166px;height: 34px;display: block;margin-top: 10px;
+        }
+}
+
+.infor{
+    .tb{display: none;
+        &.active{display: block;}
+    }
+}

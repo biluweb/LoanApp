@@ -1,0 +1,54 @@
+// reset 
+@import "reset.scss";
+
+// base 
+@import "base.scss";
+
+
+body{background: #f5f5f5;}
+
+
+//icon
+.icon-myxg{background-position:-73px -107px;width: 19px;height: 20px;}
+.icon-mysq,.icon-myaj,.icon-myinfo{
+    background-position-x:-79px;top:3px;
+}
+.icon-mysq{width: 20px;height: 20px;}
+.icon-myaj{background-position-y:-24px;width: 20px;height: 20px;}
+.icon-myinfo{background-position-y:-46px;width: 20px;height: 17px;}
+
+.mui-content{
+    padding-top: 0;background: transparent;
+    .cont{
+        padding: 49px 10px 65px;overflow: hidden;background: url('/Images/daik/mytitbg.jpg') no-repeat 50%;
+        background-size:cover;
+    }
+    .mytitle{
+        img{
+            width: 72px;height: 72px;margin-left: 20px;margin-right: 18px;float: left;
+        }
+        .mctr{
+            overflow: hidden;padding-top: 20px;position: relative;
+            h2,p{color: #fff;}
+            h2{font-size: 16px;}
+            p{font-size: 15px;margin-top: 5px;}
+            i{position: absolute;right: 10px;top:30px}
+        }
+    }
+    .exit{height: 45px;text-align: center;margin: 10px auto;display: block;width: 90%;font-size: 17px;margin-top: 55px;margin-bottom: 54px;}
+}
+
+
+.mymang{
+    .mui-table-view-cell > a{
+        font-size: 15px;color: #333333;line-height: 63px;
+        i{margin-right: 18px;margin-left: 5px;}
+    }
+}
+
+.mui-navigate-right:after, .mui-push-right:after{
+    font-size: 20px;
+}
+.mui-table-view:after{
+    background-color: transparent;
+}

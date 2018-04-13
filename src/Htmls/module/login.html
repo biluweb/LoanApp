@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登陆界面</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="/Content/css/login.css"/>
+	</head>
+	<body>
+		<div class="mui-content">
+			<a class="mui-icon mui-icon-closeempty loginext" href="#"></a>
+			
+			<div class="timg">
+				<img src="/Images/daik/gpwlogos.png" />
+			</div>
+			<form id='login-form' class="mui-input-group">
+				<div class="mui-input-row">
+					<label class="iconspr icon-usern"></label>
+					<input id='account' type="number" class="mui-input" placeholder="请输入手机号">
+				</div>
+				<div class="mui-input-row">
+					<label class="iconspr icon-userp"></label>
+					<input id='password' type="password" class="mui-input mui-input-password" placeholder="请输入登陆密码">
+					<span class="mui-icon mui-icon-eye">
+						
+					</span>
+				</div>
+			</form>
+			<div class="content-padded">
+				<div class="link-area">
+					<a id='forgetPassword'>忘记密码</a>
+				</div>
+				<button id='login' class="mui-btn mui-btn-block mui-btn-primary">立即登录</button>
+			</div>
+		</div>
+		
+		 <!--加载mui+vue js-->
+		@@include('linkjs.html')
+		
+	</body>
+</html>

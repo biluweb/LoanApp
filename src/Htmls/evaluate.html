@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自动估价</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="/Content/css/evaluate.css"/>
+	</head>
+	<body>
+		<!-- 主页面标题 -->
+	    <header class="mui-bar mui-bar-nav">
+	      <a class="mui-icon bleft" href="javascript:;">
+	      	<i class="mui-icon mui-icon-arrowleft"></i>返回
+	      </a>
+	      <h1 class="mui-title">自动估价</h1>
+	    </header>
+	    
+	    <div class="mui-content">
+	    	<div class="warpser">
+	    		<div class="mui-clearfix searhbox">
+		    	<div class="tinput mui-col-sm-10 mui-col-xs-10 mui-pull-left mui-input-row">
+		    		<i class="befor iconspr"></i>
+		    		<input type="text" placeholder="输入关键字" class="mui-input-clear mui-input"/>
+		    	</div>
+		    	<a href="javascript:;" class="mui-col-sm-2 mui-col-xs-2 mui-pull-left btnsearh">搜索</a>
+				</div>
+	    	</div>
+			<!--加载楼盘列表-->
+			@@include('module/houdetails.html')
+			
+			
+			<a class="mui-btn-block mui-btn mui-btn-primary qrgj" href="evalres.html">立即估价</a>
+	    </div>
+	    
+	    <!--加载mui+vue js-->
+		@@include('module/linkjs.html')
+	</body>
+</html>

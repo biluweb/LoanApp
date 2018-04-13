@@ -1,0 +1,20 @@
+// reset 
+@import "reset.scss";
+
+// base 
+@import "base.scss";
+
+.mui-content{background:transparent;
+    .tip{padding: 0 15px;font-size: 14px;color: #fefeff;line-height: 47px;background: #7ab5ed;}
+    form{margin: 0 15px;margin-top: 10px;}
+    label{font-size: 14px;color: #999999;padding-left: 0;}
+    input{font-size: 16px;}
+    button{background: #0075e5;color: #fff;padding: 0;height: 45px;width: 90%;margin: 10px auto;display: block;
+        margin-top: 50px;
+    }
+    .mui-input-row{border-bottom: 1px solid #ccc;}
+}
+
+.mui-input-group:after,.mui-input-group:before,.mui-input-group .mui-input-row:after{
+    background: transparent;
+}
