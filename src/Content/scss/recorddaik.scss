@@ -7,8 +7,8 @@
 
 body{background: #f5f5f5;}
 .mui-bar-nav{
-    .obtn{overflow: hidden;text-align: center;border: 1px solid #2287e8;border-radius: 3px;width:200px;
-        li{float: left;line-height: 33px;width:33%;font-size: 15px;color: #0075e5;background: #fff;
+    .obtn{overflow: hidden;text-align: center;border: 1px solid #2287e8;border-radius: 3px;width:173px;
+        li{float: left;line-height: 33px;width:49.5%;font-size: 15px;color: #0075e5;background: #fff;
             &.on{background: #0075e5;color: #fff;}
         }
         .tab{width: 102%;}
@@ -16,7 +16,7 @@ body{background: #f5f5f5;}
 }
 
 @media (max-width:320px){
-    .mui-bar-nav .obtn{width: 160px;
+    .mui-bar-nav .obtn{width: 130px;
     }
 }
 

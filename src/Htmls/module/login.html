@@ -8,6 +8,11 @@
 		<link rel="stylesheet" type="text/css" href="/Content/css/login.css"/>
 	</head>
 	<body>
+		
+		<div id="app">
+			 
+			
+		
 		<div class="mui-content">
 			<a class="mui-icon mui-icon-closeempty loginext" href="#"></a>
 			
@@ -17,11 +22,11 @@
 			<form id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
 					<label class="iconspr icon-usern"></label>
-					<input id='account' type="number" class="mui-input" placeholder="请输入手机号">
+					<input id='account' type="number" class="mui-input" v-model="Mobile" placeholder="请输入手机号">
 				</div>
 				<div class="mui-input-row">
 					<label class="iconspr icon-userp"></label>
-					<input id='password' type="password" class="mui-input mui-input-password" placeholder="请输入登陆密码">
+					<input id='password' type="password" class="mui-input mui-input-password" v-model="Password" placeholder="请输入登陆密码">
 					<span class="mui-icon mui-icon-eye">
 						
 					</span>
@@ -31,12 +36,67 @@
 				<div class="link-area">
 					<a id='forgetPassword'>忘记密码</a>
 				</div>
-				<button id='login' class="mui-btn mui-btn-block mui-btn-primary">立即登录</button>
+				<button id='login' class="mui-btn mui-btn-block mui-btn-primary" @click="login()">立即登录</button>
 			</div>
 		</div>
 		
+		</div>
 		 <!--加载mui+vue js-->
-		@@include('linkjs.html')
+		@@include('linkjs.html');
 		
+		<script src="/Scripts/base/PackagingFunction.js"></script>
+		<script src="/Scripts/base/VarGlobal.js"></script>
+		
+		<script type="text/javascript">
+			
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					Mobile:'',
+					Password:''
+				},
+				methods:{
+					login:function(){
+						var self = this;
+						mui.ajax({
+							url: port_Login,
+							type: 'post',
+							dataType: 'json',
+							headers: {
+								"Authorization": getCookie("gpl_token"),
+								'Content-Type': 'application/json'
+							},
+							data: {
+								Mobile:self.Mobile,
+								Password:self.Password
+							},
+							//{"Mobile":"18933336666","Password":"669153"},
+							success: function(data) {
+	//							self.resume = data;
+								//								console.log(getCookie("gpl_token"));
+								
+								if(data.Code=10000){
+									mui.alert('登录成功');
+									setTimeout(function(){
+										window.location.href="/Htmls/dkindex.html";
+									},2000)
+									
+								}
+								console.log(data);
+								
+							},
+							error: function(e) {
+								console.log(e);
+							}
+						})
+					}
+				},
+				created: function() {
+					
+					
+				}
+
+			})
+		</script>
 	</body>
 </html>

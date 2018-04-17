@@ -18,14 +18,16 @@ body{
 .mui-content{
     background: transparent;
     h1{font-size: 25px;color: #fff;text-align: center;margin-top: 12px;}
-    .infor{background: #fff;margin: 10px;border-radius: 15px;margin-top: 20px;padding-bottom: 80px;margin-bottom: 0;
+    .infor{background: #fff;border-radius: 15px;margin-bottom: 0;
+    margin: 0 10px;padding: 32px 12px;margin-top: 20px;padding-bottom: 80px;
     border-bottom: 1px solid #c9d9e6;
         .apg{padding-left: 20px;
             h3{color: #999999;font-size: 15px;padding-top: 26px;padding-bottom: 12px;}
             p{font-size: 15px;color: #333333;}
-            .mui-btn{
-                width: 156px;height: 40px;display: block;margin-top: 10px;
+            .mui-btn{position: relative;line-height: 40px;
+                width: 156px;height: 40px;display: block;margin-top: 10px;padding: 0;
                 &.on{background: #0075e5;color: #fff;}
+                input{position: absolute;left: 0px;right: 0;height: 100%;width: 100%;}
             }
             
         }
@@ -37,18 +39,21 @@ body{
         }
         
         .put{margin-top: 16px;position: relative;
-                input{border-color:#2d8dea ;height: 44px;line-height: 44px;padding-left: 30px;font-size: 14px;}
+                input{border-color:#2d8dea ;height: 44px;line-height: 44px;padding:0;padding-left: 30px;font-size: 14px;}
                 i{position: absolute;width: 15px;height: 21px;background: url('/Images/daik/iconspring.png') no-repeat -62px -54px;
                    left: 10px;top:11px;
                 }
             }
-        .ynbt{text-align: center;padding-top: 25px;.mui-btn{
-                width: 154px;height: 38px;margin-top: 5px;
+        .ynbt{text-align: center;padding-top: 25px;
+            .mui-btn{position: relative;display: block;
+                width: 154px;height: 38px;line-height: 38px;margin-top: 5px;padding: 0;
                  &.on{background: #0075e5;color: #fff;}
+                 input{position: absolute;left: 0px;top: 0;height: 100%;width: 100%;}
             }
+            
         }
         
-        .page3,.page4,.page5{
+        .page3,.page4,.page6{
             padding-top: 38px;margin:0 20px;
             h3{font-size: 15px;color: #333;padding: 12px 0;}
             p{line-height: 21px;}
@@ -63,7 +68,7 @@ body{
             .ynbt{padding-top: 5px;}
         }
         
-        .page5{
+        .page6{
             .title{color: #0075e5;}
             .gput{
                 position: relative;
@@ -86,4 +91,186 @@ body{
                 &.on{background: #0075e5;color: #fff;}
             }
     }
+}
+
+
+@media (max-width:375px){
+//  .mui-content .infor .ynbt .mui-btn:first-child{
+//      position: relative;left: 2px;
+//  }
+}
+
+
+
+//list
+
+//infor房源信息列表
+.infor{
+     .mui-table-view{
+    &:before,&:after{
+        background: transparent;
+    }
+    .mui-table-view-cell{
+        padding: 0px;line-height: 48px;
+        &:after{left: 0px;background: #f3f3f3;}
+      >div{overflow: hidden;
+            font-size: 14px;color: #333333; margin: 0;padding: 0;
+            &.stxt,&.mui-navigate-right{padding-right: 20px;}
+        }
+        .stxt{position: relative;
+            .pull-right{position: absolute;right:3px;top:-2px;}
+        }
+        .lstleft{
+            padding-left: 8px;width: 80px;position: rrelative;
+        }
+         .lstright{float: right;}
+         .putright{float: right;width: 42%;
+            
+         }
+         .lstright,.putright{text-align: right;}
+        
+        &.must{
+            .lstleft:before{content: '*';position: absolute;top:2px;left: 0px;color: #ff0000;}
+        }
+        .lstcenter{width: 20%;margin-left: 10px;
+            input{width: 58px;text-align: right;}
+        }
+        .col3{
+            .lstright{width: 35%;
+                input{width: 58px;}
+            }
+            //.lstcenter,.lstleft{float: left;}
+        }
+        .swhbtn{border: 1px solid #0075e5;overflow: hidden;border-radius: 3px;margin-top: 6px;
+            label{font-size: 15px;padding: 0 30px;color: #0075e5;height: 35px;line-height: 35px;position: relative;
+                float: left;
+                &.on{
+                    background: #0075e5;color: #fff;
+                }
+                input{position: absolute;left: 0;top: 0;height: 100%;width: 100%;}
+            }
+        }
+    }
+    .opt{position: relative;top:7px;
+        p{line-height: 30px;font-size: 13px;color: #999999;}
+    }
+    
+    
+    
+    .mui-navigate-right:after, .mui-push-right:after{
+    right: 5px;
+}
+
+    
+
+    
+}
+
+
+    
+}
+@media(max-width:320px){
+   .infor .mui-table-view .mui-table-view-cell .col3 .lstright{width: 100%;}
+
+}
+
+.mui-content{
+    .page5 input{width: auto;margin: 0;padding: 0;border: 0;font-size: 14px;height: 48px;line-height: 48px;background: transparent;}
+}
+
+
+
+//导航
+#nav2{height: 76px;background: #123d71;
+    .tinput{margin-top: 28px;position: relative;
+        input{
+            padding: 0;height: 40px;line-height:40px;border-radius: 5px;padding-left: 32px;padding-right: 25px ;font-size: 14px;color: #333;
+        }
+        
+        i{position: absolute;width: 15px;height: 15px;background: url('/Images/daik/iconspring.png') no-repeat -62px -2px;}
+        
+        i.befor{
+            background-position-y:-20px;left: 10px;top:11px;
+        }
+//      i.after{
+//          background-position-y:-37px;right: 10px;top:12px;
+//      }
+       
+    }
+    .btnsearh{margin-top: 28px;height: 40px;line-height:40px;font-size: 15px;color: #fff;text-align: center;}
+}
+
+
+//loading
+@import "daik/loadEffect.scss";
+
+
+
+//推荐贷款
+
+#app.loans .mui-bar.mui-bar-nav{
+    background-color:transparent ;
+    .bleft{
+        font-size: 16px;padding: 2px 10px;color: #fff;
+    }
+}
+
+#app.loans .mui-content{
+    background: transparent;
+    h1{font-size: 25px;color: #fff;text-align: center;margin-top: 12px;}
+    .infor{background: #fff;margin: 10px;border-radius: 15px;margin-top: 20px;padding-bottom: 80px;margin-bottom: 0;
+        border-bottom: 1px solid #c9d9e6;
+        .pageyes,.pageno{
+            margin: 0 20px;
+        }
+        .apg{padding-top: 58px;padding-left: 0;
+        h3,p{text-align: center;}
+            h3{color: #bf371f;font-size: 16px;padding-top: 26px;padding-bottom: 12px;}
+            
+            .put{text-align: center;padding-top: 38px;}
+            .mui-btn{
+                width: 145px;height: 40px;margin-top: 10px;
+                &.on{background: #0075e5;color: #fff;}
+            }
+            >img{display: block;width: 57px;height: 57px;margin: 19px auto;margin-top: 0;}
+            h4{font-size: 15px;color: #333333;padding-top: 34px;line-height: 20px;}
+        }
+        .pageno{
+            p{font-size: 14px;color: #999999;line-height: 16px;padding-bottom: 28px;
+                border-bottom: 1px solid #f4f4f4;
+            }
+        }
+        .pageyes{
+            .title{color: #0075e5;padding-bottom: 52px;border-bottom: 1px solid #f6f6f6;padding-top: 17px;}
+            
+            .calres{
+                .mui-media-object{width: 83px;max-width: 83px;height: 83px;line-height: 83px;}
+                .mui-media-body{line-height: 21px;
+                    h3,p{text-align: left;}
+                    h3{padding: 0;line-height: 22px;font-size: 16px;color: #0075e5;}
+                    p{font-size: 14px;color: #333333;
+                        >span{color: #f39700;}
+                    }
+                    button{width: 147px;height: 35px;margin-bottom: 20px;}
+                }
+                .mui-table-view-cell.mui-media{
+                    a{padding-top: 40px;}
+                }
+                .mui-table-view:after{
+                    background: transparent;
+                }
+            }
+            .apg{
+                img{margin-bottom: 0;}
+                
+            }
+        }
+    }
+    
+//  .pace{background: #fff;margin: 10px;border-radius: 15px;margin-top: 0;padding-bottom: 80px;text-align: center;
+//      
+//  }
+}
+@media (max-width: 320px){
+    #app.loans .mui-content .infor .pageyes .calres .mui-media-body button{width: auto;}
 }

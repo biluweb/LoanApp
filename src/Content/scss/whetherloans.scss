@@ -6,14 +6,18 @@ body{
     
 }
 
-.mui-bar.mui-bar-nav{
+body.loans{
+    
+}
+
+body.loans .mui-bar.mui-bar-nav{
     background-color:transparent ;
     .bleft{
         font-size: 16px;padding: 2px 10px;color: #fff;
     }
 }
 
-.mui-content{
+body.loans .mui-content{
     background: transparent;
     h1{font-size: 25px;color: #fff;text-align: center;margin-top: 12px;}
     .infor{background: #fff;margin: 10px;border-radius: 15px;margin-top: 20px;padding-bottom: 80px;margin-bottom: 0;
@@ -65,10 +69,10 @@ body{
         }
     }
     
-    .pace{background: #fff;margin: 10px;border-radius: 15px;margin-top: 0;padding-bottom: 80px;text-align: center;
-        
-    }
+//  .pace{background: #fff;margin: 10px;border-radius: 15px;margin-top: 0;padding-bottom: 80px;text-align: center;
+//      
+//  }
 }
 @media (max-width: 320px){
-    .mui-content .infor .pageyes .calres .mui-media-body button{width: auto;}
+    body.loans .mui-content .infor .pageyes .calres .mui-media-body button{width: auto;}
 }

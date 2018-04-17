@@ -7,9 +7,28 @@
 		<link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="/Content/css/gather.css"/>
 	</head>
-	<body>
-		<div id="app">
-			<header class="mui-bar mui-bar-nav" >
+	<body >
+		<div id="app" v-bind:class="{loans:step==0}">
+			
+			
+			<!--loading-->
+			<div class="mui-backdrop" v-if="loadg">
+				<div class="loadEffect">
+			        <span></span>
+			        <span></span>
+			        <span></span>
+			        <span></span>
+			        <span></span>
+			        <span></span>
+			        <span></span>
+			        <span></span>
+			        <p class="xycenter" style="color: #000;">加载中...</p>
+				</div>
+			</div>
+			
+			
+			
+			<header class="mui-bar mui-bar-nav" v-show="step!=2&&step!=0">
 			      <a class="mui-icon bleft" href="javascript:;">
 			      	重庆市<i class="mui-icon icon-sjdw"></i>
 			      </a>
@@ -17,114 +36,281 @@
 			       		还有{{step}}步
 			       </a>
 			</header>
-			<div class="mui-content app" >
-				<h1 class="title">新办按揭</h1>
+			
+			<header class="mui-bar mui-bar-nav mui-clearfix" v-show="step==2" id="nav2">
+			    <div class="tinput mui-col-sm-10 mui-col-xs-10 mui-pull-left mui-input-row">
+			    	<i class="befor"></i>
+			    	<input type="text" placeholder="输入关键字" class="mui-input-clear mui-input"/>
+			    </div>
+			    <a href="javascript:;" class="mui-col-sm-2 mui-col-xs-2 mui-pull-left btnsearh">搜索</a>
+			</header>
+			
+
+
+			<div class="mui-content" >
+				<h1 class="title" v-show="step!=2&&step!=0">新办按揭</h1>
+				
+				<!--<h1 class="title" v-show="">推荐贷款</h1>-->
 			    <div class="infor">
-			    	<div class="page1">
-			    		<div class="apg">
+			    	
+			    	<div class="page1" v-show="step==6">
+			    		<div class="apg quer1">
 				    		<h3>主借人</h3>
 				    		<p>您是自己申请？还是与某人一起申请？</p>
-				    		<button class="mui-btn on" v-model="dblist.myfli">我自己</button>
+				    		<!--<li v-for="(item,$index) in items" @click="selectStyle (item, $index) " :class="{'active':item.active,'unactive':!item.active}" >-->
+				    			<!--　{{item.select}}--> 
+<!--　　　　　　<span class="icon" v-show="item.active">当我是图标</span>
+　　　　　　</li>-->
+				    		<!--v-bind:class="{'on':togcls.isOn,'':!togcls.isOn}" v-on:click="toggle()"-->
 				    		
-				    		<button class="mui-btn"  v-model="dblist.myfli">我家人</button>
+				    		<!--<label  class="mui-btn" v-for="(item,$index) in items" @click="selectStyle (item, $index) " :class="{'on':item.active,'':!item.active}">
+				    			{{}}@click="Choose($event)"
+				    		</label>-->
+				    		
+				    		<label class="mui-btn " >我自己<input type="radio"   v-model="dblist.ApplyType"  value="1"></label>
+				    		<label class="mui-btn " >我家人<input type="radio"   v-model="dblist.ApplyType" value="2"></label>
+				    		<!--<p>已选：{{dblist.myfli}}</p>-->
 				    	</div>
 				    	
-				    	<div class="apg">
+				    	<div class="apg quer2">
 				    		<h3>我们认贷不认房</h3>
 				    		<p>您（们）名下有无个人住房贷款记录？</p>
-				    		<button class="mui-btn on" >没有</button>
+				    		<label class="mui-btn " >没有<input type="radio"   v-model="dblist.LoanCount"  value="0"></label>
+				    		<label class="mui-btn " >有一套<input type="radio"   v-model="dblist.LoanCount"  value="1"></label>
+				    		<label class="mui-btn " >有二套以上<input type="radio"   v-model="dblist.LoanCount"  value="2"></label>
+				    		<!--<button class="mui-btn on">没有</button>
 				    		<button class="mui-btn" >有一套</button>
-				    		<button class="mui-btn" >有二套以上</button>
+				    		<button class="mui-btn" >有二套以上</button>-->
+				    		<!--<p>已选：{{dblist.loansrec}}</p>-->
 				    	</div>
+				    	
 			    	</div>
 			    	
-			    	<div class="page2 mui-hidden">
+			    	<div class="page2" v-show="step==5">
 			    		
-			    		<div class="apg">
+			    		<div class="apg quer3" v-show="dblist.LoanCount==0">
 				    		<h3>你是“首次购房”客户</h3>
 				    		<p>你有无公积金缴存?</p>
-				    		<button class="mui-btn on" >有</button>
-				    		<button class="mui-btn" >没有</button>
+				    		<label class="mui-btn " >有<input type="radio"   v-model="dblist.PublicAccmFunds"  value="1"></label>
+				    		<label class="mui-btn " >没有<input type="radio"   v-model="dblist.PublicAccmFunds"  value="0"></label>
 				    		<p class="dmx">接下来我们看你需要通过你的家庭收入来计算你能
 								贷款多少,以及每月的费用，这个很重要。
 								</p>
 				    	</div>
-				    	
-				    	<div class="apg mui-hidden">
+				    	<!--settle-->
+				    	<!--fjih-------------------------UncleanCount??------------------------------>
+				    	<div class="apg quer4" v-show="dblist.LoanCount==1||dblist.LoanCount==2">
 				    		<h3>你是“二套房”客户</h3>
-				    		<p>你有几套房没有结清?</p>
-				    		<button class="mui-btn on" >已结清</button>
-				    		<button class="mui-btn" >有1套未结清</button>
-				    		<button class="mui-btn" >有2套及以上未结清</button>
+				    		<p>你有几套房贷没有结清?</p>
+				    		<label class="mui-btn " >已结清<input type="radio"   v-model="dblist.UncleanCount"  value="0"></label>
+				    		<label class="mui-btn " >有1套未结清<input type="radio"   v-model="dblist.UncleanCount"  value="1"></label>
+				    		<label class="mui-btn " >有2套及以上未结清<input type="radio"   v-model="dblist.UncleanCount"  value="2"></label>
 				    		<p class="dmx">接下来我们看你需要通过你的家庭收入来计算你能
 								贷款多少,以及每月的费用，这个很重要。
 							</p>
 				    	</div>
 			    	</div>
 			    	
-			    	<div class="page3 mui-hidden">
+			    	<div class="page3 " v-show="step==4">
 			    		<h3 class="title">贷款人在您能贷款多少时，还要考虑您的其他贷款和信贷情况</h3>
 			    		<h3>你有每月还款的贷款吗？</h3>
 			    		<p>包括任何贷款，雇佣消费，汽车消费，学生贷款等，如果没有请输入0。</p>
 			    		<div class="put">
-			    			<input type="number" placeholder="输入每月的全部还款金额" /><i></i>
+			    			<input type="number" v-model="dblist.MonthlyPayment" placeholder="输入每月的全部还款金额" /><i></i>
 			    		</div>
 			    		<h3>您有一下不良信用贷记录吗？</h3>
 			    		<p>1.  近2年内贷款逾期连续期数不超过2次，累计逾期 贷款数不超过4次？</p>
 			    		<p>2.  近1年内银行用卡累计逾期次数不超过4次？</p>
-			    		<div class="ynbt">
-			    			<button class="mui-btn on">有</button>
-			    			<button class="mui-btn">没有</button>
+			    		<div class="ynbt yb1">
+			    			<label class="mui-btn " >没有<input type="radio"   v-model="dblist.PoorLoanCount"  value="0"></label>
+			    			<label class="mui-btn " >不超2次<input type="radio"   v-model="dblist.PoorLoanCount"  value="1"></label>
+			    			<label class="mui-btn " >不超4次<input type="radio"   v-model="dblist.PoorLoanCount"  value="2"></label>
 			    		</div>
 			    	</div>
 			    	
-			    	<div class="page4 mui-hidden">
+			    	<div class="page4 " v-show="step==3">
 			    		<h3>您（们）能贷多少钱取决于您（们）的收入及可用的购房存款。</h3>
 			    		<p>请输入您（们）的税前月收入</p>
 			    		<div class="put">
-			    			<input type="number" placeholder="请输入税前月收入" /><i></i>
+			    			<input type="number" v-model="dblist.MonthlyIncome" placeholder="请输入税前月收入" /><i></i>
 			    		</div>
 			    		<p>您（们）现有的存款，以及其他可立即变现的资产，请输入预计可用于首付的金额。</p>
 			    		<div class="put">
-			    			<input type="number" placeholder="请输入预计首付款" /><i></i>
+			    			<input type="number" v-model="dblist.AvailableDeposit" placeholder="请输入预计首付款" /><i></i>
 			    		</div>
 			    		<p>您（们）有意向购入的房产吗？</p>
-			    		<div class="ynbt">
-			    			<button class="mui-btn on">有</button>
-			    			<button class="mui-btn">没有</button>
+			    		<div class="ynbt yb2">
+			    			<label class="mui-btn " >有<input type="radio"   v-model="dblist.BuyIntention"  value="0"></label>
+			    			<label class="mui-btn " >没有<input type="radio"   v-model="dblist.BuyIntention"  value="1"></label>
 			    		</div>
 			    	</div>
 			    	
-			    	<div class="page5 mui-hidden">
+			    	
+			    	<div class="page5" v-show="step==2">
+				    	<ul class="mui-table-view">
+						    <li class="mui-table-view-cell must">
+						        <div class="mui-navigate-right">
+						        	<span class="lstleft">小区名称：</span><span class="lstright" v-model="dblist.PropertyName">{{dblist.PropertyName}}</span>
+						        </div>
+						    </li>
+						    <li class="mui-table-view-cell must">
+						        <div class="stxt">
+						        	<span class="lstleft">楼栋/单元：</span><input type="text" class="putright" v-model="dblist.BuildName" placeholder="请输入楼栋或者单元"/>
+						        </div>
+						    </li>
+						    <li class="mui-table-view-cell must">
+						        <div class="stxt">
+						        	<span class="lstleft">房  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</span><input type="number" v-model="dblist.RoomName" class="putright" placeholder="请输入房号"/>
+						        </div>
+						    </li>
+						    <li class="mui-table-view-cell must">
+						        <div class="stxt">
+						        	<span class="lstleft">建 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;面：</span>
+						        	<input type="number" class="putright"  placeholder="请输入房屋建筑面积" v-model="dblist.BuildArea"/><span class="pull-right">㎡</span>
+						        </div>
+						    </li>
+						     <li class="mui-table-view-cell must">
+						        <div class="mui-navigate-right">
+						        	<span class="lstleft">户 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</span><span v-model="dblist.RoomStructureType" class="lstright">{{dblist.RoomStructureType}}</span>
+						        </div>
+						    </li>
+						    <li class="mui-table-view-cell must">
+						        <div class="mui-navigate-right">
+						        	<span class="lstleft">朝 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;向：</span><span v-model="dblist.PropertyFace" class="lstright">{{dblist.PropertyFace}}</span>
+						        </div>
+						    </li>
+						    <li class="mui-table-view-cell must ">
+						        <div class="stxt col3">
+						        	<span class="lstleft">楼 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;层：</span>
+						        	<span class="lstcenter"><input type="number" placeholder="所在楼" v-model="dblist.FloorNumber" />层</span>
+						        	<span class="lstright"><input type="number" placeholder="总楼层" v-model="dblist.FloorTotal "/>总层数</span>
+						        </div>
+						    </li>
+						   
+						    <li class="mui-table-view-cell must">
+						        <div class="stxt">
+						        	<!--HasElevator-->
+						        	<span class="lstleft">有无电梯：</span>
+						        	<div class="lstright swhbtn">
+						        		<label >有<input type="radio"   v-model="dblist.HasElevator"  value="true"></label>
+						        		<label >没有<input type="radio"   v-model="dblist.HasElevator"  value="false"></label>
+						        	</div>
+						        </div>
+						    </li>
+						     <li class="mui-table-view-cell must">
+						        <div class="stxt">
+						        	<span class="lstleft" >建筑年代：</span>
+						        	<input type="number" class="putright" placeholder="2017" v-model="dblist.BuildingTime"/><span class="pull-right">年</span>
+						        </div>
+						    </li>
+						    <li class="opt"><p>以下为选填项：信息越完善，估价越精确</p></li>
+						    
+						    <li class="mui-table-view-cell ">
+						        <div class="mui-navigate-right">
+						        	<span class="lstleft">建筑类型：</span><span class="lstright" v-model="dblist.BuildingType">{{dblist.BuildingType}}</span>
+						        </div>
+						    </li>
+						    
+						    <li class="mui-table-view-cell ">  
+						        <div class="mui-navigate-right">
+						        	<span class="lstleft">景 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;观</span><span v-model="dblist.LandScape" class="lstright">{{dblist.LandScape}}</span>
+						        </div>
+						    </li>
+						    <li class="mui-table-view-cell ">
+						        <div class="stxt">
+						        	<span class="lstleft">装修年代：     </span>
+						        	<input type="number" class="putright" placeholder="2018" v-model="dblist.DecorateTime"/><span class="pull-right">年</span>
+						        </div>
+						    </li>
+						</ul>
+				    </div>
+				    
+				    <div class="page6" v-show="step==1">
 			    		<h3 class="title">最后我们需要一些个人信息，方便联系到您</h3>
 			    		<h3>您叫什么名字？</h3>
 			    		<div class="gput">
-			    			<input type="text" placeholder="请输入您的名字，方便我们联系到您" />
+			    			<input type="text" placeholder="请输入您的名字，方便我们联系到您" v-model="dblist.UserName"/>
 			    		</div>
 			    		<h3>联系您的手机号码？</h3>
 			    		<p>我们绝不会将您的号码透露给三方机构</p>
 			    		<div class="gput">
-			    			<input type="number" placeholder="请输入您的手机号码" />
+			    			<input type="number" placeholder="请输入您的手机号码" v-model="dblist.Mobile" />
 			    		</div>
 			    		<div class="gput">
-			    			<input type="number" placeholder="请输入验证码" />
+			    			<input type="number" placeholder="请输入验证码" v-model="dblist.Vercode"/>
 			    			<span class="xzm">发送验证码</span>
 			    		</div>
 			    		<h3>您的生日是什么时候？</h3>
 			    		<p>我们需要通过您的生日来判定您的抵押贷款期限</p>
 			    		<div class="gput">
-			    			<input type="number" placeholder="请选择生日" />
+			    			<input type="number" placeholder="请选择生日" v-model="dblist.Birthday"/>
 			    		</div>
-			    		<p>点击"下一步"接受我们的<a href="#">《使用条款》</a>和<a href="#">《隐私政策》</a></p>
+			    		<p>点击"下一步"接受我们的<a href="javascript:;">《使用条款》</a>和<a href="javascript:;">《隐私政策》</a></p>
+			    	</div>
+			    	
+			    	<div class="page7" v-show="step==0">
+			    		
+						<template v-if="resume != null">
+						<!--resume.Data.QueryStatus==false-->
+			    			<!--不能贷款-->
+				 		<div class="pageno mui-hidden" v-if="resume.Data.QueryStatus==false">
+				 			<div class="apg">
+					    		<img src="/Images/daik/notloanst.png"/>
+					    		<h3>很遗憾！您目前不能办理按揭贷款</h3>
+					    		<p>你有二套按揭贷款<br />你个人征信有问题，不符合按揭条件</p>
+					    		<h4>是否需要其他贷款机构（人）主动联系您，为您提供服务</h4>
+					    		<div class="put">
+					    			<button class="mui-btn on" >需要</button>
+					    			<button class="mui-btn" >不需要</button>
+					    		</div>
+					    	</div>
+				 		</div>
+				 		
+				 		<!--可以贷款-->
+				 		<div class="pageyes" v-if="resume.Data.QueryStatus==true">
+				 			<div class="apg">
+					    		<img src="/Images/daik/yesloanst.png"/>
+					    		<h3 class="title">恭喜您，找到适合您贷款银行</h3>
+					    		
+					    		<div class="calres">
+					    			<ul class="mui-table-view">
+					    				<!--<li v-for=" in">
+					    					
+					    				</li>
+					    				<template v-for="item in resume">
+					    					
+					    				</template>-->
+					    			    <li class="mui-table-view-cell mui-media">
+					    			        <a href="javascript:;">
+					    			            <img class="mui-media-object mui-pull-left" src="/Images/daik/tjdkjimg1.png">
+					    			            <div class="mui-media-body">
+					    			                <h3>预计可贷 ￥{{resume.Data.Products[0].AppraisalBudget}}</h3>
+					    			                <p>贷款期限最长：<span>{{resume.Data.Products[0].AppraisalYearLimit}}年</span></p>
+					    			                <p>月供最低：<span>{{resume.Data.Products[0].AppraisalMonthPayment}}</span>元</p>
+					    			                <p class="mui-ellipsis">贷款费<span>{{resume.Data.Products[0].Commission}}</span>元（按揭+评估服务费）</p><!---->
+					    			                <button class="mui-btn mui-btn-blue shed"  onclick="location.href='/Htmls/gather.html?'">立即申请</button>
+					    			            </div>
+					    			        </a>
+					    			    </li>
+					    			</ul>
+					    		</div>
+					    	</div>
+				 		</div>
+				 		
+				 		</template>
+				 		
+				 		
 			    	</div>
 			    	
 			    </div>
 			    
 			    <div class="pace">
 			    	<button class="mui-btn" v-if="step>=6">返回</button>
-			    	<button class="mui-btn" v-else>上一步</button>
 			    	
-			    	<button class="mui-btn on">下一步</button>
+			    	<button class="mui-btn" v-if="step!=6&&step!=0" v-else v-on:click="last()">上一步</button>
+			    	
+			    	<button class="mui-btn on" v-on:click="next()" v-if="step!=2&&step!=0">下一步</button>
+			    	<button class="mui-btn on" v-on:click="next()" v-else="step==2&&step!=0">还差1步</button>
 			    </div>
 			    
 			</div>
@@ -136,81 +322,270 @@
 		
 		@@include('module/linkjs.html')
 		
-<!--	
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.js"></script>
-  <script type="text/javascript">
-  	$(function(){
-  		$.ajax({
-		    url:"http://192.168.5.228:8301/api/LoanProject/GetByUserOnApply?userid=1&status=0",    //请求的url地址
-		    dataType:"json",   //返回格式为json
-		    //async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-		    //data:{"id":"value"},    //参数值
-		    type:"GET",   //请求方式 get 或者post
-		    headers:{'Content-Type':'application/json'}, 
-		    success:function(data){
-		        //请求成功时处理
-		        alert(data.Code);
-		    },
-		    error:function(){
-		        //请求出错处理
-		    }
-		});
-  	});
-  	
-  </script>-->
+		<script src="/Scripts/base/PackagingFunction.js" ></script>
   		<script src="/Scripts/ComPonent/json2.js"></script>
-  
+  		<script src="/Scripts/base/VarGlobal.js" ></script>
+  		
+
+  		
 		<script type="text/javascript">
-//			mui.ready(function(){
-				var vm=new Vue({
+//			console.log(getCookie("gpl_token"));
+			var vm=new Vue({
 					el:'#app',
 				  	data: {
 				  		step:6,
+				  		flage:true,
+				  		loadg:false,
+				  		QueryStatus:false,
 				  		resume:null,
-						items:[],  
-				        tip:{  
-				                page: 1,  
-				                limit: 20,  
-				                tab: 'all',  
-				                mdrender: true  
-				        },
-				      	apd:['返回','上一步'],
 				      	dblist:{
-				      		myfli:''
+				      		UserName: "毕16",
+							Mobile: "15933437616",
+							Birthday: "1990-1-1",
+							ApplyType: "1",
+							LoanCount: 0,
+							MonthlyPayment: 2000,
+							PoorLoanCount: 0,
+							PublicAccmFunds: 0,
+							MonthlyIncome: 8000,
+							AvailableDeposit: 50000,
+							BuyIntention: true,
+							PropertyName: "加州花园",
+							PropertyGuid: "5899616a4b3f1c2b7c816d70",
+							BuildName: "2",
+							BuildGuid: "",
+							RoomName: "505",
+							RoomGuid: "",
+							BuildArea: 100,
+							RoomStructureType: "3室2厅2卫",
+							PropertyFace: "北",
+							FloorNumber: 10,
+							FloorTotal: 30,
+							HasElevator: "true",
+							BuildingTime: "2008",
+							BuildingType: "塔楼",
+							LandScape: "中庭",
+							DecorateTime: 2010,
 				      	}
 				  	},
-				  	methods:{  
-				        getData(){
-				            var self = this; 
-				           // http://192.168.5.228:8301/api/LoanProject/GetByUser?userid=1&status=0
-//				            http://192.168.5.228:8301/api/LoanProject/ApplyGPLoan
-						//http://192.168.5.228:8301/api/LoanProject/GetByUserOnAgency?userid=1&status=0
-														//https://biluweb.github.io/code/Api/myinfor/resume.json
-							mui.ajax({
-								url:'http://192.168.5.228:8301/api/LoanProject/GetByUserOnAgency?userid=1&status=0',
-								dataType:'json',//服务器返回json格式数据
-								type:'GET',//HTTP请求类型
-//								timeout:10000,//超时时间设置为10秒；
-								headers:{'Content-Type':'application/json'},     
-								success:function(data){
-									//服务器返回响应，根据响应结果，分析是否登录成功；
-//									alert(data.Code);
-									self.resume = data;
-									var brt=JSON.stringify(data);
-									console.log(brt)
-								},
-								error:function(xhr,type,errorThrown){
-									//异常处理；
-									console.log(xhr,type,errorThrown);
-								}
-							})
-				        } 
+				  	methods:{
+				  		getdata:function(){
+				  				mui.ajax({
+										url:port_apply,
+										data:self.dblist,
+										dataType:'json',//服务器返回json格式数据
+										type:'POST',//HTTP请求类型
+										headers:{'Content-Type':'application/json'},
+										success:function(data){
+											//服务器返回响应，根据响应结果，分析是否登录成功；
+		//									alert(data.Code);
+//											var brt=JSON.stringify(data);
+											switch(data.Code){
+												case 10000://成功请求
+//														alert('成功请求');
+												self.resume = data;
+														
+														
+//														console.log(brt);
+													break;
+												case 10101:
+														self.loadg=false;
+														mui.alert('请求失败!');
+														console.log(data.Desc);
+													break;
+												default:
+													console.log(data.Desc);
+													self.loadg=false;
+													mui.alert('请求失败!');
+													break;
+											}
+											
+											
+										},
+										error:function(xhr,type,errorThrown){
+											//异常处理；
+											console.log(xhr,type,errorThrown);
+										}
+									})
+				  				
+										
+				  		},
+				        next: function(){
+				        	var dt=this.dblist,
+				        		self=this;
+				        	switch (this.step){
+				        		case 6:
+//				        			if(dt.ApplyId&&dt.ApplyType)
+//				        				this.step--;
+//				        				
+//				        			else
+//				        				mui.alert('请选择信息!');
+this.step--;
+				        			break;
+			        			case 5:
+//			        				if(dt.PublicAccmFunds||dt.UncleanCount)
+//				        				this.step--;
+//				        				
+//				        			else
+//				        				mui.alert('请选择信息!');
+				        				this.step--;
+			        				break;
+		        				case 4:
+//			        				if(dt.PoorLoanCount&&dt.MonthlyPayment)
+//				        				this.step--;
+//				        				
+//				        			else
+//				        				mui.alert('请选择信息!');
+this.step--;
+			        				break;
+			        			case 3:
+//			        				if(dt.MonthlyIncome&&dt.AvailableDeposit&&dt.BuyIntention)
+//				        				this.step--;
+//				        				
+//				        			else
+//				        				mui.alert('请选择信息!');
+this.step--;
+			        				break;
+			        			case 2:
+//			        				if(dt.PropertyName&&dt.BuildName&&dt.RoomName&&dt.BuildArea&&dt.RoomStructureType&&dt.PropertyFace&&dt.FloorNumber&&dt.FloorTotal&&dt.HasElevator&&dt.BuildingTime)
+//				        				this.step--;
+//				        				
+//				        			else
+//				        				mui.alert('必填信息不全!');
+this.step--;
+			        				break;
+								case 1:
+								
+									mui.ajax({
+										
+										url:port_apply,
+										data:self.dblist,
+//										data:{"Mobile":"18933336666","Password":"669153"},
+										dataType:'json',//服务器返回json格式数据
+										type:'POST',//HTTP请求类型
+ 	 									headers:{"Authorization":getCookie("gpl_token"),'Content-Type':'application/json'},
+										success:function( data){
+											
+											switch(data.Code){
+												case 10000://成功请求
+//														alert('成功请求');
+
+//														Desc=GPBASIC gpl_token:3ffb371884d97c77bb7ea0e75d54a7ff4690fb4e token
+
+//															token=data.Desc;
+															if(data.Desc != null){
+																setCookie("gpl_token", data.Desc);
+															}
+//															console.log(data.QueryStatus);
+															console.log(JSON.stringify(data));
+															self.resume = data;
+//															var lt=JSON.stringify(data);
+//														console.log(brt);
+													break;
+												case 10101:
+//														self.loadg=false;
+//														mui.alert('请求失败!');
+														console.log(data.Desc);
+													break;
+												default:
+													
+													
+//													console.log(data.Desc);
+//													self.loadg=false;
+//													mui.alert('请求失败!');
+													break;
+											}
+//											var brt=JSON.stringify(data);
+											
+											console.log("a:"+data.Desc);
+											console.log("b:"+getCookie("gpl_token"));
+
+										},
+										error:function(xhr,type,errorThrown){
+											//异常处理；
+											console.log(xhr,type,errorThrown);
+											
+										}
+									})
+////										window.localStorage	        				
+//				        			}else{
+//				        				mui.alert('填写信息不全!');
+//									}
+									
+									this.step--;
+										break;
+									
+									case 0:
+									/*
+										mui.ajax({
+												url:port_UserOnAgency,
+//												data:self.dblist,
+												dataType:'get',//服务器返回json格式数据
+												type:'POST',//HTTP请求类型
+												headers:{'Content-Type':'application/json'},
+												success:function(data){
+													//服务器返回响应，根据响应结果，分析是否登录成功；
+				//									alert(data.Code);
+		//											var brt=JSON.stringify(data);
+													switch(data.Code){
+														case 10000://成功请求
+		//														alert('成功请求');
+														self.resume = data;
+																
+																
+		//														console.log(brt);
+															break;
+														case 10101:
+																self.loadg=false;
+																mui.alert('请求失败!');
+																console.log(data.Desc);
+															break;
+														default:
+															console.log(data.Desc);
+															self.loadg=false;
+															mui.alert('请求失败!');
+															break;
+													}
+													
+													
+												},
+												error:function(xhr,type,errorThrown){
+													//异常处理；
+													console.log(xhr,type,errorThrown);
+												}
+											})
+									*/
+										break;
+					        		default:
+						        		this.step--;
+							        	if(this.step<=0){
+							        		this.step=0;
+							        	}
+	//						        	console.log(this.step);
+					        			break;
+				        	}
+				        	console.log(
+//				        		this.dblist.loansrec=='没有',
+//				        		this.dblist.loansrec=='有一套'||this.dblist.loansrec=='有二套以上'
+				        	);
+				        	
+//				        	console.log(this.step);
+				        	
+				        },
+				        last: function(){
+				        	this.step++;
+				        	if(this.step>=6){
+				        		this.step=6;
+				        	}
+//				        	console.log(this.step);
+				        },
 				    },  
 				  	created: function () {
 				  		// `this` 指向 vm 实例
 				  		// `数据 交互
-				  		this.getData();
-//      				console.log(this.resume);
+//				  		this.getData();
+//						this.getdata();
+						
         				
 				  	},
 				  	method:function(){
@@ -220,9 +595,40 @@
 				  	
 				})
 				
-				console.log(vm.resume);
+//				console.log(vm.resume);
 			
-//			})
+			//	ui交互
+			mui.ready(function(){
+				
+//				单选class
+				function Choose(obj){
+					this.box=doc.querySelector(obj);
+					this.labe=this.box.querySelectorAll('label');
+				}
+				Choose.prototype.init=function(e){
+					var This=this;
+					mui(this.box).on('tap','label',function(){
+						for (var i=0;i<This.labe.length;i++) {
+							removeClass(This.labe[i],'on');
+						}
+						addClass(this,'on');
+					})
+				}
+				
+				var lab1=new Choose('.quer1'),
+					lab2=new Choose('.quer2'),
+					lab3=new Choose('.quer3'),
+					lab4=new Choose('.quer4'),
+					lab5=new Choose('.yb1'),
+					lab6=new Choose('.yb2'),
+					lab7=new Choose('.swhbtn');
+				lab1.init();lab2.init();lab3.init();lab4.init();lab5.init();lab6.init();lab7.init();
+				
+//					
+				
+			})
 		</script>
+		
+		<!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
 	</body>
 </html>

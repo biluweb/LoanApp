@@ -7,7 +7,7 @@
 		<link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="/Content/css/whetherloans.css"/>
 	</head>
-	<body>
+	<body class="loans">
 		 <header class="mui-bar mui-bar-nav">
 		      <a class="mui-icon bleft" href="javascript:;">
 		      	<i class="mui-icon mui-icon-arrowleft"></i>返回
@@ -58,5 +58,41 @@
 		    <div class="pace"></div>
 		    
 		 </div>
+		 
+		 
+		 @@include('linkjs.html')
+		
+		<script src="/Scripts/base/PackagingFunction.js" ></script>
+  		<script src="/Scripts/base/VarGlobal.js" ></script>
+  		
+  		<script type="text/javascript">
+  			var vm=new Vue({
+  				el:'#app',
+				  	data: {
+				      	Products:{
+				      		BankName: "厦门银行",
+							ProductName: "厦门银行个人贷",
+							AppraisalBudget: 520000,
+							AppraisalRate: 3.900,
+							AppraisalYearLimit: 32,
+							AppraisalMonthPayment: 1695,
+							AppraisalTime: "2018-04-15T20:45:43",
+							Commission: 800
+				      	}
+				  	},
+				  	methods:{
+				        getdb:function(){
+				        	
+				        }
+				    },  
+				  	created: function () {
+        				
+				  	},
+				  	method:function(){
+				  		
+				  		
+				  	}
+  			})
+  		</script>
 	</body>
 </html>
