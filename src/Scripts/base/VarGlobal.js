@@ -25,15 +25,40 @@
 //ApproveYearLimit
 //ApproveRate
 //ApproveMonthPayment
+//http://192.168.5.228:8301/api/LoanProduct/GetNewest
+//
+//首页取最新产品列表
 
-var port_apply="http://api-gpl.17gp.com:8301/api/LoanProject/ApplyGPLoan",
-	port_UserOnAgency="http://api-gpl.17gp.com:8301/api/LoanProject/GetByUserOnAgency", 		//按揭
-	port_UserOnApply="http://api-gpl.17gp.com:8301/api/LoanProject/GetByUserOnApply", 			//申请
-	port_GetByUser="http://api-gpl.17gp.com:8301/api/LoanProject/GetByUser?userid=1&status=0",
-	port_GetDetails="http://api-gpl.17gp.com:8301/api/LoanProject/GetDetails",		//详情 id=projectid
-	port_GetByBank="http://api-gpl.17gp.com:8301/api/MortgageCorporation/GetByBank",
-	port_GetMCOwner="http://api-gpl.17gp.com:8301/api/LoanProject/GetMCOwner?id=1",
-	port_ReceiveMC="http://api-gpl.17gp.com:8301/api/LoanProject/ReceiveMC",
-	port_GetNewest="http://api-gpl.17gp.com:8301/api/LoanProduct/GetNewest",
-	port_Login="http://192.168.5.228:8301/api/User/Login";											//登录
-//	port_GetDetails="http://192.168.5.228:8301/api/LoanProject/GetDetails";
+//http://192.168.5.228:8301/api/LoanProject/ChooseMCByUser
+//
+//{"ProjectId":"10048", "MCId":"1", "UserId":"1035"}
+//http://192.168.5.228:8301/api/User/GetCurrent
+//
+//获取用户信息
+
+//http://m.17gp.com/FangJia/GetCommunityList   
+
+//POST
+//{"Mobile":"18933336666"}
+
+
+
+//POST
+//{"Keyword":"加州", "City":"重庆市"}
+
+var port_apply="http://192.168.5.228:8301/api/LoanProject/ApplyGPLoan",						//提交贷款申请       d
+	port_UserOnAgency="http://192.168.5.228:8301/api/LoanProject/GetByUserOnAgency", 		//按揭            d
+	port_UserOnApply="http://192.168.5.228:8301/api/LoanProject/GetByUserOnApply", 			//申请		d
+	port_GetByUser="http://192.168.5.228:8301/api/LoanProject/GetByUser?userid=1&status=0", 	//获取贷款项目列表	d
+	port_GetDetails="http://192.168.5.228:8301/api/LoanProject/GetDetails",			//获取贷款项目详情 id=projectid	d
+	port_GetByBank="http://192.168.5.228:8301/api/MortgageCorporation/GetByBank",	//获取按揭公司列表					
+	port_GetMCOwner="http://192.168.5.228:8301/api/LoanProject/GetMCOwner",		//获取按揭公司负责人	id=1		d
+	port_GetNewest="http://192.168.5.228:8301/api/LoanProduct/GetNewest",			//首页取最新产品列表      d
+	port_Login="http://192.168.5.228:8301/api/User/Login",								//登陆			d	
+	port_ChooseMCByUser="http://192.168.5.228:8301/api/LoanProject/ChooseMCByUser",     //选择按揭公司		d
+	port_GetCurrent="http://192.168.5.228:8301/api/User/GetCurrent",					//获取用户信息		d
+	port_Logout="http://192.168.5.228:8301/api/User/Logout",							//退出登录       {"Mobile":"18933336666"} d
+	port_GetCommunityList="http://192.168.5.228:8301/api/Estate/GetCommunityList";		//城市楼盘字典
+
+
+

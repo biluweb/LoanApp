@@ -14,7 +14,7 @@
 		
 		
 		 <header class="mui-bar mui-bar-nav">
-	      <a class="mui-icon bleft" href="javascript:;">
+	      <a class="mui-icon bleft" href="javascript:goBack()">
 	      	<i class="mui-icon mui-icon-arrowleft"></i>返回
 	      </a>
 	      <h1 class="mui-title">申请按揭详情</h1>
@@ -90,8 +90,8 @@
 	        		<!--<li class="liblock"><span>房产价值：</span></li>-->
 	        	</ul>
 	        </div>
-
-	         <div class="infor inforexa" v-if="bankres!=null">
+<!--
+	         <div class="infor inforexa">
 	        	<h2>银行预审信息</h2>
 	        	<ul>
 	        		<li><span>预审银行：</span>{{resume.Data.BankName}}</li>
@@ -108,12 +108,14 @@
 	        				<li>
 	        					<button class="mui-btn mui-btn-blue qrh">确认达成合作</button>
 	        					<!--完成状态-->
-	        					<!--<button class="mui-btn mui-btn-blue qrh ach">已经达成合作</button>-->
+	        					<!--<button class="mui-btn mui-btn-blue qrh ach">已经达成合作</button>
 	        				</li>
 	        			</ul>
 	        		</li>
 	        	</ul>
 	        </div>
+	        
+	        -->
 	        
 	        
 	        	<!--</template>-->
@@ -121,6 +123,22 @@
 	        </template>
 	        
 	    </div>
+	    
+	    
+	    	<!--底部弹出框-->
+		    <div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action " v-if="bankres!=null">
+		    	<template v-for="item in bankres.Data">
+			   	<h3>可供选择贷款的代办服务商</h3>
+			    <p>{{item.Name}}<span class="qy">诚信企业</span></p>
+			    <p>服务费：<span>{{item.ServiceFee}}</span>（含评估费+按揭服务费）</p>
+			    <!--<p>累计完成合作：<span>21325</span>单</p>-->
+			    <!-- 取消菜单 -->
+			    <a href="/Htmls/payment.html" class="mui-btn mui-btn-blue">委托代办并支付服务费</a>
+			    </template>
+
+			</div>
+	    
+	    
 	    
 	    
 	    </div>
@@ -144,7 +162,7 @@
 						//tab切换
 						var tbl = new LogregTab('body');
 						tbl.init();
-					}
+					},
 				},
 				created: function() {
 					var self = this;
@@ -156,12 +174,13 @@
 							"Authorization": getCookie("gpl_token")
 						},
 						data: {
-							id:33,
+							id:GetRequest().ProjectId,
 						},
 						success: function(data) {
 							self.resume = data;
 							console.log(data);
 							console.log(getCookie("gpl_token"));
+							
 							//								console.log(getCookie("gpl_token"));
 						},
 						error: function(e) {
@@ -191,9 +210,17 @@
 						}
 					})
 					
+				},
+				updated:function(){
+					//底部弹出框
+					mui('body').on('tap','.qrh',function(){
+						mui('#sheet1').popover('toggle');
+					})
 				}
 
 			})
+			
+			
 		</script>
 	</body>
 </html>

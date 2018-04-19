@@ -6,6 +6,9 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="/Content/css/gather.css"/>
+		<link rel="stylesheet" type="text/css" href="/Content/css/daik/lCalendar.css"/>
+		
+		<link rel="stylesheet" type="text/css" href="/Scripts/ComPonent/layer_mobile/need/layer.css"/>
 	</head>
 	<body >
 		<div id="app" v-bind:class="{loans:step==0}">
@@ -22,7 +25,7 @@
 			        <span></span>
 			        <span></span>
 			        <span></span>
-			        <p class="xycenter" style="color: #000;">加载中...</p>
+			        <p class="xycenter" style="color: #fff;">Load...</p>
 				</div>
 			</div>
 			
@@ -32,40 +35,72 @@
 			      <a class="mui-icon bleft" href="javascript:;">
 			      	重庆市<i class="mui-icon icon-sjdw"></i>
 			      </a>
-			       <a href="javascript:;" class="mui-icon mui-pull-right ifx">
+			       <a href="javascript:;" class="mui-icon mui-pull-right ifx" v-show="step!=7">
 			       		还有{{step}}步
 			       </a>
 			</header>
 			
 			<header class="mui-bar mui-bar-nav mui-clearfix" v-show="step==2" id="nav2">
 			    <div class="tinput mui-col-sm-10 mui-col-xs-10 mui-pull-left mui-input-row">
+			    	<!--<select id="ddlSearchType" class="select">
+				        <option value="2">按小区</option>
+				        <option value="1">按地址</option>
+				    </select>-->
 			    	<i class="befor"></i>
-			    	<input type="text" placeholder="输入关键字" class="mui-input-clear mui-input"/>
+			    	<input type="text" placeholder="输入小区名称" id="txtSerch" v-model="txtSerch" v-on:input="search" class="mui-input-clear mui-input"/>
 			    </div>
-			    <a href="javascript:;" class="mui-col-sm-2 mui-col-xs-2 mui-pull-left btnsearh">搜索</a>
+			    <a href="javascript:;" class="mui-col-sm-2 mui-col-xs-2 mui-pull-left btnsearh serach-btn">搜索</a>
+			   
 			</header>
+			
+			
+			<!--欢迎页-->
+			<nav class="mui-bar mui-bar-tab" v-if="step==7">
+			    <a class="mui-tab-item" href="/Htmls/dkindex.html">
+			        <span class="mui-icon icon-home"></span>
+			        <span class="mui-tab-label">首页</span>
+			    </a>
+			    <!--<a class="mui-tab-item" href="/Htmls/information.html">
+			        <span class="mui-icon icon-infor"></span>
+			        <span class="mui-tab-label">消息</span>
+			    </a>-->
+			    <a class="mui-tab-item">
+			        <span class="mui-icon icon-gpw"></span>
+			        <span class="mui-tab-label">公评网</span>
+			    </a>
+			    <a class="mui-tab-item" href="/Htmls/myinfor.html">
+			        <span class="mui-icon icon-myd"></span>
+			        <span class="mui-tab-label">我的</span>
+			    </a>
+			</nav>
+			
 			
 
 
 			<div class="mui-content" >
+				
+				<!--//搜索列表-->
+			   <!--<div class="serach-result" id="dataList"></div>-->
+				
+				
 				<h1 class="title" v-show="step!=2&&step!=0">新办按揭</h1>
 				
 				<!--<h1 class="title" v-show="">推荐贷款</h1>-->
 			    <div class="infor">
 			    	
+			    	
+			    	<div class="page0" v-show="step==7">
+			    		<h1>欢迎！</h1>
+			    		<p class="p1">嗨，我是   公评R  抵押贷款顾问</p>
+			    		<p class="p2">在了解一些细节之后，我们可以清楚地知道<br />你的抵押贷款是什么样子的。</p>
+			    		<p class="p3">这将需要需要不到2分钟，并没有信用检查要求</p>
+			    		<p class="p4">哦！是的，最重要的是，它是免费的！</p>
+			    	</div>
+			    	
 			    	<div class="page1" v-show="step==6">
 			    		<div class="apg quer1">
 				    		<h3>主借人</h3>
 				    		<p>您是自己申请？还是与某人一起申请？</p>
-				    		<!--<li v-for="(item,$index) in items" @click="selectStyle (item, $index) " :class="{'active':item.active,'unactive':!item.active}" >-->
-				    			<!--　{{item.select}}--> 
-<!--　　　　　　<span class="icon" v-show="item.active">当我是图标</span>
-　　　　　　</li>-->
-				    		<!--v-bind:class="{'on':togcls.isOn,'':!togcls.isOn}" v-on:click="toggle()"-->
-				    		
-				    		<!--<label  class="mui-btn" v-for="(item,$index) in items" @click="selectStyle (item, $index) " :class="{'on':item.active,'':!item.active}">
-				    			{{}}@click="Choose($event)"
-				    		</label>-->
 				    		
 				    		<label class="mui-btn " >我自己<input type="radio"   v-model="dblist.ApplyType"  value="1"></label>
 				    		<label class="mui-btn " >我家人<input type="radio"   v-model="dblist.ApplyType" value="2"></label>
@@ -78,12 +113,7 @@
 				    		<label class="mui-btn " >没有<input type="radio"   v-model="dblist.LoanCount"  value="0"></label>
 				    		<label class="mui-btn " >有一套<input type="radio"   v-model="dblist.LoanCount"  value="1"></label>
 				    		<label class="mui-btn " >有二套以上<input type="radio"   v-model="dblist.LoanCount"  value="2"></label>
-				    		<!--<button class="mui-btn on">没有</button>
-				    		<button class="mui-btn" >有一套</button>
-				    		<button class="mui-btn" >有二套以上</button>-->
-				    		<!--<p>已选：{{dblist.loansrec}}</p>-->
 				    	</div>
-				    	
 			    	</div>
 			    	
 			    	<div class="page2" v-show="step==5">
@@ -118,7 +148,7 @@
 			    		<div class="put">
 			    			<input type="number" v-model="dblist.MonthlyPayment" placeholder="输入每月的全部还款金额" /><i></i>
 			    		</div>
-			    		<h3>您有一下不良信用贷记录吗？</h3>
+			    		<h3>您有一项不良信用贷记录吗？</h3>
 			    		<p>1.  近2年内贷款逾期连续期数不超过2次，累计逾期 贷款数不超过4次？</p>
 			    		<p>2.  近1年内银行用卡累计逾期次数不超过4次？</p>
 			    		<div class="ynbt yb1">
@@ -140,8 +170,8 @@
 			    		</div>
 			    		<p>您（们）有意向购入的房产吗？</p>
 			    		<div class="ynbt yb2">
-			    			<label class="mui-btn " >有<input type="radio"   v-model="dblist.BuyIntention"  value="0"></label>
-			    			<label class="mui-btn " >没有<input type="radio"   v-model="dblist.BuyIntention"  value="1"></label>
+			    			<label class="mui-btn " >有<input type="radio"   v-model="dblist.BuyIntention"  value="true"></label>
+			    			<label class="mui-btn " >没有<input type="radio"   v-model="dblist.BuyIntention"  value="false"></label>
 			    		</div>
 			    	</div>
 			    	
@@ -150,7 +180,11 @@
 				    	<ul class="mui-table-view">
 						    <li class="mui-table-view-cell must">
 						        <div class="mui-navigate-right">
-						        	<span class="lstleft">小区名称：</span><span class="lstright" v-model="dblist.PropertyName">{{dblist.PropertyName}}</span>
+						        	<!--<span class="lstright" v-model="dblist.PropertyName">{{dblist.PropertyName}}</span>-->
+						        	<span class="lstleft">小区名称：</span>
+						        	<!--<input type="text" class="putright proName" v-model="dblist.PropertyName" placeholder="加州花园"/> span lstright-->
+						        	<span class="lstright proName"></span>
+						        	<!--<input class="putright proName" type="text" v-model="dblist.PropertyName" placeholder="">-->
 						        </div>
 						    </li>
 						    <li class="mui-table-view-cell must">
@@ -171,12 +205,34 @@
 						    </li>
 						     <li class="mui-table-view-cell must">
 						        <div class="mui-navigate-right">
-						        	<span class="lstleft">户 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</span><span v-model="dblist.RoomStructureType" class="lstright">{{dblist.RoomStructureType}}</span>
+						        	<!--<span v-model="dblist.RoomStructureType" class="lstright">{{dblist.RoomStructureType}}</span>-->
+						        	<span class="lstleft">户 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</span>
+						        	<input v-model="dblist.RoomStructureType" id="date2" class="date-input lstright" data-lcalendar="1-1-1,10-10-10" readonly="readonly" placeholder="3室2厅2卫">
 						        </div>
 						    </li>
 						    <li class="mui-table-view-cell must">
 						        <div class="mui-navigate-right">
-						        	<span class="lstleft">朝 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;向：</span><span v-model="dblist.PropertyFace" class="lstright">{{dblist.PropertyFace}}</span>
+						        	<!--<span class="lstleft">朝 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;向：</span><span v-model="dblist.PropertyFace" class="lstright">{{dblist.PropertyFace}}</span>-->
+						        	
+						        	<!--<select v-model='type' @change='changeType' class='form-control'>  
+									     <option value='radio'>单选</option><option value='checkbox'>多选</option>  
+									</select>  -->
+						        	
+						        	<span class="lstleft">朝 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;向：</span>
+						        	<div class="lstright selt">
+						        		<select v-model="dblist.PropertyFace">
+											<option value="东"></option>
+											<option value="西">西</option>
+											<option value="南">南</option>
+											<option value="北">北</option>
+											<option value="东北">东北</option>
+											<option value="东南">东南</option>
+											<option value="西南">西南</option>
+											<option value="西北">西北</option>
+											<option value="" selected="selected">南北</option>
+											<option value="东西">东西</option>
+									</select>
+						        	</div>
 						        </div>
 						    </li>
 						    <li class="mui-table-view-cell must ">
@@ -207,13 +263,42 @@
 						    
 						    <li class="mui-table-view-cell ">
 						        <div class="mui-navigate-right">
-						        	<span class="lstleft">建筑类型：</span><span class="lstright" v-model="dblist.BuildingType">{{dblist.BuildingType}}</span>
+						        	<!--<span class="lstright" v-model="dblist.BuildingType">{{dblist.BuildingType}}</span>-->
+						        	<span class="lstleft">建筑类型：</span>
+						        	<div class="lstright selt">
+						        	<select v-model="dblist.BuildingType">
+										<option value="塔楼">塔楼</option>
+										<option value="" selected="selected">板塔结合</option>
+										<option value="平房">平房</option>
+									</select>
+									</div>
 						        </div>
 						    </li>
 						    
 						    <li class="mui-table-view-cell ">  
 						        <div class="mui-navigate-right">
-						        	<span class="lstleft">景 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;观</span><span v-model="dblist.LandScape" class="lstright">{{dblist.LandScape}}</span>
+						        	<!--<span v-model="dblist.LandScape" class="lstright"></span>-->
+						        	<span class="lstleft">景 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;观</span>
+						        	<div class="lstright selt">
+						        		<select v-model="dblist.LandScape" >
+							        		<option value="中庭">中庭</option>
+							        		<option value="绿化">绿化</option>
+							        		<option value="公园">公园</option>
+							        		<option value="海景">海景</option>
+							        		<option value="湖景">湖景</option>
+							        		<option value="江景">江景</option>
+							        		<option value="山景">山景</option>
+							        		<option value="街景">街景</option>
+							        		<option value="主干道">主干道</option>
+							        		<option value="" selected="selected">快速干道</option>
+							        		<option value="高架桥">高架桥</option>
+							        		<option value="支路">支路</option>
+							        		<option value="铁轨">铁轨</option>
+							        		<option value="采光井">采光井</option>
+							        		<option value="堡坎">堡坎</option>
+						        		</select>
+						        	</div>
+						        	
 						        </div>
 						    </li>
 						    <li class="mui-table-view-cell ">
@@ -234,7 +319,7 @@
 			    		<h3>联系您的手机号码？</h3>
 			    		<p>我们绝不会将您的号码透露给三方机构</p>
 			    		<div class="gput">
-			    			<input type="number" placeholder="请输入您的手机号码" v-model="dblist.Mobile" />
+			    			<input type="number" placeholder="请输入您的手机号码" maxlength="11" v-model="dblist.Mobile" />
 			    		</div>
 			    		<div class="gput">
 			    			<input type="number" placeholder="请输入验证码" v-model="dblist.Vercode"/>
@@ -243,9 +328,10 @@
 			    		<h3>您的生日是什么时候？</h3>
 			    		<p>我们需要通过您的生日来判定您的抵押贷款期限</p>
 			    		<div class="gput">
-			    			<input type="number" placeholder="请选择生日" v-model="dblist.Birthday"/>
+			    			<!--data-lcalendar="1918-1-1"-->
+			    			<input type="text" class="date-input" placeholder="请选择生日" id="date1"  readonly="readonly" v-model="dblist.Birthday"/>
 			    		</div>
-			    		<p>点击"下一步"接受我们的<a href="javascript:;">《使用条款》</a>和<a href="javascript:;">《隐私政策》</a></p>
+			    		<p>点击"下一步"接受我们的《使用条款》和《隐私政策》</p>
 			    	</div>
 			    	
 			    	<div class="page7" v-show="step==0">
@@ -281,16 +367,16 @@
 					    					
 					    				</template>-->
 					    			    <li class="mui-table-view-cell mui-media">
-					    			        <a href="javascript:;">
+					    			        <!--<a href="javascript:;">-->
 					    			            <img class="mui-media-object mui-pull-left" src="/Images/daik/tjdkjimg1.png">
 					    			            <div class="mui-media-body">
 					    			                <h3>预计可贷 ￥{{resume.Data.Products[0].AppraisalBudget}}</h3>
 					    			                <p>贷款期限最长：<span>{{resume.Data.Products[0].AppraisalYearLimit}}年</span></p>
 					    			                <p>月供最低：<span>{{resume.Data.Products[0].AppraisalMonthPayment}}</span>元</p>
 					    			                <p class="mui-ellipsis">贷款费<span>{{resume.Data.Products[0].Commission}}</span>元（按揭+评估服务费）</p><!---->
-					    			                <button class="mui-btn mui-btn-blue shed"  onclick="location.href='/Htmls/gather.html?'">立即申请</button>
+					    			                <button class="mui-btn mui-btn-blue shed" v-on:click="applyLoan">立即申请</button>
 					    			            </div>
-					    			        </a>
+					    			        <!--</a>-->
 					    			    </li>
 					    			</ul>
 					    		</div>
@@ -305,12 +391,12 @@
 			    </div>
 			    
 			    <div class="pace">
-			    	<button class="mui-btn" v-if="step>=6">返回</button>
+			    	<button class="mui-btn" v-if="step>=7">返回</button>
 			    	
-			    	<button class="mui-btn" v-if="step!=6&&step!=0" v-else v-on:click="last()">上一步</button>
+			    	<button class="mui-btn" v-if="step!=0&&step!=7" v-else v-on:click="last()">上一步</button>
 			    	
 			    	<button class="mui-btn on" v-on:click="next()" v-if="step!=2&&step!=0">下一步</button>
-			    	<button class="mui-btn on" v-on:click="next()" v-else="step==2&&step!=0">还差1步</button>
+			    	<button class="mui-btn on" v-on:click="next()" v-if="step==2&&step!=0">还差1步</button>
 			    </div>
 			    
 			</div>
@@ -318,284 +404,351 @@
 		</div>
 		<!--append-->
 		
+<!--		
+		<div id="searus">
+			
+		</div>-->
+		
 		
 		
 		@@include('module/linkjs.html')
 		
 		<script src="/Scripts/base/PackagingFunction.js" ></script>
-  		<script src="/Scripts/ComPonent/json2.js"></script>
   		<script src="/Scripts/base/VarGlobal.js" ></script>
   		
-
+  		<script src="/Scripts/ComPonent/jquery-1.8.3.min.js"></script>
+  		<script src="/Scripts/ComPonent/lCalendar.js"></script>
+  		<script src="/Scripts/ComPonent/lCalendar2.js"></script>
+  		
+  		<script src="/Scripts/ComPonent/layer_mobile/layer.js"/></script>
   		
 		<script type="text/javascript">
-//			console.log(getCookie("gpl_token"));
+				
+  			
+
 			var vm=new Vue({
 					el:'#app',
 				  	data: {
-				  		step:6,
-				  		flage:true,
+//				  		"PropertyName":"加州花园", "PropertyGuid":"5899616a4b3f1c2b7c816d70"  6
+				  		step:7,
 				  		loadg:false,
-				  		QueryStatus:false,
 				  		resume:null,
+				  		txtSerch:null,
 				      	dblist:{
-				      		UserName: "毕16",
-							Mobile: "15933437616",
-							Birthday: "1990-1-1",
-							ApplyType: "1",
-							LoanCount: 0,
-							MonthlyPayment: 2000,
-							PoorLoanCount: 0,
-							PublicAccmFunds: 0,
-							MonthlyIncome: 8000,
-							AvailableDeposit: 50000,
-							BuyIntention: true,
-							PropertyName: "加州花园",
-							PropertyGuid: "5899616a4b3f1c2b7c816d70",
-							BuildName: "2",
+				      		UserName: "",
+							Mobile: "",
+							Birthday: "",
+							ApplyType: "",
+							LoanCount: "",
+							MonthlyPayment: "",
+							PoorLoanCount: "",
+							PublicAccmFunds: "",
+							MonthlyIncome: "",
+							AvailableDeposit:"",
+							BuyIntention: "",
+							PropertyName: "",//加州花园
+							PropertyGuid: "",//5899616a4b3f1c2b7c816d70
+							BuildName: "",
 							BuildGuid: "",
-							RoomName: "505",
+							RoomName: "",
 							RoomGuid: "",
-							BuildArea: 100,
-							RoomStructureType: "3室2厅2卫",
-							PropertyFace: "北",
-							FloorNumber: 10,
-							FloorTotal: 30,
-							HasElevator: "true",
-							BuildingTime: "2008",
-							BuildingType: "塔楼",
-							LandScape: "中庭",
-							DecorateTime: 2010,
+							BuildArea: "",
+							RoomStructureType: "",
+							PropertyFace: "南北",	//南北
+							FloorNumber: "",
+							FloorTotal: "",
+							HasElevator: "",
+							BuildingTime: "",
+							BuildingType: "板塔结合",//板塔结合
+							LandScape: "快速干道",//快速干道
+							DecorateTime:"",
 				      	}
 				  	},
 				  	methods:{
 				  		getdata:function(){
-				  				mui.ajax({
-										url:port_apply,
-										data:self.dblist,
-										dataType:'json',//服务器返回json格式数据
-										type:'POST',//HTTP请求类型
-										headers:{'Content-Type':'application/json'},
-										success:function(data){
-											//服务器返回响应，根据响应结果，分析是否登录成功；
-		//									alert(data.Code);
-//											var brt=JSON.stringify(data);
-											switch(data.Code){
-												case 10000://成功请求
-//														alert('成功请求');
-												self.resume = data;
-														
-														
-//														console.log(brt);
-													break;
-												case 10101:
-														self.loadg=false;
-														mui.alert('请求失败!');
-														console.log(data.Desc);
-													break;
-												default:
-													console.log(data.Desc);
-													self.loadg=false;
-													mui.alert('请求失败!');
-													break;
-											}
-											
-											
-										},
-										error:function(xhr,type,errorThrown){
-											//异常处理；
-											console.log(xhr,type,errorThrown);
-										}
-									})
-				  				
 										
 				  		},
+				  		changeType: function (ele) {
+//						    var optionTxt = ele.target.
+//						    var optionVal = ele.target.value;  
+						} ,
+						applyLoan:function(){
+							window.location.href='/Htmls/recorddaik.html';
+						},
 				        next: function(){
 				        	var dt=this.dblist,
 				        		self=this;
 				        	switch (this.step){
 				        		case 6:
-//				        			if(dt.ApplyId&&dt.ApplyType)
-//				        				this.step--;
-//				        				
-//				        			else
-//				        				mui.alert('请选择信息!');
-this.step--;
+				        			if(dt.ApplyType&&dt.LoanCount)
+				        				this.step--;
+				        				
+				        			else
+				        				mui.alert('请选择信息!');
 				        			break;
 			        			case 5:
-//			        				if(dt.PublicAccmFunds||dt.UncleanCount)
-//				        				this.step--;
-//				        				
-//				        			else
-//				        				mui.alert('请选择信息!');
+			        				if(dt.PublicAccmFunds||dt.UncleanCount)
 				        				this.step--;
+				        				
+				        			else
+				        				mui.alert('请选择信息!');
 			        				break;
 		        				case 4:
-//			        				if(dt.PoorLoanCount&&dt.MonthlyPayment)
-//				        				this.step--;
-//				        				
-//				        			else
-//				        				mui.alert('请选择信息!');
-this.step--;
+			        				if(dt.PoorLoanCount&&dt.MonthlyPayment)
+				        				this.step--;
+				        				
+				        			else
+				        				mui.alert('请选择信息!');
 			        				break;
 			        			case 3:
-//			        				if(dt.MonthlyIncome&&dt.AvailableDeposit&&dt.BuyIntention)
-//				        				this.step--;
-//				        				
-//				        			else
-//				        				mui.alert('请选择信息!');
-this.step--;
+			        				if(dt.MonthlyIncome&&dt.AvailableDeposit&&dt.BuyIntention)
+				        				this.step--;
+				        				
+				        			else
+				        				mui.alert('请选择信息!');
 			        				break;
 			        			case 2:
-//			        				if(dt.PropertyName&&dt.BuildName&&dt.RoomName&&dt.BuildArea&&dt.RoomStructureType&&dt.PropertyFace&&dt.FloorNumber&&dt.FloorTotal&&dt.HasElevator&&dt.BuildingTime)
-//				        				this.step--;
-//				        				
-//				        			else
-//				        				mui.alert('必填信息不全!');
-this.step--;
+			        				if(dt.PropertyName&&dt.BuildName&&dt.RoomName&&dt.BuildArea&&dt.RoomStructureType&&dt.PropertyFace&&dt.FloorNumber&&dt.FloorTotal&&dt.HasElevator&&dt.BuildingTime){
+//				        				if (!IsNum(dt.BuildArea)){
+//							                return false;
+//							            }
+				        				this.step--;
+				        				
+				        			}else{
+				        				mui.alert('必填信息不全!');}
 			        				break;
 								case 1:
-								
+									self.loadg=true;
+									console.log(self.dblist);
 									mui.ajax({
-										
 										url:port_apply,
 										data:self.dblist,
-//										data:{"Mobile":"18933336666","Password":"669153"},
 										dataType:'json',//服务器返回json格式数据
 										type:'POST',//HTTP请求类型
  	 									headers:{"Authorization":getCookie("gpl_token"),'Content-Type':'application/json'},
 										success:function( data){
 											
 											switch(data.Code){
-												case 10000://成功请求
-//														alert('成功请求');
-
-//														Desc=GPBASIC gpl_token:3ffb371884d97c77bb7ea0e75d54a7ff4690fb4e token
-
-//															token=data.Desc;
-															if(data.Desc != null){
-																setCookie("gpl_token", data.Desc);
-															}
-//															console.log(data.QueryStatus);
-															console.log(JSON.stringify(data));
-															self.resume = data;
+												case 10000:
+														if(data.Desc != null){
+															setCookie("gpl_token", data.Desc);
+														}
+														self.loadg=false;
+														self.resume = data;
 //															var lt=JSON.stringify(data);
-//														console.log(brt);
 													break;
 												case 10101:
-//														self.loadg=false;
-//														mui.alert('请求失败!');
-														console.log(data.Desc);
+														self.loadg=false;
+														mui.alert(data.Desc,'',function(){
+															clearCookie("gpl_token");
+															window.reload;
+														});
+//														console.log(data.Desc);
 													break;
 												default:
 													
 													
 //													console.log(data.Desc);
-//													self.loadg=false;
-//													mui.alert('请求失败!');
+													self.loadg=false;
+													mui.alert('请求失败!');
 													break;
 											}
 //											var brt=JSON.stringify(data);
 											
-											console.log("a:"+data.Desc);
-											console.log("b:"+getCookie("gpl_token"));
+//											console.log("a:"+data.Desc);
+//											console.log("b:"+getCookie("gpl_token"));
 
 										},
 										error:function(xhr,type,errorThrown){
 											//异常处理；
-											console.log(xhr,type,errorThrown);
-											
+//											self.loadg=false;
+//											mui.alert('请求失败!',);
 										}
 									})
-////										window.localStorage	        				
-//				        			}else{
-//				        				mui.alert('填写信息不全!');
-//									}
 									
 									this.step--;
 										break;
 									
 									case 0:
-									/*
-										mui.ajax({
-												url:port_UserOnAgency,
-//												data:self.dblist,
-												dataType:'get',//服务器返回json格式数据
-												type:'POST',//HTTP请求类型
-												headers:{'Content-Type':'application/json'},
-												success:function(data){
-													//服务器返回响应，根据响应结果，分析是否登录成功；
-				//									alert(data.Code);
-		//											var brt=JSON.stringify(data);
-													switch(data.Code){
-														case 10000://成功请求
-		//														alert('成功请求');
-														self.resume = data;
-																
-																
-		//														console.log(brt);
-															break;
-														case 10101:
-																self.loadg=false;
-																mui.alert('请求失败!');
-																console.log(data.Desc);
-															break;
-														default:
-															console.log(data.Desc);
-															self.loadg=false;
-															mui.alert('请求失败!');
-															break;
-													}
-													
-													
-												},
-												error:function(xhr,type,errorThrown){
-													//异常处理；
-													console.log(xhr,type,errorThrown);
-												}
-											})
-									*/
+
 										break;
 					        		default:
 						        		this.step--;
 							        	if(this.step<=0){
 							        		this.step=0;
 							        	}
-	//						        	console.log(this.step);
 					        			break;
 				        	}
-				        	console.log(
-//				        		this.dblist.loansrec=='没有',
-//				        		this.dblist.loansrec=='有一套'||this.dblist.loansrec=='有二套以上'
-				        	);
-				        	
 //				        	console.log(this.step);
 				        	
 				        },
 				        last: function(){
 				        	this.step++;
-				        	if(this.step>=6){
-				        		this.step=6;
+				        	if(this.step>=7){
+				        		this.step=7;
 				        	}
-//				        	console.log(this.step);
 				        },
+				        search:function(){
+				        	//调楼盘字典
+//							GetPropertyByKey();
+				        }
 				    },  
 				  	created: function () {
-				  		// `this` 指向 vm 实例
-				  		// `数据 交互
-//				  		this.getData();
-//						this.getdata();
-						
+				  		
+				  		$(function(){
+				  			//生日插件
+				  			var calendardatetime1 = new lCalendar();
+						 	 calendardatetime1.init({
+						    'trigger': '#date1',
+						    'type': 'date'
+						 	});
+						 	
+//						 	户型插件
+						 	var calendardatetime2 = new lCalendar2();
+						 	 calendardatetime2.init({
+						    'trigger': '#date2',
+						    'type': 'date'
+						 	});
+						 	
+						 	
+						 	 //延迟搜索
+						    var timeoutID = 0;
+						    var _isGetPropertyByKey = 0;
+						    
+						    
+						     /* 搜索框事件 */
+						    //keyup mouseup
+						    $("#txtSerch").on("input", function (event) {
+						        if (event.keycode == 40 || event.keycode == 38) {
+						            keyselect(event.keycode);
+						            return;
+						        }
+//						        if ($(this).val()) {
+//						            $(this).attr("style", "background-image:none");
+//						        } else {
+//						            $(this).attr("style", "background-image:url(image/icon-search.png)");
+//						        }
+						        var keyword = $(this).val();
+						        if (!keyword) {
+						            return false;
+						        }
+						        if (0 != timeoutID) {
+						            clearTimeout(timeoutID);
+						        }
+						        timeoutID = setTimeout(function () {
+						            /* 如果搜索完成才执行搜索 */
+						            if (_isGetPropertyByKey == 0) {
+						                _isGetPropertyByKey = 1;  /* 开始搜索的时候 在没完成之前不再搜索 */
+						                GetPropertyByKey(keyword);
+						            }
+						        }, 20);
+						    });
+						    
+						  
+						    $(".serach-btn").on("tap", function () {
+						        var keyword = $("#txtSerch").val();
+						        if (!keyword) {
+						            return false;
+						        }
+						        if (0 != timeoutID) {
+						            clearTimeout(timeoutID);
+						        }
+						        timeoutID = setTimeout(function () {
+						            /* 如果搜索完成才执行搜索 */
+						            if (_isGetPropertyByKey == 0) {
+						                _isGetPropertyByKey = 1;  /* 开始搜索的时候 在没完成之前不再搜索 */
+						                GetPropertyByKey(keyword);
+						                
+						            }
+						        }, 200);
+						    });
+						    
+
+								setCookie("city","重庆市");
+								
+					  			var GetPropertyByKey=function(keyword){
+					  				var _key = $("#txtSerch").val();
+//					      		var _code = $("#ddlSearchType").val();
+					        		
+					  			var PostData = new Object();
+							        PostData.keyword = _key;
+							        PostData.count = 8;
+							        PostData.code = 2; //2小区  1按地址
+							        PostData.city=getCookie("city");
+							        
+							        console.log(PostData);
+							         $.ajax({//port_GetCommunityList
+							            url: "/Scripts/list.json",
+							            type: "get",
+							            dataType: "json",
+//							            crossDomain: true,
+							            data:PostData,
+							            success:function (data) {
+//							            	if(data && data.resultcode == '200'){
+//									            console.log(data.result.today);
+//									         }
+							                if (data) {
+							                    var _html = " <ul class='mui-table-view' id='dataList'>";
+							                    var isHave = false;
+							                    $(data).each(function () {
+							                        if (this.propertyName == _key)
+							                            isHave = true;
+							                    });
+							                    if (!isHave)
+							                        _html += '<li  class="quickAsk ">' + "您确定是\" " + _key + "\"这个楼盘吗？确定点击" + '</li>';
+							
+							                    $(data).each(function () {
+							                        var area = "";
+							                        if (this.Area != "") area = "[" + this.area + "]";
+							                        _html += '<li class="property mui-table-view-cell"  ><a href="#" class="mui-navigate-right" rel="' + this.guid + '">' + this.propertyName + area + '</a></li>';
+							                    });
+							                    _html += '</ul>';
+							                    //$("#dataList").html(_html);
+							                    
+							                    layer.open({
+												    type: 3,
+												    content:_html,
+//												    style:{width:90%,height:500px},
+													shade: false,
+												    anim: 'up',//up
+												});
+							                    
+							                    $("#dataList .mui-navigate-right").on("tap", function () {
+							                        var id =$(this).attr("rel"),
+							                        	val=$(this).text();
+							                        $('.proName').html(val);
+													$('.proName').attr({'value':val,'rel':id});
+//							                        $('.proName').attr('rel',id);
+							                        vm.dblist.PropertyGuid=id;
+							                        vm.dblist.PropertyName=val;
+//							                        location.href = "/FangJia/Search/" + id;
+													layer.closeAll();
+															
+							                    });
+//							                    $("#dataList .quickAsk").on("tap", function () {
+//							                        location.href = "/FangJia/QuickAsk?key=" + _key;
+//							                    });
+							                    //InitList();//设置列表高度
+							                }
+							                _isGetPropertyByKey = 0;
+					//		                $(".loader-bg").hide();
+							            }
+							        });
+							        
+					  		}
+						 	
+				  		})
         				
 				  	},
 				  	method:function(){
 				  		
 				  		
+				  	},
+				  	updated:function(){
+				  		
 				  	}
-				  	
 				})
 				
-//				console.log(vm.resume);
 			
 			//	ui交互
 			mui.ready(function(){

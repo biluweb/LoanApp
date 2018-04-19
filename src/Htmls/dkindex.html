@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="/Content/css/daik/daik.css"/>
 	</head>
 	<body>
+		<div id="app">
 		    <!-- 主页面标题 -->
 		    <header class="mui-bar mui-bar-nav">
 		      <a class="mui-icon bleft" href="javascript:;">
@@ -24,10 +25,10 @@
 			        <span class="mui-icon icon-home"></span>
 			        <span class="mui-tab-label">首页</span>
 			    </a>
-			    <a class="mui-tab-item" href="/Htmls/information.html">
+			    <!--<a class="mui-tab-item" href="/Htmls/information.html">
 			        <span class="mui-icon icon-infor"></span>
 			        <span class="mui-tab-label">消息</span>
-			    </a>
+			    </a>-->
 			    <a class="mui-tab-item">
 			        <span class="mui-icon icon-gpw"></span>
 			        <span class="mui-tab-label">公评网</span>
@@ -83,15 +84,15 @@
 		          </div>
 		        </div>
 		        
-		        <div class="zxtite">
+		        <!--<div class="zxtite">
 		        	<h4></h4>
 	        		<i>|</i>
 	        		<span>最新相关资讯介绍</span>
 		        </div>
-					        
+					        -->
 		        <ul class="itable-view">
 		        	<li class="mui-col-xs-6 mui-col-sm-6">
-		        		<a href="#">
+		        		<a href="/Htmls/gather.html">
 		        		<span class="mui-icon icon-wydk"></span>
 		          		<div class="mui-media-body">我要贷款</div>
 		          		</a>
@@ -108,22 +109,23 @@
 				<div class="dknewst">
 					<div class="mui-row mui-clearfix">
 						<h2 class="mui-pull-left">最新的贷款产品</h2>
-						<div class="mui-pull-right"><span>更多<i class="mui-icon mui-icon-forward"></i></span></div>
+						<div class="mui-pull-right"><span><!--更多<i class="mui-icon mui-icon-forward"></i>--></span></div>
 					</div>
 				</div>		        
 		        
-		        <div class="tblist">
+		        <div class="tblist" v-if="resume!=null">
 		        	<ul class="mui-table-view">
 		        	    <li class="mui-table-view-cell mui-media">
 		        	        <a href="javascript:;">
 		        	            <img class="mui-media-object mui-pull-left" src="/Images/daik/dkbleftimg01.png">
 		        	            <div class="mui-media-body">
-		        	                厦门银行个贷部<span class="qy">诚信企业</span>
+		        	                {{resume.Data.BankName}}<span class="qy">诚信企业</span>
+		        	                
 		        	                <p class="mui-ellipsis">年利率<span>4.75%</span>，提供按揭抵押贷款</p>
 		        	            </div>
 		        	        </a>
 		        	    </li>
-		        	    <li class="mui-table-view-cell mui-media">
+		        	    <!--<li class="mui-table-view-cell mui-media">
 		        	        <a href="javascript:;">
 		        	            <img class="mui-media-object mui-pull-left" src="/Images/daik/dkbleftimg01.png">
 		        	            <div class="mui-media-body">
@@ -140,30 +142,80 @@
 		        	                <p class="mui-ellipsis">年利率<span>4.75%</span>，提供按揭抵押贷款</p>
 		        	            </div>
 		        	        </a>
-		        	    </li>
+		        	    </li>-->
 	        		</ul>
 		        </div>
 	        	
 		        		
 		      </div>
 		    </div>
+		    
+		    
+	    </div>
 		
 		<!--加载mui+vue js-->
 		@@include('module/linkjs.html')
+		<script src="/Scripts/base/PackagingFunction.js"></script>
+		<script src="/Scripts/base/VarGlobal.js"></script>
 		
 		<script type="text/javascript">
-			mui.ready(function(){
-							//mui滚动调用
-				mui('.mui-scroll-wrapper').scroll({
-					scrollY: true, //是否竖向滚动
-					 scrollX: false, //是否横向滚动
-					 startX: 0, //初始化时滚动至x
-					 startY: 0, //初始化时滚动至y
-					 indicators: true, //是否显示滚动条
-					 deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
-					 bounce: true, //是否启用回弹
-				});
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					resume: null,
+				},
+				methods:{
+					tabs:function(){
+						
+					},
+				},
+				created: function() {
+					var self = this;
+
+					
+					//银行 审核
+					mui.ajax({
+						url: port_GetNewest,
+						type: 'get',
+						dataType: 'json', //服务器返回json格式数据?getCookie("gpl_token"):"GPBASIC 000"
+						headers: {
+							"Authorization": getCookie("gpl_token")
+						},
+						data: {
+//							id:33,
+						},
+						success: function(data) {
+							self.resume = data;
+							console.log(data);
+							console.log(getCookie("gpl_token"));
+							//								console.log(getCookie("gpl_token"));
+						},
+						error: function(e) {
+							console.log(e);
+						}
+					})
+					
+				},
+				updated:function(){
+				
+				}
+
 			})
+		</script>
+		
+		<script type="text/javascript">
+//			mui.ready(function(){
+//							//mui滚动调用
+//				mui('.mui-scroll-wrapper').scroll({
+//					scrollY: true, //是否竖向滚动
+//					 scrollX: false, //是否横向滚动
+//					 startX: 0, //初始化时滚动至x
+//					 startY: 0, //初始化时滚动至y
+//					 indicators: true, //是否显示滚动条
+//					 deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
+//					 bounce: true, //是否启用回弹
+//				});
+//			})
 		</script>
 	</body>
 </html>

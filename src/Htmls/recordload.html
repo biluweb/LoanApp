@@ -13,14 +13,15 @@
 		<div id="app">
 
 			<header class="mui-bar mui-bar-nav">
-				<a class="mui-icon bleft" href="javascript:;">
+				<a class="mui-icon bleft" href="javascript:goBack()">
 					<i class="mui-icon mui-icon-arrowleft"></i>返回
 				</a>
 
 				<div class="obtn xycenter">
 					<ul class="tab">
-						<li class="on td" @click="tabs()">按揭中</li>
-						<li class="td" @click="tabs()">已放款</li>
+						<li class="on td">按揭中</li>
+						<li class="td" >办理中</li>
+						<li class="td" >已办结</li>
 					</ul>
 				</div>
 			</header>
@@ -28,7 +29,7 @@
 			<div class="mui-content">
 				<div class="infor">
 
-					<template v-if="resume != null">
+					<!--<template v-if="resume != null">-->
 
 						<!--<template v-for="item of value[1]">
 		    							{{item}}<br/>
@@ -36,6 +37,7 @@
 
 						<!--(value, key) in resume.headline-->
 						<ul class="wul tb active">
+							<template v-if="resume != null">
 							<li v-for="item in resume.Data">
 								<ul>
 									<li>{{item.PropertyName + " + " + item.UserName}}</li>
@@ -46,20 +48,47 @@
 									<li>按揭公司：{{item.MCName}}</li>
 									<li>委托时间：{{item.AppraisalTime}}</li>
 								</ul>
-								<button class="status">
-									<template v-if="item.Status==10">待预审</template>
-									<template v-if="item.Status==20">已预审<i class="mui-icon mui-icon-arrowdown"></i></template>
-									<template v-if="item.Status==30">按揭中</template>
-									<template v-if="item.Status==40">按揭已完结</template>
-									<template v-if="item.Status==21">预审未通过</template>
-									<template v-if="item.Status==50">银行已办结</template>
+								<button class="status" v-on:click="window.location.href='/Htmls/wtloadetai.html?ProjectId='+item.ProjectId">
+									<template v-if="item.Status==10">已申请</template>
+									<template v-if="item.Status==30">已预审<i class="mui-icon mui-icon-arrowdown"></i></template>
+									<template v-if="item.Status==40">按揭待受理</template>
+									<template v-if="item.Status==41">按揭已接单</template>
+									<template v-if="item.Status==50">按揭已办结</template>
+									<template v-if="item.Status==70">银行已办结</template>
 								</button>
 							</li>
-
+							</template>
 						</ul>
+						
+						<ul class="wul tb">
+							<template v-if="res41 != null">
+							<li v-for="item in res41.Data">
+								<ul>
+									<li>{{item.PropertyName + " + " + item.UserName}}</li>
+									<li>建筑面积：{{item.BuildArea}}㎡</li>
+									<li>贷款银行：{{item.BankName}}</li>
+									<li>可贷额度：{{item.ApproveBudget}}</li>
+									<li>贷款期限：{{item.AgencyTime}}</li>
+									<li>按揭公司：{{item.MCName}}</li>
+									<li>委托时间：{{item.AppraisalTime}}</li>
+								</ul>
+								<button class="status" @click="msg()">
+									<template v-if="item.Status==10">已申请</template>
+									<template v-if="item.Status==30">已预审<i class="mui-icon mui-icon-arrowdown"></i></template>
+									<template v-if="item.Status==40">按揭待受理</template>
+									<template v-if="item.Status==41">按揭已接单</template>
+									<template v-if="item.Status==50">按揭已办结</template>
+									<template v-if="item.Status==70">银行已办结</template>
+								</button>
+							</li>
+							</template>
+						</ul>
+						
+						
 
 						<ul class="wul tb">
-							<li v-for="item in resume.Data">
+							<template  v-if="resub!=null">
+							<li v-for="item in resub.Data">
 								<ul>
 									<li>{{item.PropertyName + " + " + item.UserName}}</li>
 									<li>建筑面积：{{item.BuildArea}}㎡</li>
@@ -69,18 +98,19 @@
 									<li>按揭公司：{{item.MCName}}</li>
 									<li>委托时间：{{item.AppraisalTime}}</li>
 								</ul>
-								<button class="status">
-									<template v-if="item.Status==10">待预审</template>
-									<template v-if="item.Status==20">已预审<i class="mui-icon mui-icon-arrowdown"></i></template>
-									<template v-if="item.Status==30">按揭中</template>
-									<template v-if="item.Status==40">按揭已完结</template>
-									<template v-if="item.Status==21">预审未通过</template>
-									<template v-if="item.Status==50">银行已办结</template>
+								<button class="status" @click="msg()">
+									<template v-if="item.Status==10">已申请</template>
+									<template v-if="item.Status==30">已预审<i class="mui-icon mui-icon-arrowdown"></i></template>
+									<template v-if="item.Status==40">按揭待受理</template>
+									<template v-if="item.Status==41">按揭已接单</template>
+									<template v-if="item.Status==50">按揭已办结</template>
+									<template v-if="item.Status==70">银行已办结</template>
 								</button>
 							</li>
+							</template>
 						</ul>
 
-					</template>
+					<!--</template>-->
 				</div>
 
 			</div>
@@ -98,13 +128,19 @@
 				el: '#app',
 				data: {
 					resume: null,
-
+					resub:null,
+					res41:null
 				},
 				methods:{
 					tabs:function(){
 						//tab切换
 						var tbl = new LogregTab('body');
 						tbl.init();
+					},
+					msg:function(){
+						
+						mui.alert('确认放款成功！');
+						
 					}
 				},
 				created: function() {
@@ -118,27 +154,67 @@
 						},
 						data: {
 //							userid: 32,
-							status: 40,
+							status: 40, //按揭中
 						},
 						success: function(data) {
 							self.resume = data;
 							console.log(getCookie("gpl_token"));
-							//								console.log(getCookie("gpl_token"));
 						},
 						error: function(e) {
 							console.log(e);
 						}
 					})
+					
+					mui.ajax({
+						url: port_UserOnAgency,
+						type: 'get',
+						dataType: 'json', //服务器返回json格式数据?getCookie("gpl_token"):"GPBASIC 000"
+						headers: {
+							"Authorization": getCookie("gpl_token")
+						},
+						data: {
+//							userid: 32,
+							status: 41, //办理中
+						},
+						success: function(data) {
+							self.res41 = data;
+//							console.log(getCookie("gpl_token"));
+						},
+						error: function(e) {
+							console.log(e);
+						}
+					})
+					
+					
+					mui.ajax({
+						url: port_UserOnAgency,
+						type: 'get',
+						dataType: 'json', //服务器返回json格式数据?getCookie("gpl_token"):"GPBASIC 000"
+						headers: {
+							"Authorization": getCookie("gpl_token")
+						},
+						data: {
+//							userid: 32,
+							status: 70,//完结
+						},
+						success: function(data) {
+							self.resub = data;
+							console.log(data);
+						},
+						error: function(e) {
+							console.log(e);
+						}
+					})
+					
+					
+				},
+				updated:function(){
+					this.tabs();
 				}
 
 			})
+			
 
-			mui.ready(function() {
-				//	   			tab切换
-				var tbl = new LogregTab('body');
-				tbl.init();
-
-			})
 		</script>
 	</body>
 

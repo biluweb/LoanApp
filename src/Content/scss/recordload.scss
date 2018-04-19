@@ -8,14 +8,21 @@
 body{background: #f5f5f5;}
 .mui-bar-nav{
     .obtn{overflow: hidden;text-align: center;border: 1px solid #2287e8;border-radius: 3px;
-        li{float: left;line-height: 34px;width: 88px;font-size: 15px;color: #0075e5;background: #fff;
+        li{float: left;line-height: 34px;width: 60px;font-size: 14px;color: #0075e5;background: #fff;
             &.on{background: #0075e5;color: #fff;}
         }
     }
 }
-@media (max-width:320px){
-    .mui-bar-nav .obtn{width: 178px;}
+@media (max-width:360px){
+//  .mui-bar-nav .obtn{width: 151px;}
+     .mui-bar-nav .obtn li{width:55px;}
 }
+
+@media (max-width:320px){
+    .mui-bar-nav .obtn{width: 151px;}
+     .mui-bar-nav .obtn li{width: 33.3%;}
+}
+
 
 .mui-content{background: #fff;
     .wul{margin: 0px 15px;font-size: 14px;color: #999999;line-height: 26px;

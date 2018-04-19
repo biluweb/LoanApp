@@ -10,7 +10,7 @@
 	<body>
 		<!-- 主页面标题 -->
 	    <header class="mui-bar mui-bar-nav">
-	      <a class="mui-icon bleft" href="javascript:;">
+	      <a class="mui-icon bleft" href="javascript:goBack()">
 	      	<i class="mui-icon mui-icon-arrowleft"></i>返回
 	      </a>
 	      <h1 class="mui-title">消息中心</h1>
@@ -85,18 +85,18 @@
 		@@include('module/linkjs.html')
 		
 		<script type="text/javascript">
-			mui.ready(function(){
-							//mui滚动调用
-				mui('.mui-scroll-wrapper').scroll({
-					scrollY: true, //是否竖向滚动
-					 scrollX: false, //是否横向滚动
-					 startX: 0, //初始化时滚动至x
-					 startY: 0, //初始化时滚动至y
-					 indicators: true, //是否显示滚动条
-					 deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
-					 bounce: true, //是否启用回弹
-				});
-			})
+//			mui.ready(function(){
+//							//mui滚动调用
+//				mui('.mui-scroll-wrapper').scroll({
+//					scrollY: true, //是否竖向滚动
+//					 scrollX: false, //是否横向滚动
+//					 startX: 0, //初始化时滚动至x
+//					 startY: 0, //初始化时滚动至y
+//					 indicators: true, //是否显示滚动条
+//					 deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
+//					 bounce: true, //是否启用回弹
+//				});
+//			})
 		</script>
 	</body>
 </html>

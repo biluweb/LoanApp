@@ -1,0 +1,55 @@
+// reset 
+@import "reset.scss";
+
+// base 
+@import "base.scss";
+
+body{background: #f5f5f5;color: #999999;}
+    .cont{margin:0 15px;background: #fff;padding:0 15px;border-radius: 5px;}
+    .tel{margin-top:15px;margin-bottom: 10px;padding-left: 0;padding-right: 0;
+        h2{color:#999999;font-size: 17px;font-weight: normal;line-height:58px;
+            border-bottom: 1px solid #ccc;
+            span{color: #333333;}
+        }
+        p{color: #006de8;padding: 15px 0;}
+        h2,p{padding-left: 20px;}
+    }
+    
+    .tbd{margin-top: 30px;
+        h3{color: #999999;padding-top: 28px;padding-bottom:10px;}
+        input{height: 43px;line-height: 43px;text-align: right;padding-right: 27px;border:1px solid #0075e5;
+            border-radius: 5px;width: 100%;color: #333;
+        }
+        .mui-input-row{position: relative;margin: 22px 0px;height: 43px;
+            
+            
+            span:first-child{position: absolute;left:0px;top: 0px;height: 43px;
+                line-height: 43px;
+            width: 70px;text-align: right;
+                color: #006de8;font-size:14px;
+            }
+            span:last-child{
+                position: absolute;right: 0px;top: 0;height: 43px;line-height: 43px;
+                width: 25px;color: #0075e5;
+            }
+            
+        }
+        .firs{
+//         padding-bottom: 25px; 
+        }
+        span{color: #333333;}
+        
+        .sfdk{overflow: hidden;
+            p{float: left;width: 49.5%;}
+        }
+    }
+    
+    .tfd{
+        margin-top: 30px;padding-bottom: 20px;
+        span{color: #333333;}
+        p{line-height: 30px;}
+    }
+    
+    .tjx{padding: 0;margin: 15px auto;width: 90%;color: #fff;height: 44px;line-height: 44px;font-size: 17px;
+        display: block;
+    }

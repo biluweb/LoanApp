@@ -8,15 +8,18 @@
 		<link rel="stylesheet" type="text/css" href="/Content/css/myinfor.css"/>
 	</head>
 	<body>
+		<div id="app">
+			
+		
 		<nav class="mui-bar mui-bar-tab">
 		    <a class="mui-tab-item" href="/Htmls/dkindex.html">
 		        <span class="mui-icon icon-home"></span>
 		        <span class="mui-tab-label">首页</span>
 		    </a>
-		    <a class="mui-tab-item" href="/Htmls/information.html">
+		    <!--<a class="mui-tab-item" href="/Htmls/information.html">
 		        <span class="mui-icon icon-infor"></span>
 		        <span class="mui-tab-label">消息</span>
-		    </a>
+		    </a>-->
 		    <a class="mui-tab-item">
 		        <span class="mui-icon icon-gpw"></span>
 		        <span class="mui-tab-label">公评网</span>
@@ -30,13 +33,13 @@
 		
 		<div class="mui-content">
 		    
-		    <div class="logoin">
+		    <div class="logoin" v-if="resume!=null">
 		    	<div class="mytitle">
 			    	<div class="cont">
 			    		<img src="/Resourceup/usertx0.png"/>
 			    		<div class="mctr">
-			    			<h2><span>用户名：</span>方少云</h2>
-			    			<p><span>昵称：</span>方少</p>
+			    			<h2><span>用户名：</span>{{resume.Data.Name}}</h2>
+			    			<p><span>昵称：</span>{{resume.Data.NickName}}</p>
 			    			<i class="iconspr icon-myxg"></i>
 			    		</div>
 			    	</div>
@@ -45,29 +48,110 @@
 			    <div class="mymang">
 			    	<ul class="mui-table-view">
 		    	        <li class="mui-table-view-cell">
-		    	            <a class="mui-navigate-right">
+		    	            <a class="mui-navigate-right" href="/Htmls/recorddaik.html">
 		    	                <i class="iconspr icon-mysq"></i>我的申请按揭
 		    	            </a>
 		    	        </li>
 		    	        <li class="mui-table-view-cell">
-		    	            <a class="mui-navigate-right">
+		    	            <a class="mui-navigate-right" href="/Htmls/recordload.html">
 		    	                 <i class="iconspr icon-myaj"></i>我的按揭贷款
 		    	            </a>
 		    	        </li>
-		    	        <li class="mui-table-view-cell">
-		    	            <a class="mui-navigate-right">
+		    	        <!--<li class="mui-table-view-cell">
+		    	            <a class="mui-navigate-right" href="/Htmls/information.html">
 	    	                 	<i class="iconspr icon-myinfo"></i>我的消息
 		    	            </a>
-		    	        </li>
+		    	        </li>-->
 		    	    </ul>
 			    </div>
 			    
-			    <button class="mui-btn mui-btn-blue exit">退出登陆</button>
+			    <button class="mui-btn mui-btn-blue exit" @click="logout()">退出登陆</button>
 		    </div>
 		    
 		</div>
 		
+		</div>
+		
 		 <!--加载mui+vue js-->
 		@@include('module/linkjs.html')
+		
+		
+		<script src="/Scripts/base/PackagingFunction.js"></script>
+		<script src="/Scripts/base/VarGlobal.js"></script>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					resume: null
+				},
+				methods:{
+					logout:function(){//port_Logout
+							var self=this;
+							mui.ajax({
+									url: port_Logout,
+									type: 'post',
+									dataType: 'json', //服务器返回json格式数据?getCookie("gpl_token"):"GPBASIC 000"
+									headers: {
+										"Authorization": getCookie("gpl_token"),
+										'Content-Type':'application/json'
+									},
+									data: {
+										Mobile:self.resume.Data.Mobile,
+									},
+									success: function(data) {
+										if(data.Code=10000){
+											 clearCookie("gpl_token");
+											 window.location.href="/Htmls/gather.html";
+										}
+//										self.resume = data;
+										console.log(data);
+										console.log(getCookie("gpl_token"));
+										//								console.log(getCookie("gpl_token"));
+									},
+									error: function(e) {
+										console.log(e);
+									}
+							})
+					}
+				},
+				created: function() {
+					var self = this;
+
+					
+					//银行 审核
+					mui.ajax({
+						url: port_GetCurrent,
+						type: 'get',
+						dataType: 'json', //服务器返回json格式数据?getCookie("gpl_token"):"GPBASIC 000"
+						headers: {
+							"Authorization": getCookie("gpl_token")
+						},
+						data: {
+//							id:33,
+						},
+						success: function(data) {
+							self.resume = data;
+							console.log(self.resume.Data.Mobile);
+							
+							console.log(getCookie("gpl_token"));
+							//								console.log(getCookie("gpl_token"));
+						},
+						error: function(e) {
+							console.log(e);
+						}
+					})
+					
+				},
+				updated:function(){
+						
+				}
+				
+				
+				
+				
+
+			})
+		</script>
 	</body>
 </html>
