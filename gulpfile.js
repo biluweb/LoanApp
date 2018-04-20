@@ -47,6 +47,8 @@ const del = require('del');							//删除文件/文件夹
 const wiredep = require('wiredep').stream;			//从 bower 同步到 html 中资源引用的插件，有了它引用 js，css 就可以直接自动生成到 html 文件中。
 const runSequence = require('run-sequence');		//让gulp任务，可以相互独立，解除任务间的依赖，增强task复用
 
+
+
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
@@ -61,7 +63,7 @@ gulp.task('muisass',()=>{
       includePaths: ['.']
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer({browsers: ['> 0.2%', 'last 2 versions','safari 5','Firefox >= 20','ios 6','android 4']}))
-    // .pipe($.minifyCss())					//压缩文件为一行
+     .pipe($.minifyCss())					//压缩文件为一行
  	// .pipe($.rev())						//对文件名加MD5后缀
     .pipe(gulp.dest('dist/Content/css/'))
     // .pipe($.rev.manifest())  				//生成一个rev-manifest.json
@@ -166,6 +168,8 @@ gulp.task('muijs', () => {
 gulp.task('scripts', () => {
   return gulp.src('src/Scripts/**/*.js')
     .pipe($.plumber())
+    //.pipe($.obfuscate())   //混淆js
+    .pipe($.uglify())     //压缩js
    //.pipe($.babel({presets: ['es2015']})) //编译ES6
     //.pipe($.babel({presets: ['es2015']})) //编译ES6
     .pipe(gulp.dest('dist/Scripts'))
@@ -176,6 +180,7 @@ gulp.task('scripts', () => {
 gulp.task('scriptcopy', () => {
 return gulp.src(['src/Scripts/**/*','!src/Scripts/**/*.js'])
     .pipe($.plumber())
+    
     .pipe(gulp.dest('dist/Scripts'))
     .pipe(reload({stream: true}))
     // .pipe($.notify({message:'js编译完成!'}))
