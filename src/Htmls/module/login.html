@@ -14,7 +14,7 @@
 			
 		
 		<div class="mui-content">
-			<a class="mui-icon mui-icon-closeempty loginext" href="#"></a>
+			<a class="mui-icon mui-icon-closeempty loginext" href="/Htmls/dkindex.html"></a>
 			
 			<div class="timg">
 				<img src="/Images/daik/gpwlogos.png" />
@@ -22,7 +22,7 @@
 			<form id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
 					<label class="iconspr icon-usern"></label>
-					<input id='account' type="number" class="mui-input" v-model="Mobile" placeholder="请输入手机号">
+					<input id='account' type="number" class="mui-input" maxlength="11" v-model="Mobile" placeholder="请输入手机号">
 				</div>
 				<div class="mui-input-row">
 					<label class="iconspr icon-userp"></label>
@@ -34,7 +34,7 @@
 			</form>
 			<div class="content-padded">
 				<div class="link-area">
-					<a id='forgetPassword'>忘记密码</a>
+					<!--<a id='forgetPassword' href="/Htmls/module/passwdxg.html">忘记密码</a>-->
 				</div>
 				<button id='login' class="mui-btn mui-btn-block mui-btn-primary" @click="login()">立即登录</button>
 			</div>
@@ -42,7 +42,7 @@
 		
 		</div>
 		 <!--加载mui+vue js-->
-		@@include('linkjs.html');
+		@@include('linkjs.html')
 		
 		<script src="/Scripts/base/PackagingFunction.js"></script>
 		<script src="/Scripts/base/VarGlobal.js"></script>
@@ -58,37 +58,46 @@
 				methods:{
 					login:function(){
 						var self = this;
-						mui.ajax({
-							url: port_Login,
-							type: 'post',
-							dataType: 'json',
-							headers: {
-								"Authorization": getCookie("gpl_token"),
-								'Content-Type': 'application/json'
-							},
-							data: {
-								Mobile:self.Mobile,
-								Password:self.Password
-							},
-							//{"Mobile":"18933336666","Password":"669153"},
-							success: function(data) {
-	//							self.resume = data;
-								//								console.log(getCookie("gpl_token"));
-								
-								if(data.Code=10000){
-									mui.alert('登录成功');
-									setTimeout(function(){
-										window.location.href="/Htmls/dkindex.html";
-									},2000)
-									
-								}
-								console.log(data);
-								
-							},
-							error: function(e) {
-								console.log(e);
-							}
-						})
+						
+						if(self.Mobile&&self.Password){
+								mui.ajax({
+									url: port_Login,
+									type: 'post',
+									dataType: 'json',
+									headers: {
+										"Authorization": getCookie("gpl_token"),
+										'Content-Type': 'application/json'
+									},
+									data: {
+										Mobile:self.Mobile,
+										Password:self.Password
+									},
+									//{"Mobile":"18933336666","Password":"669153"},
+									success: function(data) {
+			//							self.resume = data;
+										//								console.log(getCookie("gpl_token"));
+										
+										if(data.Code==10000){
+											setCookie("gpl_token",data.Desc);
+											mui.alert('登录成功','',function(){
+												window.location.href="/Htmls/dkindex.html";
+											});
+											
+										}else{
+											mui.alert('登录失败');
+										}
+										
+										console.log(data);
+										
+									},
+									error: function(e) {
+										console.log(e);
+									}
+								})
+						}else{
+							mui.alert('请填写信息');
+						}
+						
 					}
 				},
 				created: function() {

@@ -41,10 +41,9 @@
 //POST
 //{"Mobile":"18933336666"}
 
+//http://192.168.5.228:8301/api/Estate/GetCommunityList?keyword=加州&city=重庆市   get
 
 
-//POST
-//{"Keyword":"加州", "City":"重庆市"}
 
 var port_apply="http://192.168.5.228:8301/api/LoanProject/ApplyGPLoan",						//提交贷款申请       d
 	port_UserOnAgency="http://192.168.5.228:8301/api/LoanProject/GetByUserOnAgency", 		//按揭            d

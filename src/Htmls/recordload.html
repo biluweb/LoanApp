@@ -44,9 +44,9 @@
 									<li>建筑面积：{{item.BuildArea}}㎡</li>
 									<li>贷款银行：{{item.BankName}}</li>
 									<li>可贷额度：{{item.ApproveBudget}}</li>
-									<li>贷款期限：{{item.AgencyTime}}</li>
+									<li>贷款期限：{{item.AppraisalTime}}</li>
 									<li>按揭公司：{{item.MCName}}</li>
-									<li>委托时间：{{item.AppraisalTime}}</li>
+									<li>委托时间：{{item.AgencyTime}}</li>
 								</ul>
 								<button class="status" v-on:click="window.location.href='/Htmls/wtloadetai.html?ProjectId='+item.ProjectId">
 									<template v-if="item.Status==10">已申请</template>
@@ -68,11 +68,11 @@
 									<li>建筑面积：{{item.BuildArea}}㎡</li>
 									<li>贷款银行：{{item.BankName}}</li>
 									<li>可贷额度：{{item.ApproveBudget}}</li>
-									<li>贷款期限：{{item.AgencyTime}}</li>
+									<li>贷款期限：{{item.AgencyTime}}</li>				<!--<li>贷款期限：{{item.AgencyTime}}</li>-->
 									<li>按揭公司：{{item.MCName}}</li>
 									<li>委托时间：{{item.AppraisalTime}}</li>
 								</ul>
-								<button class="status" @click="msg()">
+								<button class="status" v-on:click="window.location.href='/Htmls/wtloadetai.html?ProjectId='+item.ProjectId">
 									<template v-if="item.Status==10">已申请</template>
 									<template v-if="item.Status==30">已预审<i class="mui-icon mui-icon-arrowdown"></i></template>
 									<template v-if="item.Status==40">按揭待受理</template>
@@ -94,11 +94,11 @@
 									<li>建筑面积：{{item.BuildArea}}㎡</li>
 									<li>贷款银行：{{item.BankName}}</li>
 									<li>可贷额度：{{item.ApproveBudget}}</li>
-									<li>贷款期限：{{item.AgencyTime}}</li>
+									<li>贷款期限：{{item.AppraisalTime}}</li>
 									<li>按揭公司：{{item.MCName}}</li>
-									<li>委托时间：{{item.AppraisalTime}}</li>
+									<li>委托时间：{{item.AgencyTime}}</li>
 								</ul>
-								<button class="status" @click="msg()">
+								<button class="status" v-on:click="window.location.href='/Htmls/wtloadetai.html?ProjectId='+item.ProjectId">
 									<template v-if="item.Status==10">已申请</template>
 									<template v-if="item.Status==30">已预审<i class="mui-icon mui-icon-arrowdown"></i></template>
 									<template v-if="item.Status==40">按揭待受理</template>

@@ -100,8 +100,9 @@
 										Mobile:self.resume.Data.Mobile,
 									},
 									success: function(data) {
-										if(data.Code=10000){
+										if(data.Code==10000){
 											 clearCookie("gpl_token");
+											 clearCookie("city");
 											 window.location.href="/Htmls/gather.html";
 										}
 //										self.resume = data;
@@ -119,7 +120,7 @@
 					var self = this;
 
 					
-					//银行 审核
+					//获取用户
 					mui.ajax({
 						url: port_GetCurrent,
 						type: 'get',
@@ -132,13 +133,13 @@
 						},
 						success: function(data) {
 							self.resume = data;
-							console.log(self.resume.Data.Mobile);
+							console.log(data);
 							
 							console.log(getCookie("gpl_token"));
 							//								console.log(getCookie("gpl_token"));
 						},
 						error: function(e) {
-							console.log(e);
+							window.location.href="/Htmls/module/login.html"
 						}
 					})
 					
