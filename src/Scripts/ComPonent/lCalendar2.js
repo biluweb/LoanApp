@@ -659,13 +659,19 @@ window.lCalendar2 = (function() {
                 var passY = _self.maxY - _self.minY + 1;
                 var date_yy = parseInt(Math.round(_self.gearDate.querySelector(".date_yy").getAttribute("val")));
                 var date_mm = parseInt(Math.round(_self.gearDate.querySelector(".date_mm").getAttribute("val"))) + 1;
-                date_mm = date_mm > 9 ? date_mm : '0' + date_mm;
+//              date_mm = date_mm > 9 ? date_mm : '0' + date_mm;
                 var date_dd = parseInt(Math.round(_self.gearDate.querySelector(".date_dd").getAttribute("val"))) + 1;
-                date_dd = date_dd > 9 ? date_dd : '0' + date_dd;
-                _self.trigger.value = (date_yy % passY + _self.minY) + "-" + date_mm + "-" + date_dd;
+//              date_dd = date_dd > 9 ? date_dd : '0' + date_dd;
+                
+//              date_mm=date_mm.replace(/\b(0+)/gi,"");
+//              date_dd=date_dd.replace(/\b(0+)/gi,"");
+                
+                
+                _self.trigger.value = (date_yy % passY + _self.minY) + "室" + date_mm + "厅" + date_dd+ "卫";
                 if (_self.FinishEvent && typeof(_self.FinishEvent) == "function") {
                     _self.FinishEvent();
                 }
+                
                 event.stopPropagation();
                 closeMobileCalendar(e);
             }

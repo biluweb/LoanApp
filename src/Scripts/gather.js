@@ -10,14 +10,15 @@ var vm=new Vue({
 	      		UserName: "",
 				Mobile: "",
 				Birthday: "",
-				ApplyType: "",
-				LoanCount: "",
+				ApplyType: "1",
+				LoanCount: "0",
+				UncleanCount:"0",
 				MonthlyPayment: "",
-				PoorLoanCount: "",
-				PublicAccmFunds: "",
+				PoorLoanCount: "0",
+				PublicAccmFunds: "1",
 				MonthlyIncome: "",
 				AvailableDeposit:"",
-				BuyIntention: "",
+				BuyIntention: true,
 				PropertyName: "",//加州花园
 				PropertyGuid: "",//5899616a4b3f1c2b7c816d70
 				BuildName: "",
@@ -29,11 +30,12 @@ var vm=new Vue({
 				PropertyFace: "南北",	//南北
 				FloorNumber: "",
 				FloorTotal: "",
-				HasElevator: "",
+				HasElevator: true,
 				BuildingTime: "",
 				BuildingType: "板塔结合",//板塔结合
 				LandScape: "快速干道",//快速干道
 				DecorateTime:"",
+				ValidateCode:""
 	      	}
 	  	},
 	  	methods:{
@@ -73,7 +75,7 @@ var vm=new Vue({
 	        				mui.alert('请选择信息!');
         				break;
         			case 3:
-        				if(dt.MonthlyIncome&&dt.AvailableDeposit&&dt.BuyIntention)
+        				if(dt.MonthlyIncome&&dt.AvailableDeposit)
 	        				this.step--;
 	        				
 	        			else
@@ -162,6 +164,37 @@ var vm=new Vue({
 	        search:function(){
 	        	//调楼盘字典
 //							GetPropertyByKey();
+	        },
+	        yzm:function(event){
+	        	var self=this,
+	        		e=event.currentTarget;
+	        	mui.ajax({
+					url:port_ValidateCode,
+					data:{
+						Mobile:self.dblist.Mobile
+					},
+					dataType:'json',//服务器返回json格式数据
+					type:'get',//HTTP请求类型
+//					headers:{"Authorization":getCookie("gpl_token")},
+					success:function(data){
+						
+						if(data.Code==10000){
+							mui.alert('验证码已发送到手机');
+							e.setAttribute("disabled","disabled");
+						}else{
+							mui.alert('验证码发送失败');
+						}
+
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理；
+//											self.loadg=false;
+//											mui.alert('请求失败!',);
+					}
+				})
+	        	
+	        	
+	        	
 	        }
 	    },  
 	  	created: function () {
@@ -315,7 +348,7 @@ var vm=new Vue({
 	  		
 	  	},
 	  	updated:function(){
-	  		
+	  				
 	  	}
 	})
 	
@@ -343,9 +376,9 @@ mui.ready(function(){
 		lab3=new Choose('.quer3'),
 		lab4=new Choose('.quer4'),
 		lab5=new Choose('.yb1'),
-		lab6=new Choose('.yb2'),
+//		lab6=new Choose('.yb2'),
 		lab7=new Choose('.swhbtn');
-	lab1.init();lab2.init();lab3.init();lab4.init();lab5.init();lab6.init();lab7.init();
+	lab1.init();lab2.init();lab3.init();lab4.init();lab5.init();lab7.init();
 	
 //					
 	

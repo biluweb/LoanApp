@@ -42,6 +42,7 @@
 //{"Mobile":"18933336666"}
 
 //http://192.168.5.228:8301/api/Estate/GetCommunityList?keyword=加州&city=重庆市   get
+//http://192.168.5.228:8301/api/User/ValidateCode?mobile=
 
 
 
@@ -57,7 +58,7 @@ var port_apply="http://192.168.5.228:8301/api/LoanProject/ApplyGPLoan",						//�
 	port_ChooseMCByUser="http://192.168.5.228:8301/api/LoanProject/ChooseMCByUser",     //选择按揭公司		d
 	port_GetCurrent="http://192.168.5.228:8301/api/User/GetCurrent",					//获取用户信息		d
 	port_Logout="http://192.168.5.228:8301/api/User/Logout",							//退出登录       {"Mobile":"18933336666"} d
-	port_GetCommunityList="http://192.168.5.228:8301/api/Estate/GetCommunityList";		//城市楼盘字典
-
+	port_GetCommunityList="http://192.168.5.228:8301/api/Estate/GetCommunityList",		//城市楼盘字典
+	port_ValidateCode="http://192.168.5.228:8301/api/User/ValidateCode";				//?mobile=
 
 

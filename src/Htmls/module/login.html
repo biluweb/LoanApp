@@ -58,6 +58,7 @@
 				methods:{
 					login:function(){
 						var self = this;
+						var setck=new setCookie();
 						
 						if(self.Mobile&&self.Password){
 								mui.ajax({
@@ -76,6 +77,7 @@
 									success: function(data) {
 			//							self.resume = data;
 										//								console.log(getCookie("gpl_token"));
+										
 										
 										if(data.Code==10000){
 											setCookie("gpl_token",data.Desc);

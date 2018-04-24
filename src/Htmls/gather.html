@@ -102,7 +102,7 @@
 				    		<h3>主借人</h3>
 				    		<p>您是自己申请？还是与某人一起申请？</p>
 				    		
-				    		<label class="mui-btn " >我自己<input type="radio"   v-model="dblist.ApplyType"  value="1"></label>
+				    		<label class="mui-btn on" >我自己<input type="radio"   v-model="dblist.ApplyType"  value="1"></label>
 				    		<label class="mui-btn " >我家人<input type="radio"   v-model="dblist.ApplyType" value="2"></label>
 				    		<!--<p>已选：{{dblist.myfli}}</p>-->
 				    	</div>
@@ -110,7 +110,7 @@
 				    	<div class="apg quer2">
 				    		<h3>我们认贷不认房</h3>
 				    		<p>您（们）名下有无个人住房贷款记录？</p>
-				    		<label class="mui-btn " >没有<input type="radio"   v-model="dblist.LoanCount"  value="0"></label>
+				    		<label class="mui-btn on" >没有<input type="radio"   v-model="dblist.LoanCount"  value="0"></label>
 				    		<label class="mui-btn " >有一套<input type="radio"   v-model="dblist.LoanCount"  value="1"></label>
 				    		<label class="mui-btn " >有二套以上<input type="radio"   v-model="dblist.LoanCount"  value="2"></label>
 				    	</div>
@@ -121,7 +121,7 @@
 			    		<div class="apg quer3" v-show="dblist.LoanCount==0">
 				    		<h3>你是“首次购房”客户</h3>
 				    		<p>你有无公积金缴存?</p>
-				    		<label class="mui-btn " >有<input type="radio"   v-model="dblist.PublicAccmFunds"  value="1"></label>
+				    		<label class="mui-btn on" >有<input type="radio"   v-model="dblist.PublicAccmFunds"  value="1"></label>
 				    		<label class="mui-btn " >没有<input type="radio"   v-model="dblist.PublicAccmFunds"  value="0"></label>
 				    		<p class="dmx">接下来我们看你需要通过你的家庭收入来计算你能
 								贷款多少,以及每月的费用，这个很重要。
@@ -132,7 +132,7 @@
 				    	<div class="apg quer4" v-show="dblist.LoanCount==1||dblist.LoanCount==2">
 				    		<h3>你是“二套房”客户</h3>
 				    		<p>你有几套房贷没有结清?</p>
-				    		<label class="mui-btn " >已结清<input type="radio"   v-model="dblist.UncleanCount"  value="0"></label>
+				    		<label class="mui-btn on" >已结清<input type="radio"   v-model="dblist.UncleanCount"  value="0"></label>
 				    		<label class="mui-btn " >有1套未结清<input type="radio"   v-model="dblist.UncleanCount"  value="1"></label>
 				    		<label class="mui-btn " >有2套及以上未结清<input type="radio"   v-model="dblist.UncleanCount"  value="2"></label>
 				    		<p class="dmx">接下来我们看你需要通过你的家庭收入来计算你能
@@ -152,7 +152,7 @@
 			    		<p>1.  近2年内贷款逾期连续期数不超过2次，累计逾期 贷款数不超过4次？</p>
 			    		<p>2.  近1年内银行用卡累计逾期次数不超过4次？</p>
 			    		<div class="ynbt yb1">
-			    			<label class="mui-btn " >没有<input type="radio"   v-model="dblist.PoorLoanCount"  value="0"></label>
+			    			<label class="mui-btn on" >没有<input type="radio"   v-model="dblist.PoorLoanCount"  value="0"></label>
 			    			<label class="mui-btn " >不超2次<input type="radio"   v-model="dblist.PoorLoanCount"  value="1"></label>
 			    			<label class="mui-btn " >不超4次<input type="radio"   v-model="dblist.PoorLoanCount"  value="2"></label>
 			    		</div>
@@ -168,11 +168,11 @@
 			    		<div class="put">
 			    			<input type="number" v-model="dblist.AvailableDeposit" placeholder="请输入预计首付款" /><i></i>
 			    		</div>
-			    		<p>您（们）有意向购入的房产吗？</p>
+			    		<!--<p>您（们）有意向购入的房产吗？</p>
 			    		<div class="ynbt yb2">
 			    			<label class="mui-btn " >有<input type="radio"   v-model="dblist.BuyIntention"  value="true"></label>
 			    			<label class="mui-btn " >没有<input type="radio"   v-model="dblist.BuyIntention"  value="false"></label>
-			    		</div>
+			    		</div>-->
 			    	</div>
 			    	
 			    	
@@ -207,7 +207,7 @@
 						        <div class="mui-navigate-right">
 						        	<!--<span v-model="dblist.RoomStructureType" class="lstright">{{dblist.RoomStructureType}}</span>-->
 						        	<span class="lstleft">户 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</span>
-						        	<input v-model="dblist.RoomStructureType" id="date2" class="date-input lstright" data-lcalendar="1-1-1,10-10-10" readonly="readonly" placeholder="3室2厅2卫">
+						        	<input v-model="dblist.RoomStructureType" id="date2" class="date-input lstright" data-lcalendar="1-1-1,10-8-5" readonly="readonly" placeholder="3室2厅2卫">
 						        </div>
 						    </li>
 						    <li class="mui-table-view-cell must">
@@ -248,7 +248,7 @@
 						        	<!--HasElevator-->
 						        	<span class="lstleft">有无电梯：</span>
 						        	<div class="lstright swhbtn">
-						        		<label >有<input type="radio"   v-model="dblist.HasElevator"  value="true"></label>
+						        		<label class="on">有<input type="radio"   v-model="dblist.HasElevator"  value="true"></label>
 						        		<label >没有<input type="radio"   v-model="dblist.HasElevator"  value="false"></label>
 						        	</div>
 						        </div>
@@ -256,7 +256,7 @@
 						     <li class="mui-table-view-cell must">
 						        <div class="stxt">
 						        	<span class="lstleft" >建筑年代：</span>
-						        	<input type="number" class="putright" placeholder="2017" v-model="dblist.BuildingTime"/><span class="pull-right">年</span>
+						        	<input type="number" class="putright" placeholder="请输入" v-model="dblist.BuildingTime"/><span class="pull-right">年</span>
 						        </div>
 						    </li>
 						    <li class="opt"><p>以下为选填项：信息越完善，估价越精确</p></li>
@@ -322,14 +322,15 @@
 			    			<input type="number" placeholder="请输入您的手机号码" maxlength="11" v-model="dblist.Mobile" />
 			    		</div>
 			    		<div class="gput">
-			    			<input type="number" placeholder="请输入验证码" v-model="dblist.Vercode"/>
-			    			<span class="xzm">发送验证码</span>
+			    			<input type="number" placeholder="请输入验证码" v-model="dblist.ValidateCode"/>
+			    			<!--<span class="xzm" @click="yzm()">发送验证码</span>-->
+			    			<button class="xzm" @click="yzm($event)">发送验证码</button>
 			    		</div>
 			    		<h3>您的生日是什么时候？</h3>
 			    		<p>我们需要通过您的生日来判定您的抵押贷款期限</p>
 			    		<div class="gput">
 			    			<!--data-lcalendar="1918-1-1"-->
-			    			<input type="text" class="date-input" placeholder="请选择生日" id="date1"  readonly="readonly" v-model="dblist.Birthday"/>
+			    			<input type="text" class="date-input" placeholder="请选择生日" data-lcalendar="1990-01-11,2022-12-29" id="date1"  readonly="readonly" v-model="dblist.Birthday"/>
 			    		</div>
 			    		<p>点击"下一步"接受我们的《使用条款》和《隐私政策》</p>
 			    	</div>
