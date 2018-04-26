@@ -93,11 +93,15 @@ InputFocus.prototype.init = function() {
 			doc.addEventListener('tap', function() {
 				This.clear(This.iput)
 			}, false);
+			
+			addClass(doc.querySelector('#app'),'ios') //position fixed
 		}
 		this.iput[i].onblur = function() {
 			doc.removeEventListener('tap', function() {
 				This.clear(This.iput)
 			}, false);
+			
+			removeClass(doc.querySelector('#app'),'ios') //position fixed
 		}
 	}
 	return this;

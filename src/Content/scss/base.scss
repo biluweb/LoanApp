@@ -78,3 +78,9 @@ body.mui-ios{
     }
     
 }
+
+//ios<8 position fixed
+#app.ios .mui-bar-nav{
+    position: absolute;
+//  top:48px;
+}

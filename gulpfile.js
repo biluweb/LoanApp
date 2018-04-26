@@ -169,7 +169,7 @@ gulp.task('scripts', () => {
   return gulp.src('src/Scripts/**/*.js')
     .pipe($.plumber())
     //.pipe($.obfuscate())   //混淆js
-    .pipe($.uglify())     //压缩js
+   // .pipe($.uglify())     //压缩js
    //.pipe($.babel({presets: ['es2015']})) //编译ES6
     //.pipe($.babel({presets: ['es2015']})) //编译ES6
     .pipe(gulp.dest('dist/Scripts'))

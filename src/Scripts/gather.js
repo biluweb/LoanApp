@@ -13,7 +13,7 @@ var vm=new Vue({
 				ApplyType: "1",
 				LoanCount: "0",
 				UncleanCount:"0",
-				MonthlyPayment: "",
+				MonthlyPayment:"0",
 				PoorLoanCount: "0",
 				PublicAccmFunds: "1",
 				MonthlyIncome: "",
@@ -83,65 +83,64 @@ var vm=new Vue({
         				break;
         			case 2:
         				if(dt.PropertyName&&dt.BuildName&&dt.RoomName&&dt.BuildArea&&dt.RoomStructureType&&dt.PropertyFace&&dt.FloorNumber&&dt.FloorTotal&&dt.HasElevator&&dt.BuildingTime){
-//				        				if (!IsNum(dt.BuildArea)){
-//							                return false;
-//							            }
 	        				this.step--;
 	        				
 	        			}else{
 	        				mui.alert('必填信息不全!');}
         				break;
 					case 1:
-						self.loadg=true;
-						console.log(self.dblist);
-						mui.ajax({
-							url:port_apply,
-							data:self.dblist,
-							dataType:'json',//服务器返回json格式数据
-							type:'POST',//HTTP请求类型
-							headers:{"Authorization":getCookie("gpl_token"),'Content-Type':'application/json'},
-							success:function( data){
-								
-								switch(data.Code){
-									case 10000:
-											if(data.Desc != null){
-												setCookie("gpl_token", data.Desc);
-											}
+						if(dt.Birthday&&dt.ValidateCode&&dt.Mobile&&dt.UserName){
+							this.step--;
+							self.loadg=true;
+							console.log(self.dblist);
+							mui.ajax({
+								url:port_apply,
+								data:self.dblist,
+								dataType:'json',//服务器返回json格式数据
+								type:'POST',//HTTP请求类型
+								headers:{"Authorization":getCookie("gpl_token"),'Content-Type':'application/json'},
+								success:function( data){
+									switch(data.Code){
+										case 10000:
+												if(data.Desc != null){
+													setCookie("gpl_token", data.Desc);
+												}
+												self.loadg=false;
+												self.resume = data;
+	//															var lt=JSON.stringify(data);
+											break;
+										case 10101:
+												self.loadg=false;
+												mui.alert(data.Desc,'',function(){
+													window.location.href="/Htmls/module/login.html";
+												});
+	//														console.log(data.Desc);
+											break;
+										default:
 											self.loadg=false;
-											self.resume = data;
-//															var lt=JSON.stringify(data);
-										break;
-									case 10101:
-											self.loadg=false;
-											mui.alert(data.Desc,'',function(){
-												window.location.href="/Htmls/module/login.html";
-											});
-//														console.log(data.Desc);
-										break;
-									default:
-										
-										
-//													console.log(data.Desc);
-										self.loadg=false;
-										mui.alert('请求失败!');
-										break;
+											mui.alert('请求失败!');
+											break;
+									}
+	//											var brt=JSON.stringify(data);
+									
+	//											console.log("a:"+data.Desc);
+	//											console.log("b:"+getCookie("gpl_token"));
+	
+								},
+								error:function(xhr,type,errorThrown){
+									//异常处理；
+	//											self.loadg=false;
+	//											mui.alert('请求失败!',);
 								}
-//											var brt=JSON.stringify(data);
-								
-//											console.log("a:"+data.Desc);
-//											console.log("b:"+getCookie("gpl_token"));
+							})
+							
+							
+							
+						}else{
+							mui.alert('信息不全!');
+						}
 
-							},
-							error:function(xhr,type,errorThrown){
-								//异常处理；
-//											self.loadg=false;
-//											mui.alert('请求失败!',);
-							}
-						})
-						
-						this.step--;
 							break;
-						
 						case 0:
 
 							break;
@@ -200,6 +199,15 @@ var vm=new Vue({
 	  	created: function () {
 	  		
 	  		$(function(){
+	  			
+	  			//设备&& ios<8 fixed bug
+	  			var dev=new Device(),
+	  				iosfixed=new InputFocus('input');
+	  			
+	  			if(dev.isIOS()){
+	  				iosfixed.init();
+	  			}
+	  			
 	  			//生日插件
 	  			var calendardatetime1 = new lCalendar();
 			 	 calendardatetime1.init({
