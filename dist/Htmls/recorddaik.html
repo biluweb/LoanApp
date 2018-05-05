@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>我申请的贷款记录</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="/Content/css/recorddaik.css" />
+    <link href="/LoanApp/dist/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/LoanApp/dist/Content/css/recorddaik.css" />
 </head>
 
 <body>
@@ -43,7 +43,7 @@
                         </ul>
                         <!--onclick="window.location.href=''"-->
                         <template v-if="item.Status==10">
-                            <div class="status" v-on:click="window.location.href='/Htmls/loadetai.html?ProjectId=' + item.ProjectId">待预审</div>
+                            <div class="status" v-on:click="window.location.href='/LoanApp/dist/Htmls/loadetai.html?ProjectId=' + item.ProjectId">待预审</div>
                         </template>
                         <template v-if="item.Status==20">
                             <div class="status down">已预审
@@ -80,7 +80,7 @@
                                 <i class="mui-icon mui-icon-arrowdown"></i>
                             </div>
                             <!--onclick="window.location.href=''"-->
-                            <!--<template v-if="item.Status==10"><div class="status" onclick="window.location.href='/Htmls/loadetai.html'">待预审</div></template>-->
+                            <!--<template v-if="item.Status==10"><div class="status" onclick="window.location.href='/LoanApp/dist/Htmls/loadetai.html'">待预审</div></template>-->
                             <!--<template v-if="item.Status==20"><div class="status down">已预审<i class="mui-icon mui-icon-arrowdown"></i></div></template>-->
                             <!--<template v-if="item.Status==30"><div class="status">按揭中</div></template>
 							<template v-if="item.Status==40"><div class="status">按揭已完结</div></template>
@@ -141,8 +141,8 @@
     </div>
 
     <!--加载mui+vue js-->
-    <script src="/Content/css/mui-sass/js/mui.js"></script>
-    <script src="/Scripts/vue.min.js"></script>
+    <script src="/LoanApp/dist/Content/css/mui-sass/js/mui.js"></script>
+    <script src="/LoanApp/dist/Scripts/vue.min.js"></script>
     <script type="text/javascript">
         mui.init({
             gestureConfig: {
@@ -158,10 +158,10 @@
         })
     </script>
 
-    <script src="/Scripts/base/PackagingFunction.js"></script>
-    <script src="/Scripts/base/VarGlobal.js"></script>
+    <script src="/LoanApp/dist/Scripts/base/PackagingFunction.js"></script>
+    <script src="/LoanApp/dist/Scripts/base/VarGlobal.js"></script>
 
-    <script src="/Scripts/ComPonent/jquery-1.8.3.min.js"></script>
+    <script src="/LoanApp/dist/Scripts/ComPonent/jquery-1.8.3.min.js"></script>
 
     <script type="text/javascript">
         var vm = new Vue({
@@ -216,7 +216,7 @@
 
                     if (this.ProjectId != null && this.MCId != null) {
                         console.log(this.ProjectId);
-                        window.location.href = "/Htmls/payment.html?ProjectId=" + this.ProjectId + "&MCId=" + this.MCId;
+                        window.location.href = "/LoanApp/dist/Htmls/payment.html?ProjectId=" + this.ProjectId + "&MCId=" + this.MCId;
                     }
 
 

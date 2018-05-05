@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>登陆界面</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="/Content/css/passwdxg.css" />
+    <link href="/LoanApp/dist/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/LoanApp/dist/Content/css/passwdxg.css" />
 </head>
 <body>
     <header class="mui-bar mui-bar-nav">
@@ -34,8 +34,8 @@
         <button class="mui-btn mui-btn-blue">确定修改</button>
     </div>
 
-    <script src="/Content/css/mui-sass/js/mui.js"></script>
-    <script src="/Scripts/vue.min.js"></script>
+    <script src="/LoanApp/dist/Content/css/mui-sass/js/mui.js"></script>
+    <script src="/LoanApp/dist/Scripts/vue.min.js"></script>
     <script type="text/javascript">
         mui.init({
             gestureConfig: {
@@ -51,8 +51,8 @@
         })
     </script>
 
-    <script src="/Scripts/base/PackagingFunction.js"></script>
-    <script src="/Scripts/base/VarGlobal.js"></script>
+    <script src="/LoanApp/dist/Scripts/base/PackagingFunction.js"></script>
+    <script src="/LoanApp/dist/Scripts/base/VarGlobal.js"></script>
 
     <script type="text/javascript">
         var vm = new Vue({
@@ -83,7 +83,7 @@
 
                             if (data.Code == 10000) {
                                 mui.alert('修改密码成功', '', function() {
-                                    window.location.href = "/Htmls/dkindex.html";
+                                    window.location.href = "/LoanApp/dist/Htmls/dkindex.html";
                                 });
 
                             }

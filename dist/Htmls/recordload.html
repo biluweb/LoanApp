@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>我的项目按揭记录</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="/Content/css/recordload.css" />
+    <link href="/LoanApp/dist/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/LoanApp/dist/Content/css/recordload.css" />
 </head>
 
 <body>
@@ -48,7 +48,7 @@
                                 <li>按揭公司：{{item.MCName}}</li>
                                 <li>委托时间：{{item.AgencyTime}}</li>
                             </ul>
-                            <button class="status" v-on:click="window.location.href='/Htmls/wtloadetai.html?ProjectId='+item.ProjectId">
+                            <button class="status" v-on:click="window.location.href='/LoanApp/dist/Htmls/wtloadetai.html?ProjectId='+item.ProjectId">
                                 <template v-if="item.Status==10">已申请</template>
                                 <template v-if="item.Status==30">已预审
                                     <i class="mui-icon mui-icon-arrowdown"></i>
@@ -75,7 +75,7 @@
                                 <li>按揭公司：{{item.MCName}}</li>
                                 <li>委托时间：{{item.AppraisalTime}}</li>
                             </ul>
-                            <button class="status" v-on:click="window.location.href='/Htmls/wtloadetai.html?ProjectId='+item.ProjectId">
+                            <button class="status" v-on:click="window.location.href='/LoanApp/dist/Htmls/wtloadetai.html?ProjectId='+item.ProjectId">
                                 <template v-if="item.Status==10">已申请</template>
                                 <template v-if="item.Status==30">已预审
                                     <i class="mui-icon mui-icon-arrowdown"></i>
@@ -103,7 +103,7 @@
                                 <li>按揭公司：{{item.MCName}}</li>
                                 <li>委托时间：{{item.AgencyTime}}</li>
                             </ul>
-                            <button class="status" v-on:click="window.location.href='/Htmls/wtloadetai.html?ProjectId='+item.ProjectId">
+                            <button class="status" v-on:click="window.location.href='/LoanApp/dist/Htmls/wtloadetai.html?ProjectId='+item.ProjectId">
                                 <template v-if="item.Status==10">已申请</template>
                                 <template v-if="item.Status==30">已预审
                                     <i class="mui-icon mui-icon-arrowdown"></i>
@@ -125,8 +125,8 @@
     </div>
 
     <!--加载mui+vue js-->
-    <script src="/Content/css/mui-sass/js/mui.js"></script>
-    <script src="/Scripts/vue.min.js"></script>
+    <script src="/LoanApp/dist/Content/css/mui-sass/js/mui.js"></script>
+    <script src="/LoanApp/dist/Scripts/vue.min.js"></script>
     <script type="text/javascript">
         mui.init({
             gestureConfig: {
@@ -142,9 +142,9 @@
         })
     </script>
 
-    <script src="/Scripts/base/PackagingFunction.js"></script>
-    <script src="/Scripts/ComPonent/json2.js"></script>
-    <script src="/Scripts/base/VarGlobal.js"></script>
+    <script src="/LoanApp/dist/Scripts/base/PackagingFunction.js"></script>
+    <script src="/LoanApp/dist/Scripts/ComPonent/json2.js"></script>
+    <script src="/LoanApp/dist/Scripts/base/VarGlobal.js"></script>
     <script type="text/javascript">
         var vm = new Vue({
             el: '#app',

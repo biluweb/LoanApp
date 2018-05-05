@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>信息录入</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="/Content/css/gather.css" />
-    <link rel="stylesheet" type="text/css" href="/Content/css/daik/lCalendar.css" />
+    <link href="/LoanApp/dist/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/LoanApp/dist/Content/css/gather.css" />
+    <link rel="stylesheet" type="text/css" href="/LoanApp/dist/Content/css/daik/lCalendar.css" />
 
-    <link rel="stylesheet" type="text/css" href="/Scripts/ComPonent/layer_mobile/need/layer.css" />
+    <link rel="stylesheet" type="text/css" href="/LoanApp/dist/Scripts/ComPonent/layer_mobile/need/layer.css" />
 </head>
 <body>
     <div id="app" v-bind:class="{loans:step==0}">
@@ -57,11 +57,11 @@
 
         <!--欢迎页-->
         <nav class="mui-bar mui-bar-tab" v-if="step==7">
-            <a class="mui-tab-item" href="/Htmls/dkindex.html">
+            <a class="mui-tab-item" href="/LoanApp/dist/Htmls/dkindex.html">
                 <span class="mui-icon icon-home"></span>
                 <span class="mui-tab-label">首页</span>
             </a>
-            <!--<a class="mui-tab-item" href="/Htmls/information.html">
+            <!--<a class="mui-tab-item" href="/LoanApp/dist/Htmls/information.html">
 			        <span class="mui-icon icon-infor"></span>
 			        <span class="mui-tab-label">消息</span>
 			    </a>-->
@@ -69,7 +69,7 @@
                 <span class="mui-icon icon-gpw"></span>
                 <span class="mui-tab-label">公评网</span>
             </a>
-            <a class="mui-tab-item" href="/Htmls/myinfor.html">
+            <a class="mui-tab-item" href="/LoanApp/dist/Htmls/myinfor.html">
                 <span class="mui-icon icon-myd"></span>
                 <span class="mui-tab-label">我的</span>
             </a>
@@ -384,7 +384,7 @@
                         <!--不能贷款-->
                         <div class="pageno mui-hidden" v-if="resume.Data.QueryStatus==false">
                             <div class="apg">
-                                <img src="/Images/daik/notloanst.png" />
+                                <img src="/LoanApp/dist/Images/daik/notloanst.png" />
                                 <h3>很遗憾！您目前不能办理按揭贷款</h3>
                                 <p>你有二套按揭贷款
                                     <br />你个人征信有问题，不符合按揭条件</p>
@@ -399,7 +399,7 @@
                         <!--可以贷款-->
                         <div class="pageyes" v-if="resume.Data.QueryStatus==true">
                             <div class="apg">
-                                <img src="/Images/daik/yesloanst.png" />
+                                <img src="/LoanApp/dist/Images/daik/yesloanst.png" />
                                 <h3 class="title">恭喜您，找到适合您贷款银行</h3>
 
                                 <div class="calres">
@@ -412,7 +412,7 @@
 					    				</template>-->
                                         <li class="mui-table-view-cell mui-media">
                                             <!--<a href="javascript:;">-->
-                                            <img class="mui-media-object mui-pull-left" src="/Images/daik/tjdkjimg1.png">
+                                            <img class="mui-media-object mui-pull-left" src="/LoanApp/dist/Images/daik/tjdkjimg1.png">
                                             <div class="mui-media-body">
                                                 <h3>预计可贷 ￥{{resume.Data.Products[0].AppraisalBudget}}</h3>
                                                 <p>贷款期限最长：
@@ -460,8 +460,8 @@
 
 
 
-    <script src="/Content/css/mui-sass/js/mui.js"></script>
-    <script src="/Scripts/vue.min.js"></script>
+    <script src="/LoanApp/dist/Content/css/mui-sass/js/mui.js"></script>
+    <script src="/LoanApp/dist/Scripts/vue.min.js"></script>
     <script type="text/javascript">
         mui.init({
             gestureConfig: {
@@ -477,17 +477,17 @@
         })
     </script>
 
-    <script src="/Scripts/base/PackagingFunction.js"></script>
-    <script src="/Scripts/base/VarGlobal.js"></script>
+    <script src="/LoanApp/dist/Scripts/base/PackagingFunction.js"></script>
+    <script src="/LoanApp/dist/Scripts/base/VarGlobal.js"></script>
 
-    <script src="/Scripts/ComPonent/jquery-1.8.3.min.js"></script>
-    <script src="/Scripts/ComPonent/lCalendar.js"></script>
-    <script src="/Scripts/ComPonent/lCalendar2.js"></script>
-    <script src="/Scripts/ComPonent/layer_mobile/layer.js" /></script>
-    <!--<script src="/Scripts/ComPonent/validate.min.js"></script>-->
+    <script src="/LoanApp/dist/Scripts/ComPonent/jquery-1.8.3.min.js"></script>
+    <script src="/LoanApp/dist/Scripts/ComPonent/lCalendar.js"></script>
+    <script src="/LoanApp/dist/Scripts/ComPonent/lCalendar2.js"></script>
+    <script src="/LoanApp/dist/Scripts/ComPonent/layer_mobile/layer.js" /></script>
+    <!--<script src="/LoanApp/dist/Scripts/ComPonent/validate.min.js"></script>-->
 
 
-    <script src="/Scripts/gather.js"></script>
+    <script src="/LoanApp/dist/Scripts/gather.js"></script>
 
     <!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
 </body>
