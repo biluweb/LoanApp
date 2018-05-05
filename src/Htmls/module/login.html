@@ -4,8 +4,8 @@
 		<meta charset="UTF-8">
 		<title>登陆界面</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="/Content/css/login.css"/>
+		<link href="/LoanApp/dist/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="/LoanApp/dist/Content/css/login.css"/>
 	</head>
 	<body>
 		
@@ -14,10 +14,10 @@
 			
 		
 		<div class="mui-content">
-			<a class="mui-icon mui-icon-closeempty loginext" href="/Htmls/dkindex.html"></a>
+			<a class="mui-icon mui-icon-closeempty loginext" href="/LoanApp/dist/Htmls/dkindex.html"></a>
 			
 			<div class="timg">
-				<img src="/Images/daik/gpwlogos.png" />
+				<img src="/LoanApp/dist/Images/daik/gpwlogos.png" />
 			</div>
 			<form id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
@@ -34,7 +34,7 @@
 			</form>
 			<div class="content-padded">
 				<div class="link-area">
-					<!--<a id='forgetPassword' href="/Htmls/module/passwdxg.html">忘记密码</a>-->
+					<!--<a id='forgetPassword' href="/LoanApp/dist/Htmls/module/passwdxg.html">忘记密码</a>-->
 				</div>
 				<button id='login' class="mui-btn mui-btn-block mui-btn-primary" @click="login()">立即登录</button>
 			</div>
@@ -44,8 +44,8 @@
 		 <!--加载mui+vue js-->
 		@@include('linkjs.html')
 		
-		<script src="/Scripts/base/PackagingFunction.js"></script>
-		<script src="/Scripts/base/VarGlobal.js"></script>
+		<script src="/LoanApp/dist/Scripts/base/PackagingFunction.js"></script>
+		<script src="/LoanApp/dist/Scripts/base/VarGlobal.js"></script>
 		
 		<script type="text/javascript">
 			
@@ -82,7 +82,7 @@
 										if(data.Code==10000){
 											setCookie("gpl_token",data.Desc);
 											mui.alert('登录成功','',function(){
-												window.location.href="/Htmls/dkindex.html";
+												window.location.href="/LoanApp/dist/Htmls/dkindex.html";
 											});
 											
 										}else{

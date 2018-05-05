@@ -211,12 +211,13 @@ gulp.task('server', () => {
       notify: false,
       port: 9001,
       server: {
-        baseDir: "./dist",
+        baseDir: "../../Documents", //  ./dist github pages  Documents要修改
         routes: {       //路由配置
-          '/Content': 'Content',
-          '/Images':'Images',
-          '/Scripts':'Scripts',
-          '/Resourceup':'Resourceup'
+          '/LoanApp/dist/Content': 'Content',
+          '/LoanApp/dist/Images':'Images',
+          '/LoanApp/dist/Scripts':'Scripts',
+          '/LoanApp/dist/Resourceup':'Resourceup',
+          '/LoanApp/dist/Htmls':'Htmls'
         }
       }
     });
