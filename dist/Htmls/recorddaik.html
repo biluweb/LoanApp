@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>我申请的贷款记录</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/Content/css/recorddaik.css" />
+</head>
+
+<body>
+    <div id="app">
+        <header class="mui-bar mui-bar-nav">
+            <a class="mui-icon bleft" href="javascript:goBack()">
+                <i class="mui-icon mui-icon-arrowleft"></i>返回
+            </a>
+            <div class="obtn xycenter">
+                <ul class="tab">
+                    <!--<li class="on td">全部</li>-->
+                    <li class="td on">待审核</li>
+                    <li class="td">已审核</li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="mui-content">
+            <div class="infor" v-if="resume != null">
+
+                <!--<template v-for="(item,index) in resume.Data">-->
+                <!--{{item}}v-bind:class="active:index==0"   -->
+                <!--10-待预审；20-已预审；21-预审未通过；30-按揭中；40-按揭已完结；50-银行已办结；-->
+                <!--<template v-for="(v,index) in resume.Data">  v-bind:class="{active:index==0}"-->
+
+
+                <ul class="wul tb active">
+                    <!--<template v-for="item in resume.Data">     .yet通过-->
+                    <li v-for="item in resume.Data" :ProjectId="item.ProjectId">
+                        <ul class="oul">
+                            <li>{{item.PropertyName}} + {{item.UserName}}</li>
+                            <li>建筑面积：{{item.BuildArea}}㎡</li>
+                            <li>申请时间：{{item.AppraisalTime}}</li>
+                        </ul>
+                        <!--onclick="window.location.href=''"-->
+                        <template v-if="item.Status==10">
+                            <div class="status" v-on:click="window.location.href='/Htmls/loadetai.html?ProjectId=' + item.ProjectId">待预审</div>
+                        </template>
+                        <template v-if="item.Status==20">
+                            <div class="status down">已预审
+                                <i class="mui-icon mui-icon-arrowdown"></i>
+                            </div>
+                        </template>
+                        <template v-if="item.Status==30">
+                            <div class="status">按揭中</div>
+                        </template>
+                        <template v-if="item.Status==40">
+                            <div class="status">按揭已完结</div>
+                        </template>
+                        <template v-if="item.Status==21">
+                            <div class="status">预审未通过</div>
+                        </template>
+                        <template v-if="item.Status==50">
+                            <div class="status">银行已办结</div>
+                        </template>
+                        <!--v-show="item.Status==20"-->
+                    </li>
+
+                </ul>
+
+                <ul class="wul tb">
+
+                    <template v-if="endresum!=null">
+                        <li v-for="item in endresum.Data" :ProjectId="item.ProjectId" class="yet">
+                            <ul class="oul">
+                                <li>{{item.PropertyName}} + {{item.UserName}}</li>
+                                <li>建筑面积：{{item.BuildArea}}㎡</li>
+                                <li>申请时间：{{item.AppraisalTime}}</li>
+                            </ul>
+                            <div class="status down" v-on:click="updf($event)">已预审
+                                <i class="mui-icon mui-icon-arrowdown"></i>
+                            </div>
+                            <!--onclick="window.location.href=''"-->
+                            <!--<template v-if="item.Status==10"><div class="status" onclick="window.location.href='/Htmls/loadetai.html'">待预审</div></template>-->
+                            <!--<template v-if="item.Status==20"><div class="status down">已预审<i class="mui-icon mui-icon-arrowdown"></i></div></template>-->
+                            <!--<template v-if="item.Status==30"><div class="status">按揭中</div></template>
+							<template v-if="item.Status==40"><div class="status">按揭已完结</div></template>
+							<template v-if="item.Status==21"><div class="status">预审未通过</div></template>
+							<template v-if="item.Status==50"><div class="status">银行已办结</div></template>-->
+                            <!--v-show="item.Status==20"-->
+                            <div class="yetres">
+                                <ul class="td mui-row">
+                                    <li class="mui-pull-left mui-col-sm-5 mui-col-xs-12">
+                                        <span>预审银行：</span>{{item.BankName}}</li>
+                                    <li class="mui-pull-right mui-col-sm-7 mui-col-xs-12">
+                                        <span>预审时间：</span>{{item.ApproveTime}}</li>
+                                    <li>
+                                        <span>预审结果：</span>
+                                        <span class="exares">通过</span>
+                                        <ul class="tlst">
+                                            <li>可贷额度：{{item.ApproveBudget}}</li>
+                                            <li>贷款期限：{{item.ApproveYearLimit}}</li>
+                                            <li>基准利率：{{item.ApproveRate}}%
+                                                <!--<span class="fq">360期</span>-->
+                                            </li>
+                                            <li>月 供：{{item.ApproveMonthPayment}}</li>
+                                            <li>
+                                                <button class="mui-btn mui-btn-blue qrh" @click="qrhf($event)" :ProjectId="item.ProjectId">确认达成合作</button>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </template>
+                </ul>
+
+                <!--</template>-->
+            </div>
+        </div>
+
+
+        <!--底部弹出框-->
+        <div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+            <template v-if="bankres!=null">
+                <template v-for="item in bankres.Data">
+                    <h3>可供选择贷款的代办服务商</h3>
+                    <p>{{item.Name}}
+                        <span class="qy">诚信企业</span>
+                    </p>
+                    <p>服务费：
+                        <span>{{item.ServiceFee}}</span>（含评估费+按揭服务费）</p>
+                    <!--<p>累计完成合作：<span>21325</span>单</p>-->
+                    <!-- 取消菜单 -->
+                    <button @click="zf($event)" :McId="item.McId" class="mui-btn mui-btn-blue">委托代办并支付服务费</button>
+                </template>
+            </template>
+        </div>
+
+
+    </div>
+
+    <!--加载mui+vue js-->
+    <script src="/Content/css/mui-sass/js/mui.js"></script>
+    <script src="/Scripts/vue.min.js"></script>
+    <script type="text/javascript">
+        mui.init({
+            gestureConfig: {
+                swipe: false, //默认为true
+            }
+        }); //mui初始化
+
+        mui.ready(function() {
+            //解决a标签不跳转问题
+            mui('body').on('tap', 'a', function() {
+                document.location.href = this.href;
+            });
+        })
+    </script>
+
+    <script src="/Scripts/base/PackagingFunction.js"></script>
+    <script src="/Scripts/base/VarGlobal.js"></script>
+
+    <script src="/Scripts/ComPonent/jquery-1.8.3.min.js"></script>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                resume: null,
+                endresum: null,
+                bankres: null,
+                ProjectId: null,
+                MCId: null,
+                num: 0
+            },
+            methods: {
+                tbl: function() {
+                    //tab切换
+                    var tbl = new LogregTab('body');
+                    tbl.init();
+                },
+                updf: function(event) {
+                    //						alert('888');
+                    //						console.log(event.currentTarget);
+                    var This = event.currentTarget;
+                    $(This).toggleClass('down');
+                    if (this.num == 0) {
+                        this.num++;
+                        $(This).children('.mui-icon').removeClass('mui-icon-arrowdown').addClass('mui-icon-arrowup');
+                    } else {
+                        $(This).children('.mui-icon').removeClass('mui-icon-arrowup').addClass('mui-icon-arrowdown');
+                        this.num = 0;
+                    }
+
+                    //						var yetbt = doc.querySelectorAll('.yet .status');
+                    //						for(var i = 0; i < yetbt.length; i++) {
+                    //							yetbt[i].addEventListener('tap', function() {
+                    //								if(hasClass(this, 'down')) {
+                    //									removeClass(this, 'down');
+                    //									removeClass(this.querySelector('.mui-icon'), 'mui-icon-arrowdown');
+                    //									addClass(this.querySelector('.mui-icon'), 'mui-icon-arrowup');
+                    //								} else {
+                    //									addClass(this, 'down');
+                    //									removeClass(this.querySelector('.mui-icon'), 'mui-icon-arrowup');
+                    //									addClass(this.querySelector('.mui-icon'), 'mui-icon-arrowdown');
+                    //								}
+                    //							})
+                    //						}
+                    //						
+                },
+                zf: function(event) {
+                    console.log(event.currentTarget);
+
+                    this.MCId = event.currentTarget.getAttribute('MCId');
+
+                    if (this.ProjectId != null && this.MCId != null) {
+                        console.log(this.ProjectId);
+                        window.location.href = "/Htmls/payment.html?ProjectId=" + this.ProjectId + "&MCId=" + this.MCId;
+                    }
+
+
+                },
+                qrhf: function(event) {
+                    this.ProjectId = event.currentTarget.getAttribute('ProjectId');
+                    mui('#sheet1').popover('toggle');
+                }
+
+            },
+            created: function() {
+                //setCookie("gpl_token", "GPBASIC 000");
+                var self = this;
+                mui.ajax({
+                    url: port_UserOnApply,
+                    type: 'get',
+                    dataType: 'json',
+                    headers: {
+                        "Authorization": getCookie("gpl_token")
+                    },
+                    data: {
+                        status: 10
+                    },
+                    success: function(data) {
+                        self.resume = data;
+                        //								console.log(getCookie("gpl_token"));
+                    },
+                    error: function(e) {}
+                })
+
+                mui.ajax({
+                    url: port_UserOnApply,
+                    type: 'get',
+                    dataType: 'json',
+                    headers: {
+                        "Authorization": getCookie("gpl_token")
+                    },
+                    data: {
+                        status: 30
+                    },
+                    success: function(data) {
+                        self.endresum = data;
+                        //								console.log(getCookie("gpl_token"));
+                        //							console.log(self.endresum);
+                    },
+                    error: function(e) {}
+                })
+
+                //银行 审核
+                mui.ajax({
+                    url: port_GetByBank,
+                    type: 'get',
+                    dataType: 'json', //服务器返回json格式数据?getCookie("gpl_token"):"GPBASIC 000"
+                    headers: {
+                        "Authorization": getCookie("gpl_token")
+                    },
+                    data: {
+                        //							id:33,
+                    },
+                    success: function(data) {
+                        self.bankres = data;
+                        console.log(data);
+                        console.log(getCookie("gpl_token"));
+                        //								console.log(getCookie("gpl_token"));
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                })
+
+
+
+
+
+            },
+            updated: function() {
+                var self = this;
+                this.tbl();
+                //					this.updf();
+            },
+        })
+    </script>
+</body>
+
+</html>

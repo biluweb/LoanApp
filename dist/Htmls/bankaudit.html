@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>调整额度和利率</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/Content/css/bankaudit.css" />
+</head>
+<body>
+    <div id="app">
+        <header class="mui-bar mui-bar-nav">
+            <a class="mui-icon bleft" href="javascript:goBack()">
+                <i class="mui-icon mui-icon-arrowleft"></i>返回
+            </a>
+            <h1 class="mui-title">调整额度和利率</h1>
+        </header>
+
+        <div class="mui-content">
+            <!--<div class="cont tel">
+		        	<h2>公评网评估房产价值：<span>65.5万</span></h2>
+					<p>该用户符合公积金贷款</p>
+		        </div>-->
+
+            <div class="cont tbd">
+                <h3>请输入可调整信息：</h3>
+                <div class="mui-input-row firs">
+                    <span>贷款额度</span>
+                    <input class="mui-input" type="text" placeholder="10" />
+                    <span>元</span>
+                </div>
+                <!--<div class="sfdk">
+		        		<p>首付：<span>13.12万</span></p>
+		        		<p>贷款：<span>52.48万</span></p>
+		        	</div>-->
+                <div class="mui-input-row">
+                    <span>贷款年限</span>
+                    <input class="mui-input" type="number" placeholder="1" />
+                    <span>年</span>
+                </div>
+                <div class="mui-input-row">
+                    <span>贷款利率</span>
+                    <input class="mui-input" type="number" placeholder="13.25" />
+                    <span>%</span>
+                </div>
+
+                <div class="tfd">
+                    <!--<p>月供：<span>5000元/月</span>（等额本金）</p>-->
+                    <p>所有债务偿付比：
+                        <span>45%</span>（月供+其他月供/月收入）</p>
+                    <p>该笔债务偿付比：
+                        <span>45%</span>（月供/月收入）</p>
+                </div>
+            </div>
+
+            <button class="mui-btn mui-btn-blue tjx">提交保存</button>
+
+
+        </div>
+
+    </div>
+
+    <!--加载mui+vue js-->
+    <script src="/Content/css/mui-sass/js/mui.js"></script>
+    <script src="/Scripts/vue.min.js"></script>
+    <script type="text/javascript">
+        mui.init({
+            gestureConfig: {
+                swipe: false, //默认为true
+            }
+        }); //mui初始化
+
+        mui.ready(function() {
+            //解决a标签不跳转问题
+            mui('body').on('tap', 'a', function() {
+                document.location.href = this.href;
+            });
+        })
+    </script>
+    <script src="/Scripts/base/PackagingFunction.js"></script>
+    <script src="/Scripts/base/VarGlobal.js"></script>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                resume: null
+            },
+            methods: {},
+            created: function() {
+                var self = this;
+
+
+                //银行 审核
+                mui.ajax({
+                    //						url: port_GetCurrent,
+                    //						type: 'get',
+                    //						dataType: 'json', //服务器返回json格式数据?getCookie("gpl_token"):"GPBASIC 000"
+                    //						headers: {
+                    //							"Authorization": getCookie("gpl_token")
+                    //						},
+                    //						data: {
+                    ////							id:33,
+                    //						},
+                    //						success: function(data) {
+                    //							self.resume = data;
+                    //							console.log(self.resume.Data.Mobile);
+                    //							
+                    //							console.log(getCookie("gpl_token"));
+                    //							//								console.log(getCookie("gpl_token"));
+                    //						},
+                    //						error: function(e) {
+                    //							console.log(e);
+                    //						}
+                })
+
+            },
+            updated: function() {
+
+            }
+
+        })
+    </script>
+</body>
+</html>

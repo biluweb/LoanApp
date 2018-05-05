@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登陆界面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/Content/css/login.css" />
+</head>
+<body>
+
+    <div id="app">
+
+
+
+        <div class="mui-content">
+            <a class="mui-icon mui-icon-closeempty loginext" href="/Htmls/dkindex.html"></a>
+
+            <div class="timg">
+                <img src="/Images/daik/gpwlogos.png" />
+            </div>
+            <form id='login-form' class="mui-input-group">
+                <div class="mui-input-row">
+                    <label class="iconspr icon-usern"></label>
+                    <input id='account' type="number" class="mui-input" maxlength="11" v-model="Mobile" placeholder="请输入手机号">
+                </div>
+                <div class="mui-input-row">
+                    <label class="iconspr icon-userp"></label>
+                    <input id='password' type="password" class="mui-input mui-input-password" v-model="Password" placeholder="请输入登陆密码">
+                    <span class="mui-icon mui-icon-eye">
+
+                    </span>
+                </div>
+            </form>
+            <div class="content-padded">
+                <div class="link-area">
+                    <!--<a id='forgetPassword' href="/Htmls/module/passwdxg.html">忘记密码</a>-->
+                </div>
+                <button id='login' class="mui-btn mui-btn-block mui-btn-primary" @click="login()">立即登录</button>
+            </div>
+        </div>
+
+    </div>
+    <!--加载mui+vue js-->
+    <script src="/Content/css/mui-sass/js/mui.js"></script>
+    <script src="/Scripts/vue.min.js"></script>
+    <script type="text/javascript">
+        mui.init({
+            gestureConfig: {
+                swipe: false, //默认为true
+            }
+        }); //mui初始化
+
+        mui.ready(function() {
+            //解决a标签不跳转问题
+            mui('body').on('tap', 'a', function() {
+                document.location.href = this.href;
+            });
+        })
+    </script>
+
+    <script src="/Scripts/base/PackagingFunction.js"></script>
+    <script src="/Scripts/base/VarGlobal.js"></script>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                Mobile: '',
+                Password: ''
+            },
+            methods: {
+                login: function() {
+                    var self = this;
+                    var setck = new setCookie();
+
+                    if (self.Mobile && self.Password) {
+                        mui.ajax({
+                            url: port_Login,
+                            type: 'post',
+                            dataType: 'json',
+                            headers: {
+                                "Authorization": getCookie("gpl_token"),
+                                'Content-Type': 'application/json'
+                            },
+                            data: {
+                                Mobile: self.Mobile,
+                                Password: self.Password
+                            },
+                            //{"Mobile":"18933336666","Password":"669153"},
+                            success: function(data) {
+                                //							self.resume = data;
+                                //								console.log(getCookie("gpl_token"));
+
+
+                                if (data.Code == 10000) {
+                                    setCookie("gpl_token", data.Desc);
+                                    mui.alert('登录成功', '', function() {
+                                        window.location.href = "/Htmls/dkindex.html";
+                                    });
+
+                                } else {
+                                    mui.alert('登录失败');
+                                }
+
+                                console.log(data);
+
+                            },
+                            error: function(e) {
+                                console.log(e);
+                            }
+                        })
+                    } else {
+                        mui.alert('请填写信息');
+                    }
+
+                }
+            },
+            created: function() {
+
+
+            }
+
+        })
+    </script>
+</body>
+</html>

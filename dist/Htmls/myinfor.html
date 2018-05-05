@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我的</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/Content/css/myinfor.css" />
+</head>
+<body>
+    <div id="app">
+
+
+        <nav class="mui-bar mui-bar-tab">
+            <a class="mui-tab-item" href="/Htmls/dkindex.html">
+                <span class="mui-icon icon-home"></span>
+                <span class="mui-tab-label">首页</span>
+            </a>
+            <!--<a class="mui-tab-item" href="/Htmls/information.html">
+		        <span class="mui-icon icon-infor"></span>
+		        <span class="mui-tab-label">消息</span>
+		    </a>-->
+            <a class="mui-tab-item">
+                <span class="mui-icon icon-gpw"></span>
+                <span class="mui-tab-label">公评网</span>
+            </a>
+            <a class="mui-tab-item mui-active" href="/Htmls/myinfor.html">
+                <span class="mui-icon icon-myd"></span>
+                <span class="mui-tab-label">我的</span>
+            </a>
+        </nav>
+
+
+        <div class="mui-content">
+
+            <div class="logoin" v-if="resume!=null">
+                <div class="mytitle">
+                    <div class="cont">
+                        <img src="/Resourceup/usertx0.png" />
+                        <div class="mctr">
+                            <h2>
+                                <span>用户名：</span>{{resume.Data.Name}}</h2>
+                            <p>
+                                <span>昵称：</span>{{resume.Data.NickName}}</p>
+                            <i class="iconspr icon-myxg"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mymang">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">
+                            <a class="mui-navigate-right" href="/Htmls/recorddaik.html">
+                                <i class="iconspr icon-mysq"></i>我的申请按揭
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a class="mui-navigate-right" href="/Htmls/recordload.html">
+                                <i class="iconspr icon-myaj"></i>我的按揭贷款
+                            </a>
+                        </li>
+                        <!--<li class="mui-table-view-cell">
+		    	            <a class="mui-navigate-right" href="/Htmls/information.html">
+	    	                 	<i class="iconspr icon-myinfo"></i>我的消息
+		    	            </a>
+		    	        </li>-->
+                    </ul>
+                </div>
+
+                <button class="mui-btn mui-btn-blue exit" @click="logout()">退出登陆</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--加载mui+vue js-->
+    <script src="/Content/css/mui-sass/js/mui.js"></script>
+    <script src="/Scripts/vue.min.js"></script>
+    <script type="text/javascript">
+        mui.init({
+            gestureConfig: {
+                swipe: false, //默认为true
+            }
+        }); //mui初始化
+
+        mui.ready(function() {
+            //解决a标签不跳转问题
+            mui('body').on('tap', 'a', function() {
+                document.location.href = this.href;
+            });
+        })
+    </script>
+
+
+    <script src="/Scripts/base/PackagingFunction.js"></script>
+    <script src="/Scripts/base/VarGlobal.js"></script>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                resume: null
+            },
+            methods: {
+                logout: function() { //port_Logout
+                    var self = this;
+                    mui.ajax({
+                        url: port_Logout,
+                        type: 'post',
+                        dataType: 'json', //服务器返回json格式数据?getCookie("gpl_token"):"GPBASIC 000"
+                        headers: {
+                            "Authorization": getCookie("gpl_token"),
+                            'Content-Type': 'application/json'
+                        },
+                        data: {
+                            Mobile: self.resume.Data.Mobile,
+                        },
+                        success: function(data) {
+                            if (data.Code == 10000) {
+                                clearCookie("gpl_token");
+                                clearCookie("city");
+                                window.location.href = "/Htmls/gather.html";
+                            }
+                            //										self.resume = data;
+                            console.log(data);
+                            console.log(getCookie("gpl_token"));
+                            //								console.log(getCookie("gpl_token"));
+                        },
+                        error: function(e) {
+                            console.log(e);
+                        }
+                    })
+                }
+            },
+            created: function() {
+                var self = this;
+
+
+                //获取用户
+                mui.ajax({
+                    url: port_GetCurrent,
+                    type: 'get',
+                    dataType: 'json', //服务器返回json格式数据?getCookie("gpl_token"):"GPBASIC 000"
+                    headers: {
+                        "Authorization": getCookie("gpl_token")
+                    },
+                    data: {
+                        //							id:33,
+                    },
+                    success: function(data) {
+                        self.resume = data;
+                        console.log(data);
+
+                        console.log(getCookie("gpl_token"));
+                        //								console.log(getCookie("gpl_token"));
+                    },
+                    error: function(e) {
+                        window.location.href = "/Htmls/module/login.html"
+                    }
+                })
+
+            },
+            updated: function() {
+
+            }
+
+
+
+
+
+        })
+    </script>
+</body>
+</html>

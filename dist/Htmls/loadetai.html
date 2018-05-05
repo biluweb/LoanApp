@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>申请按揭详情</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="/Content/css/mui-sass/sass/mui.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/Content/css/loadetai.css" />
+</head>
+<body>
+
+    <div id="app">
+
+
+
+        <header class="mui-bar mui-bar-nav">
+            <a class="mui-icon bleft" href="javascript:goBack()">
+                <i class="mui-icon mui-icon-arrowleft"></i>返回
+            </a>
+            <h1 class="mui-title">申请按揭详情</h1>
+        </header>
+        <div class="mui-content">
+            <!--加载列表-->
+
+
+            <template v-if="resume!=null">
+                <!--{{resume}}-->
+                <!--<template v-for="item in resume.Data">-->
+                <!--<p v-for="item in resume.Data">{{item}}</p>-->
+                <!--{{key.UserName}}-->
+                <div class="infor informan">
+                    <h2>申请人信息</h2>
+                    <ul class="mui-row">
+                        <li class="mui-pull-left mui-col-sm-5 mui-col-xs-12">
+                            <span>借款人：{{resume.Data.UserName}}</span>
+                        </li>
+                        <li class="mui-pull-right mui-col-sm-7 mui-col-xs-12">
+                            <span>联系电话：</span>{{resume.Data.Mobile}}</li>
+                        <li>
+                            <span>按揭人：</span>
+                            <template v-if="resume.Data.ApplyType==1">自己</template>
+                            <template v-if="resume.Data.ApplyType==2">家人</template>
+                        </li>
+                        <li>
+                            <span>名下有无按揭贷款：</span>
+                            <template v-if="resume.Data.LoanCount==0">没有</template>
+                            <template v-if="resume.Data.LoanCount==1">有一套</template>
+                            <template v-if="resume.Data.LoanCount==2">有两套及以上</template>
+                        </li>
+                        <li>
+                            <span>有公积金缴存记录：</span>
+                            <template v-if="resume.Data.PublicAccmFunds==0">没有</template>
+                            <template v-if="resume.Data.PublicAccmFunds==1">有</template>
+                        </li>
+                        <li>
+                            <span>评估信息：</span>
+                            <ul class="tlist">
+                                <li>
+                                    <span>可贷总额：</span>{{resume.Data.AppraisalBudget}}</li>
+                                <li>
+                                    <span>贷款期限：</span>{{resume.Data.AppraisalYearLimit}}</li>
+                                <li>
+                                    <span>基准利率：</span>{{resume.Data.AppraisalRate}}%</li>
+                                <li>
+                                    <span>月 供：</span>{{resume.Data.AppraisalMonthPayment}}元/月</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>月收入：</span>{{resume.Data.MonthlyIncome}}</li>
+                        <li>
+                            <span>可供首付：</span>{{resume.Data.AvailableDeposit}}</li>
+                        <li>
+                            <span>不良信用：</span>
+                            <template v-if="resume.Data.PoorLoanCount==0">没有</template>
+                            <template v-if="resume.Data.PoorLoanCount==1">不超2次</template>
+                            <template v-if="resume.Data.PoorLoanCount==2">不超4次</template>
+                        </li>
+                        <li class="mui-pull-left mui-col-sm-8 mui-col-xs-12">
+                            <span>出生日期：</span>{{resume.Data.Birthday}}</li>
+                        <li class="mui-pull-right mui-col-sm-4 mui-col-xs-12">
+                            <span>年龄：{{resume.Data.Age}}</span>
+                        </li>
+                        <li>
+                            <span>最长贷款期限：</span>{{resume.Data.AppraisalYearLimit}}</li>
+                    </ul>
+                </div>
+
+                <div class="infor inforperty">
+                    <h2>意向房产信息</h2>
+                    <ul>
+                        <li class="liblock">
+                            <span>小区名称：</span>{{resume.Data.PropertyName}}</li>
+                        <li>
+                            <span>建筑面积：</span>{{resume.Data.BuildArea}}㎡ </li>
+                        <li>
+                            <span>楼栋：</span>{{resume.Data.BuildName}}</li>
+                        <li>
+                            <span>户型：</span>{{resume.Data.RoomStructureType}}</li>
+                        <li>
+                            <span>房号：</span>{{resume.Data.RoomName}}</li>
+                        <li>
+                            <span>朝向：</span>{{resume.Data.PropertyFace}}</li>
+                        <li>
+                            <span>楼层：</span>{{resume.Data.FloorNumber}}</li>
+                        <li>
+                            <span>有无电梯：</span>
+                            <template v-if="resume.Data.HasElevator==true">有</template>
+                            <template v-if="resume.Data.HasElevator==false">没有</template>
+                        </li>
+                        <li>
+                            <span>总楼层：</span>{{resume.Data.FloorTotal}}层</li>
+                        <li class="liblock">
+                            <span>建筑年代：</span>{{resume.Data.BuildingTime}}</li>
+                        <li>
+                            <span>建筑类型：</span>{{resume.Data.BuildingType}}</li>
+                        <li>
+                            <span>景观：</span>{{resume.Data.LandScape}}</li>
+                        <li class="liblock">
+                            <span>装修年代：</span>{{resume.Data.DecorateTime}}年</li>
+                        <!--<li class="liblock"><span>房产价值：</span></li>-->
+                    </ul>
+                </div>
+                <!--
+	         <div class="infor inforexa">
+	        	<h2>银行预审信息</h2>
+	        	<ul>
+	        		<li><span>预审银行：</span>{{resume.Data.BankName}}</li>
+	        		<li><span>预审时间：</span>{{resume.Data.ApproveTime}}</li>
+	        		<li class="mui-pull-left mui-col-sm-5 mui-col-xs-12"><span>客户经理：</span>{{resume.Data.BankOwnerName}}</li>               
+	        		<li class="mui-pull-left mui-col-sm-7 mui-col-xs-12"><span>联系电话：</span>{{resume.Data.BankOwnerMoblie}}</li>
+	        		<li>
+	        			<span>预审结果：</span>（满足放贷条件）
+	        			<ul class="tlist">
+	        				<li><span>可贷总额：</span>{{resume.Data.ApproveBudget}}</li>
+	        				<li><span>贷款期限：</span>{{resume.Data.ApproveYearLimit}}</li>
+	        				<li><span>基准利率：</span>{{resume.Data.ApproveRate}}%<span class="fq">360期</span></li>
+	        				<li><span>月       供：</span>{{resume.Data.ApproveMonthPayment}}元/月</li>
+	        				<li>
+	        					<button class="mui-btn mui-btn-blue qrh">确认达成合作</button>
+	        					<!--完成状态-->
+                <!--<button class="mui-btn mui-btn-blue qrh ach">已经达成合作</button>
+	        				</li>
+	        			</ul>
+	        		</li>
+	        	</ul>
+	        </div>
+	        
+	        -->
+
+
+                <!--</template>-->
+
+            </template>
+
+        </div>
+
+
+        <!--底部弹出框-->
+        <div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action " v-if="bankres!=null">
+            <template v-for="item in bankres.Data">
+                <h3>可供选择贷款的代办服务商</h3>
+                <p>{{item.Name}}
+                    <span class="qy">诚信企业</span>
+                </p>
+                <p>服务费：
+                    <span>{{item.ServiceFee}}</span>（含评估费+按揭服务费）</p>
+                <!--<p>累计完成合作：<span>21325</span>单</p>-->
+                <!-- 取消菜单 -->
+                <a href="/Htmls/payment.html" class="mui-btn mui-btn-blue">委托代办并支付服务费</a>
+            </template>
+
+        </div>
+
+
+
+
+    </div>
+
+
+    <!--加载mui+vue js-->
+    <script src="/Content/css/mui-sass/js/mui.js"></script>
+    <script src="/Scripts/vue.min.js"></script>
+    <script type="text/javascript">
+        mui.init({
+            gestureConfig: {
+                swipe: false, //默认为true
+            }
+        }); //mui初始化
+
+        mui.ready(function() {
+            //解决a标签不跳转问题
+            mui('body').on('tap', 'a', function() {
+                document.location.href = this.href;
+            });
+        })
+    </script>
+
+    <script src="/Scripts/base/PackagingFunction.js"></script>
+    <script src="/Scripts/base/VarGlobal.js"></script>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                resume: null,
+                bankres: null
+            },
+            methods: {
+                tabs: function() {
+                    //tab切换
+                    var tbl = new LogregTab('body');
+                    tbl.init();
+                },
+            },
+            created: function() {
+                var self = this;
+                mui.ajax({
+                    url: port_GetDetails,
+                    type: 'get',
+                    dataType: 'json', //服务器返回json格式数据?getCookie("gpl_token"):"GPBASIC 000"
+                    headers: {
+                        "Authorization": getCookie("gpl_token")
+                    },
+                    data: {
+                        id: GetRequest().ProjectId,
+                    },
+                    success: function(data) {
+                        self.resume = data;
+                        console.log(data);
+                        console.log(getCookie("gpl_token"));
+
+                        //								console.log(getCookie("gpl_token"));
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                })
+
+                //银行 审核
+                mui.ajax({
+                    url: port_GetByBank,
+                    type: 'get',
+                    dataType: 'json', //服务器返回json格式数据?getCookie("gpl_token"):"GPBASIC 000"
+                    headers: {
+                        "Authorization": getCookie("gpl_token")
+                    },
+                    data: {
+                        //							id:33,
+                    },
+                    success: function(data) {
+                        self.bankres = data;
+                        console.log(data);
+                        console.log(getCookie("gpl_token"));
+                        //								console.log(getCookie("gpl_token"));
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                })
+
+            },
+            updated: function() {
+                //底部弹出框
+                mui('body').on('tap', '.qrh', function() {
+                    mui('#sheet1').popover('toggle');
+                })
+            }
+
+        })
+    </script>
+</body>
+</html>
